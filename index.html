@@ -1,141 +1,168 @@
 <!DOCTYPE html>
 <html lang="id">
-<meta charset="UTF-8">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Modern</title>
-    <link rel="stylesheet" href="style.css"
+    <title>Avrlln | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav id="navbar">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">Tentang</a></li>
-            <li><a href="#skills">Keahlian</a></li>
-            <li><a href="#projects">Proyek</a></li>
-            <li><a href="#contact">Kontak</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="#home" class="logo">Avrlln.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="hero-content">
-            <h1>WELCOME</h1>
-            <h1>TO MY PORTFOLIO WEBSITE</h1>
-            <p>Web Developer & Designer Kreatif</p>
-            <a href="#contact" class="cta-button">Mari Berkolaborasi!</a>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="hero fade-in">
+            <div class="hero-content">
+                <span class="badge">Web Developer & Designer</span>
+                <h1>Crafting digital<br>experiences.</h1>
+                <p>I build clean, modern, and efficient solutions for the web.<br>Passionate about UI/UX and software engineering.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+            </div>
+        </section>
 
-    <section id="about">
-        <h2>Tentang Saya</h2>
-        <div class="about-content">
-            <div class="about-img"><img src="" alt="" srcset=""></div>
-            <div class="about-text">
-                <p>Saya adalah seorang mahasiswa yang memiliki ketertarikan dalam programming. Berbekal pangamalan basic programming dari SMK, saya membuat berbagai mini proyek salah satunya game website hingga desain web.</p>
-                <p>Saya menggunakan beberapa tools dan Artificial intelligence (AI) untuk membantu saya menyelsesaikan dan membuat pekerjaan saya menjadi lebih efisien.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>Keahlian Saya</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">💻</div>
-                <h3>Web Development</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 0%" data-progress="75"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🎨</div>
-                <h3>UI/UX Design</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 0%" data-progress="60"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🍃</div>
-                <h3>Tailwind</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 0%" data-progress="62"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">⚡</div>
-                <h3>JavaScript</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 0%" data-progress="58"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🐍</div>
-                <h3>Python</h3>
-                <div class="skill-bar">
-                    <div class="skill-progress" style="width: 0%" data-progress="48"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Proyek Terbaru</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-img">🎨</div>
-                <div class="project-info">
-                    <h3>Website Design</h3>
-                    <p>Desain website dengan tampilan yang menarik dan interaktif.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Tailwind</span>
+        <section id="about" class="fade-in">
+            <div class="section-container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>I am a student with a deep interest in programming and software development. With foundational experience from vocational school, I have built various mini-projects, ranging from web-based games to full website designs.</p>
+                        <p>I leverage modern tools and emerging technologies to optimize my workflow, ensuring efficiency and high-quality results in every project I undertake.</p>
+                    </div>
+                    <div class="about-image-placeholder">
+                        <div class="image-box"></div>
                     </div>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-img">📃</div>
-                <div class="project-info">
-                    <h3>Presence Program</h3>
-                    <p>Sistem absensi sederhana untuk siswa sekolah.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Javascript</span>
+        </section>
+
+        <section id="skills" class="bg-light fade-in">
+            <div class="section-container">
+                <h2 class="section-title">Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i data-lucide="layout"></i>
+                        <h3>Web Development</h3>
+                        <p>Building responsive and accessible web applications.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i data-lucide="pen-tool"></i>
+                        <h3>UI/UX Design</h3>
+                        <p>Designing intuitive and clean user interfaces.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i data-lucide="wind"></i>
+                        <h3>Tailwind CSS</h3>
+                        <p>Rapidly styling modern websites with utility-first CSS.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i data-lucide="file-code-2"></i>
+                        <h3>JavaScript</h3>
+                        <p>Creating interactive and dynamic frontend logic.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i data-lucide="terminal"></i>
+                        <h3>Python</h3>
+                        <p>Developing backend scripts and automation tools.</p>
                     </div>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-img">🎮</div>
-                <div class="project-info">
-                    <h3>Web Game</h3>
-                    <p>Game interaktif berbasis browser.</p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Tailwind</span>
+        </section>
+
+        <section id="projects" class="fade-in">
+            <div class="section-container">
+                <h2 class="section-title">Selected Work</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <div class="project-placeholder bg-gradient-1"></div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Website Design</h3>
+                            <p>An interactive and visually appealing website design focused on user experience.</p>
+                            <div class="project-tags">
+                                <span>React</span>
+                                <span>Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <div class="project-placeholder bg-gradient-2"></div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Presence Program</h3>
+                            <p>A streamlined attendance tracking system developed for educational institutions.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <div class="project-placeholder bg-gradient-3"></div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Web Game</h3>
+                            <p>A browser-based interactive game featuring engaging mechanics.</p>
+                            <div class="project-tags">
+                                <span>JavaScript</span>
+                                <span>Python</span>
+                                <span>Tailwind</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact">
-        <h2>Hubungi Saya</h2>
-        <div class="contact-content">
-            <p>Tertarik untuk berkolaborasi? Jangan ragu untuk menghubungi saya!</p>
-            <div class="contact-icons">
-                <a href="mailto:frelezra@gmail.com" class="contact-icon" title="Email">📧</a>
-                <a href="https://wa.me/qr/BOL7HGJTAF3UM1" class="contact-icon" title="WhatsApp">💬</a>
-                <a href="https://github.com/Akane-UX" class="contact-icon" title="GitHub">😼</a>
-                <a href="https://x.com/Nakame_sh" class="contact-icon" title="X">X</a>
-
+        <section id="contact" class="fade-in">
+            <div class="section-container text-center">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="contact-desc">Interested in collaborating or have a project in mind? Feel free to reach out.</p>
+                <div class="contact-links">
+                    <a href="mailto:frelezra@gmail.com" class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://wa.me/qr/BOL7HGJTAF3UM1" class="contact-item" target="_blank">
+                        <i data-lucide="message-circle"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://github.com/Akane-UX" class="contact-item" target="_blank">
+                        <i data-lucide="github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://x.com/Nakame_sh" class="contact-item" target="_blank">
+                        <i data-lucide="twitter"></i>
+                        <span>Twitter</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <div class="scroll-top" id="scrollTop">↑</div>
+    <footer>
+        <div class="section-container">
+            <p>&copy; 2026 Avrlln. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
