@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avrlln | Portfolio</title>
+    <title>Avril | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">Avrlln.</a>
+            <a href="#home" class="logo">Avril.</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -28,7 +28,7 @@
             <div class="hero-content">
                 <span class="badge">Web Developer & Designer</span>
                 <h1>Crafting digital<br>experiences.</h1>
-                <p>I build clean, modern, and efficient solutions for the web.<br>Passionate about UI/UX and software engineering.</p>
+                <p>Hi, I'm Avril. I build clean, modern, and efficient solutions for the web.<br>Passionate about UI/UX, software engineering, and cyber security.</p>
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">View Work</a>
                     <a href="#contact" class="btn btn-outline">Get in Touch</a>
@@ -41,7 +41,7 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="about-grid">
                     <div class="about-text">
-                        <p>I am a student with a deep interest in programming and software development. With foundational experience from vocational school, I have built various mini-projects, ranging from web-based games to full website designs.</p>
+                        <p>I am a student with a deep interest in programming, software development, and cyber security. With foundational experience from vocational school, I have built various mini-projects, ranging from web-based games to full website designs.</p>
                         <p>I leverage modern tools and emerging technologies to optimize my workflow, ensuring efficiency and high-quality results in every project I undertake.</p>
                     </div>
                     <div class="about-image-placeholder">
@@ -64,6 +64,11 @@
                         <i data-lucide="pen-tool"></i>
                         <h3>UI/UX Design</h3>
                         <p>Designing intuitive and clean user interfaces.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i data-lucide="shield-check"></i>
+                        <h3>Cyber Security</h3>
+                        <p>Ensuring system integrity and analyzing vulnerabilities.</p>
                     </div>
                     <div class="skill-card">
                         <i data-lucide="wind"></i>
@@ -101,33 +106,42 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div class="project-img-wrapper">
-                            <div class="project-placeholder bg-gradient-2"></div>
-                        </div>
-                        <div class="project-info">
-                            <h3>Presence Program</h3>
-                            <p>A streamlined attendance tracking system developed for educational institutions.</p>
-                            <div class="project-tags">
-                                <span>Python</span>
-                                <span>JavaScript</span>
+                    <a href="auditx.html" target="_blank" class="project-link">
+                        <div class="project-card">
+                            <div class="project-img-wrapper">
+                                <div class="project-placeholder" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="terminal" style="color: #4ade80; width: 48px; height: 48px;"></i>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>AuditX Pentesting <i data-lucide="external-link" style="width: 14px; height: 14px; display: inline-block; vertical-align: baseline;"></i></h3>
+                                <p>A native Linux GUI pentesting platform designed to make complex security tools accessible to beginners.</p>
+                                <div class="project-tags">
+                                    <span>Python</span>
+                                    <span>QML</span>
+                                    <span>Security</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-img-wrapper">
-                            <div class="project-placeholder bg-gradient-3"></div>
-                        </div>
-                        <div class="project-info">
-                            <h3>Web Game</h3>
-                            <p>A browser-based interactive game featuring engaging mechanics.</p>
-                            <div class="project-tags">
-                                <span>JavaScript</span>
-                                <span>Python</span>
-                                <span>Tailwind</span>
+                    </a>
+                    <a href="photography.html" target="_blank" class="project-link">
+                        <div class="project-card">
+                            <div class="project-img-wrapper">
+                                <div class="project-placeholder" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display: flex; align-items: center; justify-content: center;">
+                                    <i data-lucide="camera" style="color: #cbd5e1; width: 48px; height: 48px;"></i>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Street Photography <i data-lucide="external-link" style="width: 14px; height: 14px; display: inline-block; vertical-align: baseline;"></i></h3>
+                                <p>Capturing raw, candid moments of urban life and visual storytelling through the lens.</p>
+                                <div class="project-tags">
+                                    <span>Photography</span>
+                                    <span>Art</span>
+                                    <span>Visuals</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -151,7 +165,7 @@
                     </a>
                     <a href="https://x.com/Nakame_sh" class="contact-item" target="_blank">
                         <i data-lucide="twitter"></i>
-                        <span>Twitter</span>
+                        <span>X</span>
                     </a>
                 </div>
             </div>
@@ -160,10 +174,10 @@
 
     <footer>
         <div class="section-container">
-            <p>&copy; 2026 Avrlln. All rights reserved.</p>
+            <p>&copy; 2026 Avril. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
