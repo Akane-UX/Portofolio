@@ -9,7 +9,7 @@
     --border: #e5e7eb;
     
     --nav-height: 80px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 [data-theme="dark"] {
     --bg-primary: #111827;
@@ -43,7 +43,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Typography */
 h1, h2, h3, h4 {
     font-weight: 600;
     line-height: 1.2;
@@ -59,7 +58,6 @@ a {
     text-decoration: none;
 }
 
-/* Layout Utilities */
 .section-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -78,7 +76,6 @@ section {
     text-align: center;
 }
 
-/* Navbar */
 nav {
     position: fixed;
     top: 0;
@@ -131,7 +128,6 @@ nav.scrolled {
     color: var(--text-primary);
 }
 
-/* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -174,7 +170,6 @@ nav.scrolled {
     gap: 1rem;
 }
 
-/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -209,13 +204,11 @@ nav.scrolled {
     border-color: #d1d5db;
 }
 
-/* Sections General */
 .section-title {
     font-size: 2rem;
     margin-bottom: 3rem;
 }
 
-/* About Section */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -247,7 +240,6 @@ nav.scrolled {
     opacity: 0.8;
 }
 
-/* Skills Section */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -284,7 +276,6 @@ nav.scrolled {
     font-size: 0.9rem;
 }
 
-/* Projects Section */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -392,7 +383,6 @@ nav.scrolled {
     color: var(--accent);
 }
 
-/* Footer */
 footer {
     padding: 2rem 0;
     text-align: center;
@@ -401,7 +391,6 @@ footer {
     color: var(--text-secondary);
 }
 
-/* Animations */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -413,7 +402,6 @@ footer {
     transform: translateY(0);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .about-grid {
         grid-template-columns: 1fr;
@@ -444,16 +432,16 @@ footer {
     color: var(--text-primary);
 }
 
-/* Theme Transition Layers */
 .theme-transition-layer {
     position: fixed;
     left: 0;
-    top: -250vh;
+    top: -50vh;
     width: 100vw;
-    height: 250vh;
+    height: 200vh;
     z-index: 9999;
     pointer-events: none;
-    transform: skewY(-10deg);
+    transform: translateY(-150%) skewY(-10deg);
+    will-change: transform;
 }
 
 .theme-transition-layer.layer-1 {
@@ -466,9 +454,9 @@ footer {
 
 @keyframes slideDownSkew {
     0% {
-        top: -250vh;
+        transform: translateY(-150%) skewY(-10deg);
     }
     100% {
-        top: 150vh;
+        transform: translateY(150%) skewY(-10deg);
     }
 }
