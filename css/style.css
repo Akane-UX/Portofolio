@@ -1,5 +1,6 @@
-:root {
+:root, [data-theme="light"] {
     --bg-primary: #ffffff;
+    --bg-primary-rgb: 255, 255, 255;
     --bg-secondary: #f9fafb;
     --text-primary: #111827;
     --text-secondary: #4b5563;
@@ -10,6 +11,17 @@
     --nav-height: 80px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+[data-theme="dark"] {
+    --bg-primary: #111827;
+    --bg-primary-rgb: 17, 24, 39;
+    --bg-secondary: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --accent: #38bdf8;
+    --accent-hover: #7dd3fc;
+    --border: #374151;
+}
+
 
 * {
     margin: 0;
@@ -28,6 +40,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Typography */
@@ -72,7 +85,7 @@ nav {
     left: 0;
     right: 0;
     height: var(--nav-height);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(var(--bg-primary-rgb), 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid transparent;
@@ -82,7 +95,7 @@ nav {
 
 nav.scrolled {
     border-bottom: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(var(--bg-primary-rgb), 0.95);
 }
 
 .nav-container {
@@ -413,5 +426,49 @@ footer {
     
     .hero-content {
         padding: 0 1rem;
+    }
+}
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+#theme-toggle:hover {
+    color: var(--text-primary);
+}
+
+/* Theme Transition Layers */
+.theme-transition-layer {
+    position: fixed;
+    left: 0;
+    top: -250vh;
+    width: 100vw;
+    height: 250vh;
+    z-index: 9999;
+    pointer-events: none;
+    transform: skewY(-10deg);
+}
+
+.theme-transition-layer.layer-1 {
+    background-color: var(--accent);
+}
+
+.theme-transition-layer.layer-2 {
+    background-color: var(--bg-primary);
+}
+
+@keyframes slideDownSkew {
+    0% {
+        top: -250vh;
+    }
+    100% {
+        top: 150vh;
     }
 }
