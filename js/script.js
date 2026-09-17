@@ -58,22 +58,22 @@ themeToggle.addEventListener('click', () => {
     layer2.style.backgroundColor = nextTheme === 'dark' ? '#111827' : '#ffffff';
 
     // Apply animation
-    layer1.style.animation = 'slideDownSkew 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards';
-    layer2.style.animation = 'slideDownSkew 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0.15s forwards';
+    layer1.style.animation = 'slideDownSkew 2.2s cubic-bezier(0.77, 0, 0.175, 1) forwards';
+    layer2.style.animation = 'slideDownSkew 2.2s cubic-bezier(0.77, 0, 0.175, 1) 0.2s forwards';
 
     // Switch theme midway through the animation (when screen is covered)
     setTimeout(() => {
         document.documentElement.setAttribute('data-theme', nextTheme);
         localStorage.setItem('theme', nextTheme);
         updateToggleIcon(nextTheme);
-    }, 750); // wait for layers to cover the screen
+    }, 1100); // wait for layers to cover the screen
 
     // Reset animation
     setTimeout(() => {
         layer1.style.animation = 'none';
         layer2.style.animation = 'none';
         isAnimating = false;
-    }, 1800);
+    }, 2600);
 });
 
 function updateToggleIcon(theme) {
