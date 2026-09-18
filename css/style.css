@@ -1,32 +1,29 @@
 :root, [data-theme="light"] {
     --bg-primary: #ffffff;
     --bg-primary-rgb: 255, 255, 255;
-    --bg-secondary: #f4f4f5; /* zinc-100 */
+    --bg-secondary: #f4f4f5; 
     --text-primary: #09090b;
-    --text-secondary: #71717a; /* zinc-500 */
-    --accent: #18181b; /* zinc-900 */
-    --accent-hover: #27272a; /* zinc-800 */
-    --border: #e4e4e7; /* zinc-200 */
+    --text-secondary: #71717a; 
+    --accent: #18181b; 
+    --accent-hover: #27272a; 
+    --border: #e4e4e7; 
     --bento-bg: #fafafa;
     --card-shadow: 0 8px 30px -12px rgba(0,0,0,0.08);
-    
     --nav-height: 72px;
-    
-    /* Emil Kowalski Animation Curves */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
     --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
     --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 [data-theme="dark"] {
-    --bg-primary: #09090b; /* zinc-950 */
+    --bg-primary: #09090b; 
     --bg-primary-rgb: 9, 9, 11;
-    --bg-secondary: #18181b; /* zinc-900 */
+    --bg-secondary: #18181b; 
     --text-primary: #fafafa;
-    --text-secondary: #a1a1aa; /* zinc-400 */
-    --accent: #fafafa; /* white */
-    --accent-hover: #e4e4e7; /* zinc-200 */
-    --border: #27272a; /* zinc-800 */
+    --text-secondary: #a1a1aa; 
+    --accent: #fafaf
+    --accent-hover: #e4e4e7; 
+    --border: #27272a; 
     --bento-bg: #131316;
     --card-shadow: 0 8px 30px -12px rgba(0,0,0,0.5);
 }
@@ -48,7 +45,6 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    /* Transition colors with blur to mask imperfect swaps */
     transition: background-color 300ms var(--ease-out), color 300ms var(--ease-out);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -172,14 +168,13 @@ nav.scrolled {
     transform: scale(0.92);
 }
 
-/* Hero */
 .hero {
     min-height: 100dvh;
     display: flex;
     align-items: center;
     padding-top: var(--nav-height);
     position: relative;
-    visibility: hidden; /* GSAP will reveal */
+    visibility: hidden;
 }
 
 .hero .section-container {
@@ -257,7 +252,6 @@ nav.scrolled {
     gap: 1rem;
 }
 
-/* BUTTONS - Emil Design Engineering */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -272,7 +266,7 @@ nav.scrolled {
 }
 
 .btn:active {
-    transform: scale(0.97); /* The classic snappy feedback */
+    transform: scale(0.97);
 }
 
 .btn-primary {
@@ -301,7 +295,6 @@ nav.scrolled {
     }
 }
 
-/* Typography elements */
 .section-title {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1.5rem;
@@ -313,7 +306,6 @@ nav.scrolled {
     font-size: 1.2rem;
 }
 
-/* About Layout */
 .about-grid {
     display: grid;
     grid-template-columns: 5fr 7fr;
@@ -336,7 +328,6 @@ nav.scrolled {
     background-color: var(--bg-secondary);
     position: relative;
     overflow: hidden;
-    /* Emil: mask with transform scaling to avoid re-paints */
     transform: translateZ(0);
 }
 
@@ -359,7 +350,6 @@ nav.scrolled {
     }
 }
 
-/* Bento Skills */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -368,7 +358,7 @@ nav.scrolled {
 }
 
 .gsap-reveal {
-    visibility: hidden; /* Prevent FOUC before GSAP hooks in */
+    visibility: hidden;
 }
 
 .bento-cell {
@@ -376,7 +366,6 @@ nav.scrolled {
     background: var(--bento-bg);
     border: 1px solid var(--border);
     border-radius: 16px;
-    /* Hardware acceleration, exactly specified transitions */
     transition: transform 160ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
     display: flex;
     flex-direction: column;
@@ -467,7 +456,6 @@ nav.scrolled {
     color: var(--bg-primary);
 }
 
-/* Projects */
 .projects-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -595,7 +583,6 @@ nav.scrolled {
     color: var(--text-secondary);
 }
 
-/* Contact */
 .contact-section {
     padding: 10rem 0;
 }
@@ -653,7 +640,6 @@ footer {
     color: var(--text-secondary);
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 1024px) {
     .bento-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -715,7 +701,6 @@ footer {
     }
 }
 
-/* Theme transition wipe using clip-path (Hardware accelerated) */
 .theme-wipe {
     position: fixed;
     inset: 0;
@@ -725,7 +710,6 @@ footer {
     will-change: clip-path;
 }
 
-/* Reduced Motion fallback */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation: none !important;

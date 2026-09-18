@@ -10,18 +10,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// GSAP Animations
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Prevent FOUC by making sure items are visible before animating them from 0
     gsap.set('.gsap-hero, .gsap-hero-item, .gsap-hero-asset, .gsap-about-img, .gsap-about-text, .gsap-header, .gsap-bento, .gsap-project, .gsap-contact', { visibility: 'visible' });
 
-    // Match media for reduced motion
     let mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Hero Section
         gsap.from('.gsap-hero-item', {
             opacity: 0,
             y: 20,
@@ -39,7 +35,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             delay: 0.3
         });
 
-        // About Section
         gsap.from('.gsap-about-img', {
             scrollTrigger: {
                 trigger: '.about-section',
@@ -63,7 +58,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             delay: 0.2
         });
 
-        // Skills / Bento Grid
         gsap.from('.gsap-header', {
             scrollTrigger: {
                 trigger: '.skills-section',
@@ -92,7 +86,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             ease: 'back.out(1.2)'
         });
 
-        // Projects Section
         gsap.utils.toArray('.projects-section .gsap-header').forEach(header => {
             gsap.from(header, {
                 scrollTrigger: {
@@ -118,7 +111,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             ease: 'power3.out'
         });
 
-        // Contact Section
         gsap.utils.toArray('.contact-section .gsap-header').forEach(header => {
             gsap.from(header, {
                 scrollTrigger: {
@@ -147,46 +139,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     });
 }
 
-// Emil Kowalski Page Transition (Smooth Exit)
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const target = link.getAttribute('href');
-            
-            // Skip if no target, hash link, external link, or open in new tab
-            if (!target || 
-                target.startsWith('#') || 
-                target.startsWith('mailto:') || 
-                target.startsWith('http') || 
-                link.target === '_blank' ||
-                e.ctrlKey || e.metaKey) {
-                return;
-            }
-
-            e.preventDefault();
-
-            // Hardware accelerated exit animation (scale down slightly, fade out fast)
-            if (typeof gsap !== 'undefined') {
-                gsap.to('main, .page-header', {
-                    opacity: 0,
-                    scale: 0.98,
-                    y: -10,
-                    duration: 0.2, // Exit should be fast (200ms)
-                    ease: 'power2.in',
-                    onComplete: () => {
-                        window.location.href = target;
-                    }
-                });
-            } else {
-                window.location.href = target;
-            }
-        });
-    });
-});
-
-// Theme Toggle Logic with Clip-Path Wipe (Hardware Accelerated)
 const themeToggle = document.getElementById('theme-toggle');
-
 const wipeLayer = document.createElement('div');
 wipeLayer.className = 'theme-wipe';
 document.body.appendChild(wipeLayer);
@@ -204,7 +157,6 @@ themeToggle.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const nextTheme = isDark ? 'light' : 'dark';
 
-    // Get trigger button coordinates for origin-aware animation
     const rect = themeToggle.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
@@ -212,7 +164,6 @@ themeToggle.addEventListener('click', () => {
     wipeLayer.style.backgroundColor = nextTheme === 'dark' ? '#09090b' : '#ffffff';
 
     if (typeof gsap !== 'undefined') {
-        // Modern clip-path circle wipe
         gsap.fromTo(wipeLayer, 
             { clipPath: `circle(0px at ${x}px ${y}px)` },
             { 
@@ -223,8 +174,7 @@ themeToggle.addEventListener('click', () => {
                     document.documentElement.setAttribute('data-theme', nextTheme);
                     localStorage.setItem('theme', nextTheme);
                     updateToggleIcon(nextTheme);
-                    
-                    // Fade out the wipe layer
+
                     gsap.to(wipeLayer, {
                         opacity: 0,
                         duration: 0.4,
@@ -239,7 +189,6 @@ themeToggle.addEventListener('click', () => {
             }
         );
     } else {
-        // Fallback if GSAP is missing
         document.documentElement.setAttribute('data-theme', nextTheme);
         localStorage.setItem('theme', nextTheme);
         updateToggleIcon(nextTheme);
