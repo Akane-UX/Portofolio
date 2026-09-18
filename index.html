@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avril | Portfolio</title>
+    <title>Avril | Developer & Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,10 +16,10 @@
             <a href="#home" class="logo">Avril.</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
+                <li><a href="#skills">Expertise</a></li>
                 <li><a href="#projects">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button id="theme-toggle" aria-label="Toggle Dark Mode"><i data-lucide="moon"></i></button></li>
+                <li><button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-btn"><i data-lucide="moon"></i></button></li>
             </ul>
         </div>
     </nav>
@@ -35,119 +35,122 @@
                     <a href="#contact" class="btn btn-outline">Get in Touch</a>
                 </div>
             </div>
+            <div class="hero-asset fade-in delay-1">
+                <div class="abstract-shape"></div>
+            </div>
         </section>
 
-        <section id="about" class="fade-in">
+        <section id="about" class="about-section fade-in">
             <div class="section-container">
-                <h2 class="section-title">About Me</h2>
                 <div class="about-grid">
+                    <div class="about-image-wrapper">
+                        <div class="image-box"></div>
+                    </div>
                     <div class="about-text">
+                        <h2 class="section-title">Driven by aesthetics and security.</h2>
                         <p>I am a student with a deep interest in programming, software development, and cyber security. With foundational experience from vocational school, I have built various mini-projects, ranging from web-based games to full website designs.</p>
                         <p>I leverage modern tools and emerging technologies to optimize my workflow, ensuring efficiency and high-quality results in every project I undertake.</p>
                     </div>
-                    <div class="about-image-placeholder">
-                        <div class="image-box"></div>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="bg-light fade-in">
+        <section id="skills" class="skills-section bg-light fade-in">
             <div class="section-container">
-                <h2 class="section-title">Expertise</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
+                <div class="section-header">
+                    <h2 class="section-title">Expertise</h2>
+                    <p class="section-subtitle">A blend of design, development, and security.</p>
+                </div>
+                <div class="bento-grid">
+                    <div class="bento-cell bento-large">
                         <i data-lucide="layout"></i>
                         <h3>Web Development</h3>
-                        <p>Building responsive and accessible web applications.</p>
+                        <p>Building responsive, accessible, and performant web applications with modern frameworks.</p>
+                        <div class="bento-tech">
+                            <span>React</span><span>JavaScript</span><span>Tailwind</span>
+                        </div>
                     </div>
-                    <div class="skill-card">
+                    <div class="bento-cell">
                         <i data-lucide="pen-tool"></i>
                         <h3>UI/UX Design</h3>
-                        <p>Designing intuitive and clean user interfaces.</p>
+                        <p>Designing intuitive, clean, and engaging user interfaces.</p>
                     </div>
-                    <div class="skill-card">
+                    <div class="bento-cell bg-accent text-inverse">
                         <i data-lucide="shield-check"></i>
                         <h3>Cyber Security</h3>
-                        <p>Ensuring system integrity and analyzing vulnerabilities.</p>
+                        <p>Ensuring system integrity, analyzing vulnerabilities, and building secure platforms.</p>
                     </div>
-                    <div class="skill-card">
-                        <i data-lucide="wind"></i>
-                        <h3>Tailwind CSS</h3>
-                        <p>Rapidly styling modern websites with utility-first CSS.</p>
-                    </div>
-                    <div class="skill-card">
-                        <i data-lucide="file-code-2"></i>
-                        <h3>JavaScript</h3>
-                        <p>Creating interactive and dynamic frontend logic.</p>
-                    </div>
-                    <div class="skill-card">
-                        <i data-lucide="terminal"></i>
-                        <h3>Python</h3>
-                        <p>Developing backend scripts and automation tools.</p>
+                    <div class="bento-cell bento-wide">
+                        <div class="cell-content">
+                            <i data-lucide="terminal"></i>
+                            <div>
+                                <h3>Backend & Automation</h3>
+                                <p>Developing backend scripts, parsers, and automation tools primarily using Python.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="fade-in">
+        <section id="projects" class="projects-section fade-in">
             <div class="section-container">
                 <h2 class="section-title">Selected Work</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
+                <div class="projects-layout">
+                    <a href="auditx.html" class="project-card large-card">
                         <div class="project-img-wrapper">
-                            <div class="project-placeholder bg-gradient-1"></div>
+                            <div class="project-placeholder dark-bg">
+                                <i data-lucide="terminal" class="icon-large accent-color"></i>
+                            </div>
                         </div>
                         <div class="project-info">
-                            <h3>Website Design</h3>
-                            <p>An interactive and visually appealing website design focused on user experience.</p>
+                            <div class="project-header">
+                                <h3>AuditX Pentesting</h3>
+                                <i data-lucide="arrow-up-right"></i>
+                            </div>
+                            <p>A native Linux GUI pentesting platform designed to make complex security tools accessible to beginners.</p>
                             <div class="project-tags">
-                                <span>React</span>
-                                <span>Tailwind</span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="auditx.html" class="project-link" style="display: block;">
-                        <div class="project-card">
-                            <div class="project-img-wrapper">
-                                <div class="project-placeholder" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display: flex; align-items: center; justify-content: center;">
-                                    <i data-lucide="terminal" style="color: #4ade80; width: 48px; height: 48px;"></i>
-                                </div>
-                            </div>
-                            <div class="project-info">
-                                <h3>AuditX Pentesting <i data-lucide="external-link" style="width: 14px; height: 14px; display: inline-block; vertical-align: baseline;"></i></h3>
-                                <p>A native Linux GUI pentesting platform designed to make complex security tools accessible to beginners.</p>
-                                <div class="project-tags">
-                                    <span>Python</span>
-                                    <span>QML</span>
-                                    <span>Security</span>
-                                </div>
+                                <span>Python</span><span>QML</span><span>Security</span>
                             </div>
                         </div>
                     </a>
-                    <a href="photography.html" class="project-link" style="display: block;">
+                    
+                    <div class="projects-col">
                         <div class="project-card">
                             <div class="project-img-wrapper">
-                                <div class="project-placeholder" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display: flex; align-items: center; justify-content: center;">
-                                    <i data-lucide="camera" style="color: #cbd5e1; width: 48px; height: 48px;"></i>
+                                <div class="project-placeholder bg-gradient-1"></div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Website Design</h3>
+                                <p>An interactive and visually appealing website design focused on user experience.</p>
+                                <div class="project-tags">
+                                    <span>React</span><span>Tailwind</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="photography.html" class="project-card">
+                            <div class="project-img-wrapper">
+                                <div class="project-placeholder dark-bg">
+                                    <i data-lucide="camera" class="icon-large text-muted"></i>
                                 </div>
                             </div>
                             <div class="project-info">
-                                <h3>Street Photography <i data-lucide="external-link" style="width: 14px; height: 14px; display: inline-block; vertical-align: baseline;"></i></h3>
+                                <div class="project-header">
+                                    <h3>Street Photography</h3>
+                                    <i data-lucide="arrow-up-right"></i>
+                                </div>
                                 <p>Capturing raw, candid moments of urban life and visual storytelling through the lens.</p>
                                 <div class="project-tags">
-                                    <span>Photography</span>
-                                    <span>Art</span>
-                                    <span>Visuals</span>
+                                    <span>Photography</span><span>Art</span>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="fade-in">
+        <section id="contact" class="contact-section fade-in">
             <div class="section-container text-center">
                 <h2 class="section-title">Let's Connect</h2>
                 <p class="contact-desc">Interested in collaborating or have a project in mind? Feel free to reach out.</p>
