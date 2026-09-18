@@ -10,35 +10,148 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-};
+// GSAP Animations
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('appear');
-            observer.unobserve(entry.target);
-        }
+    // Prevent FOUC by making sure items are visible before animating them from 0
+    gsap.set('.gsap-hero, .gsap-hero-item, .gsap-hero-asset, .gsap-about-img, .gsap-about-text, .gsap-header, .gsap-bento, .gsap-project, .gsap-contact', { visibility: 'visible' });
+
+    // Match media for reduced motion
+    let mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Hero Section
+        gsap.from('.gsap-hero-item', {
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+            delay: 0.1
+        });
+
+        gsap.from('.gsap-hero-asset', {
+            opacity: 0,
+            scale: 0.95,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.3
+        });
+
+        // About Section
+        gsap.from('.gsap-about-img', {
+            scrollTrigger: {
+                trigger: '.about-section',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+        
+        gsap.from('.gsap-about-text', {
+            scrollTrigger: {
+                trigger: '.about-section',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            x: 20,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.2
+        });
+
+        // Skills / Bento Grid
+        gsap.from('.gsap-header', {
+            scrollTrigger: {
+                trigger: '.skills-section',
+                start: 'top 85%',
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.gsap-bento', {
+            scrollTrigger: {
+                trigger: '.bento-grid',
+                start: 'top 85%',
+            },
+            opacity: 0,
+            scale: 0.92,
+            y: 16,
+            duration: 0.5,
+            stagger: {
+                each: 0.08,
+                grid: 'auto'
+            },
+            ease: 'back.out(1.2)'
+        });
+
+        // Projects Section
+        gsap.utils.toArray('.projects-section .gsap-header').forEach(header => {
+            gsap.from(header, {
+                scrollTrigger: {
+                    trigger: '.projects-section',
+                    start: 'top 85%',
+                },
+                opacity: 0,
+                y: 20,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+        });
+
+        gsap.from('.gsap-project', {
+            scrollTrigger: {
+                trigger: '.projects-layout',
+                start: 'top 85%',
+            },
+            opacity: 0,
+            y: 24,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power3.out'
+        });
+
+        // Contact Section
+        gsap.utils.toArray('.contact-section .gsap-header').forEach(header => {
+            gsap.from(header, {
+                scrollTrigger: {
+                    trigger: '.contact-section',
+                    start: 'top 85%',
+                },
+                opacity: 0,
+                y: 20,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: 'power3.out'
+            });
+        });
+
+        gsap.from('.gsap-contact', {
+            scrollTrigger: {
+                trigger: '.contact-links',
+                start: 'top 90%',
+            },
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'back.out(1.2)'
+        });
     });
-}, observerOptions);
+}
 
-document.querySelectorAll('.fade-in').forEach(element => {
-    observer.observe(element);
-});
-
-// Theme Toggle Logic
+// Theme Toggle Logic with Clip-Path Wipe (Hardware Accelerated)
 const themeToggle = document.getElementById('theme-toggle');
-
-const layer1 = document.createElement('div');
-layer1.className = 'theme-transition-layer layer-1';
-document.body.appendChild(layer1);
-
-const layer2 = document.createElement('div');
-layer2.className = 'theme-transition-layer layer-2';
-document.body.appendChild(layer2);
+const wipeLayer = document.createElement('div');
+wipeLayer.className = 'theme-wipe';
+document.body.appendChild(wipeLayer);
 
 const currentTheme = localStorage.getItem('theme') || 'light';
 document.documentElement.setAttribute('data-theme', currentTheme);
@@ -53,27 +166,47 @@ themeToggle.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const nextTheme = isDark ? 'light' : 'dark';
 
-    // Set colors for the layers
-    layer1.style.backgroundColor = 'var(--accent)';
-    layer2.style.backgroundColor = nextTheme === 'dark' ? '#111827' : '#ffffff';
+    // Get trigger button coordinates for origin-aware animation
+    const rect = themeToggle.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    
+    wipeLayer.style.backgroundColor = nextTheme === 'dark' ? '#09090b' : '#ffffff';
 
-    // Apply animation
-    layer1.style.animation = 'slideDownSkew 2.2s cubic-bezier(0.77, 0, 0.175, 1) forwards';
-    layer2.style.animation = 'slideDownSkew 2.2s cubic-bezier(0.77, 0, 0.175, 1) 0.2s forwards';
-
-    // Switch theme midway through the animation (when screen is covered)
-    setTimeout(() => {
+    if (typeof gsap !== 'undefined') {
+        // Modern clip-path circle wipe
+        gsap.fromTo(wipeLayer, 
+            { clipPath: `circle(0px at ${x}px ${y}px)` },
+            { 
+                clipPath: `circle(${window.innerWidth * 1.5}px at ${x}px ${y}px)`, 
+                duration: 0.6, 
+                ease: "power2.inOut",
+                onComplete: () => {
+                    document.documentElement.setAttribute('data-theme', nextTheme);
+                    localStorage.setItem('theme', nextTheme);
+                    updateToggleIcon(nextTheme);
+                    
+                    // Fade out the wipe layer
+                    gsap.to(wipeLayer, {
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            wipeLayer.style.clipPath = 'inset(0 0 100% 0)'; // reset
+                            wipeLayer.style.opacity = 1;
+                            isAnimating = false;
+                        }
+                    });
+                }
+            }
+        );
+    } else {
+        // Fallback if GSAP is missing
         document.documentElement.setAttribute('data-theme', nextTheme);
         localStorage.setItem('theme', nextTheme);
         updateToggleIcon(nextTheme);
-    }, 1100); // wait for layers to cover the screen
-
-    // Reset animation
-    setTimeout(() => {
-        layer1.style.animation = 'none';
-        layer2.style.animation = 'none';
         isAnimating = false;
-    }, 2600);
+    }
 });
 
 function updateToggleIcon(theme) {

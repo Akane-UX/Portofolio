@@ -6,7 +6,7 @@
     <title>Street Photography | Avril Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -33,11 +33,17 @@
             color: var(--text-secondary);
             font-weight: 500;
             margin-bottom: 2rem;
-            transition: var(--transition);
+            transition: color 150ms var(--ease-out), transform 160ms var(--ease-out);
+            will-change: transform;
         }
         
-        .back-btn:hover {
-            color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .back-btn:hover {
+                color: var(--accent);
+            }
+        }
+        .back-btn:active {
+            transform: scale(0.95);
         }
 
         .content-section {
@@ -74,26 +80,34 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
-            transition: var(--transition);
+            transition: transform 160ms var(--ease-out), box-shadow 300ms var(--ease-out);
             background: var(--bg-secondary);
             aspect-ratio: 4/3;
             position: relative;
+            will-change: transform;
+            /* Emil: mask with transform scaling to avoid re-paints */
+            transform: translateZ(0);
         }
 
-        .photo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        @media (hover: hover) and (pointer: fine) {
+            .photo-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            }
         }
 
         .photo-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 600ms var(--ease-out);
+            will-change: transform;
         }
 
-        .photo-card:hover img {
-            transform: scale(1.05);
+        @media (hover: hover) and (pointer: fine) {
+            .photo-card:hover img {
+                transform: scale(1.05);
+            }
         }
 
         .photo-overlay {
@@ -105,11 +119,13 @@
             padding: 2rem 1.5rem 1.5rem;
             color: #fff;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 300ms var(--ease-out);
         }
 
-        .photo-card:hover .photo-overlay {
-            opacity: 1;
+        @media (hover: hover) and (pointer: fine) {
+            .photo-card:hover .photo-overlay {
+                opacity: 1;
+            }
         }
 
         .photo-overlay h4 {
@@ -125,45 +141,45 @@
             <a href="index.html" class="logo">Avril.</a>
             <ul class="nav-links">
                 <li><a href="index.html#projects">Back to Portfolio</a></li>
-                <li><button id="theme-toggle" aria-label="Toggle Dark Mode"><i data-lucide="moon"></i></button></li>
+                <li><button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-btn"><i data-lucide="moon"></i></button></li>
             </ul>
         </div>
     </nav>
 
-    <header class="page-header fade-in">
+    <header class="page-header gsap-hero">
         <div class="section-container">
-            <a href="index.html#projects" class="back-btn"><i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i> Kembali</a>
-            <h1 class="page-title"><i data-lucide="camera" style="width: 56px; height: 56px; color: var(--accent);"></i> Street Photography</h1>
-            <p style="font-size: 1.25rem; max-width: 700px; color: var(--text-secondary); line-height: 1.6;">Menangkap momen-momen nyata, ekspresi jujur, dan denyut nadi jalanan lewat lensa kamera.</p>
+            <a href="index.html#projects" class="back-btn gsap-hero-item"><i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i> Kembali</a>
+            <h1 class="page-title gsap-hero-item"><i data-lucide="camera" style="width: 56px; height: 56px; color: var(--accent);"></i> Street Photography</h1>
+            <p class="gsap-hero-item" style="font-size: 1.25rem; max-width: 700px; color: var(--text-secondary); line-height: 1.6;">Menangkap momen-momen nyata, ekspresi jujur, dan denyut nadi jalanan lewat lensa kamera.</p>
         </div>
     </header>
 
     <main>
-        <section class="content-section fade-in">
+        <section class="content-section">
             <div class="section-container">
                 
-                <div class="text-block">
+                <div class="text-block gsap-about-text">
                     <h3>Di Balik Lensa</h3>
                     <p>Selain dunia pengembangan perangkat lunak dan keamanan siber, saya memiliki ketertarikan mendalam pada seni visual, khususnya <strong>Street Photography</strong>. Bagi saya, fotografi jalanan adalah cara saya melarikan diri dari layar monitor, turun ke lapangan, dan mengobservasi kehidupan nyata yang sedang berlangsung.</p>
                     
                     <p>Jalanan adalah teater terbuka di mana setiap detiknya menceritakan kisah yang berbeda. Saya gemar menangkap momen-momen mentah dan candid—ekspresi seseorang yang sedang tenggelam dalam pikiran, interaksi spontan antar manusia, permainan komposisi cahaya matahari di sela-sela gedung kota, hingga suasana urban yang melankolis namun terasa hidup.</p>
                 </div>
 
-                <h3 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Hasil Foto (Karya Terpilih)</h3>
+                <h3 class="gsap-header" style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Hasil Foto (Karya Terpilih)</h3>
                 <div class="gallery-grid">
-                    <div class="photo-card">
+                    <div class="photo-card gsap-project">
                         <img src="assets/img/photograph1.jpg" alt="Street Photography 1" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%2364748b\'%3Ephotograph1.jpg%3C/text%3E%3C/svg%3E'">
                         <div class="photo-overlay">
                             <h4>photograph1.jpg</h4>
                         </div>
                     </div>
-                    <div class="photo-card">
+                    <div class="photo-card gsap-project">
                         <img src="assets/img/photograph2.jpg" alt="Street Photography 2" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%2364748b\'%3Ephotograph2.jpg%3C/text%3E%3C/svg%3E'">
                         <div class="photo-overlay">
                             <h4>photograph2.jpg</h4>
                         </div>
                     </div>
-                    <div class="photo-card">
+                    <div class="photo-card gsap-project">
                         <img src="assets/img/photograph3.jpg" alt="Street Photography 3" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%2364748b\'%3Ephotograph3.jpg%3C/text%3E%3C/svg%3E'">
                         <div class="photo-overlay">
                             <h4>photograph3.jpg</h4>
@@ -180,6 +196,8 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

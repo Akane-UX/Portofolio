@@ -8,11 +8,16 @@
     --accent-hover: #27272a; /* zinc-800 */
     --border: #e4e4e7; /* zinc-200 */
     --bento-bg: #fafafa;
-    --card-shadow: 0 4px 20px -10px rgba(0,0,0,0.05);
+    --card-shadow: 0 8px 30px -12px rgba(0,0,0,0.08);
     
     --nav-height: 72px;
-    --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* Emil Kowalski Animation Curves */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
+
 [data-theme="dark"] {
     --bg-primary: #09090b; /* zinc-950 */
     --bg-primary-rgb: 9, 9, 11;
@@ -23,7 +28,7 @@
     --accent-hover: #e4e4e7; /* zinc-200 */
     --border: #27272a; /* zinc-800 */
     --bento-bg: #131316;
-    --card-shadow: 0 4px 20px -10px rgba(0,0,0,0.5);
+    --card-shadow: 0 8px 30px -12px rgba(0,0,0,0.5);
 }
 
 * {
@@ -43,7 +48,8 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Transition colors with blur to mask imperfect swaps */
+    transition: background-color 300ms var(--ease-out), color 300ms var(--ease-out);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -95,7 +101,7 @@ nav {
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid transparent;
     z-index: 1000;
-    transition: var(--transition);
+    transition: border-bottom 200ms var(--ease-out), background-color 200ms var(--ease-out);
 }
 
 nav.scrolled {
@@ -117,6 +123,11 @@ nav.scrolled {
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: -0.04em;
+    transition: transform 160ms var(--ease-out);
+}
+
+.logo:active {
+    transform: scale(0.95);
 }
 
 .nav-links {
@@ -130,11 +141,13 @@ nav.scrolled {
     font-size: 0.95rem;
     font-weight: 400;
     color: var(--text-secondary);
-    transition: var(--transition);
+    transition: color 150ms var(--ease-out);
 }
 
-.nav-links a:hover {
-    color: var(--text-primary);
+@media (hover: hover) and (pointer: fine) {
+    .nav-links a:hover {
+        color: var(--text-primary);
+    }
 }
 
 .theme-btn {
@@ -145,11 +158,18 @@ nav.scrolled {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition);
     padding: 0.5rem;
+    transition: color 150ms var(--ease-out), transform 160ms var(--ease-out);
 }
-.theme-btn:hover {
-    color: var(--text-primary);
+
+@media (hover: hover) and (pointer: fine) {
+    .theme-btn:hover {
+        color: var(--text-primary);
+    }
+}
+
+.theme-btn:active {
+    transform: scale(0.92);
 }
 
 /* Hero */
@@ -159,6 +179,7 @@ nav.scrolled {
     align-items: center;
     padding-top: var(--nav-height);
     position: relative;
+    visibility: hidden; /* GSAP will reveal */
 }
 
 .hero .section-container {
@@ -168,6 +189,7 @@ nav.scrolled {
     gap: 4rem;
     align-items: center;
 }
+
 .hero-content {
     max-width: 600px;
     padding-left: 2rem;
@@ -200,7 +222,7 @@ nav.scrolled {
     filter: blur(40px);
 }
 [data-theme="dark"] .abstract-shape {
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 100%);
 }
 
 .badge {
@@ -235,6 +257,7 @@ nav.scrolled {
     gap: 1rem;
 }
 
+/* BUTTONS - Emil Design Engineering */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -243,11 +266,13 @@ nav.scrolled {
     border-radius: 8px;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: var(--transition);
+    transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out), border-color 200ms var(--ease-out);
     cursor: pointer;
+    will-change: transform;
 }
+
 .btn:active {
-    transform: scale(0.98);
+    transform: scale(0.97); /* The classic snappy feedback */
 }
 
 .btn-primary {
@@ -256,9 +281,11 @@ nav.scrolled {
     border: 1px solid var(--accent);
 }
 
-.btn-primary:hover {
-    background-color: var(--accent-hover);
-    border-color: var(--accent-hover);
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+        background-color: var(--accent-hover);
+        border-color: var(--accent-hover);
+    }
 }
 
 .btn-outline {
@@ -267,9 +294,11 @@ nav.scrolled {
     border: 1px solid var(--border);
 }
 
-.btn-outline:hover {
-    background-color: var(--bg-secondary);
-    border-color: var(--border);
+@media (hover: hover) and (pointer: fine) {
+    .btn-outline:hover {
+        background-color: var(--bg-secondary);
+        border-color: var(--border);
+    }
 }
 
 /* Typography elements */
@@ -307,19 +336,27 @@ nav.scrolled {
     background-color: var(--bg-secondary);
     position: relative;
     overflow: hidden;
+    /* Emil: mask with transform scaling to avoid re-paints */
+    transform: translateZ(0);
 }
 
 .image-box {
     position: absolute;
-    inset: 0;
+    inset: -5%;
+    width: 110%;
+    height: 110%;
     background-image: url('../assets/img/Abcd.jpeg');
     background-size: cover;
     background-position: center;
     opacity: 0.9;
-    transition: var(--transition);
+    transition: transform 600ms var(--ease-out);
+    will-change: transform;
 }
-.about-image-wrapper:hover .image-box {
-    transform: scale(1.05);
+
+@media (hover: hover) and (pointer: fine) {
+    .about-image-wrapper:hover .image-box {
+        transform: scale(1.05);
+    }
 }
 
 /* Bento Skills */
@@ -330,21 +367,34 @@ nav.scrolled {
     gap: 1.5rem;
 }
 
+.gsap-reveal {
+    visibility: hidden; /* Prevent FOUC before GSAP hooks in */
+}
+
 .bento-cell {
     padding: 2.5rem;
     background: var(--bento-bg);
     border: 1px solid var(--border);
     border-radius: 16px;
-    transition: var(--transition);
+    /* Hardware acceleration, exactly specified transitions */
+    transition: transform 160ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    will-change: transform;
 }
 
-.bento-cell:hover {
-    box-shadow: var(--card-shadow);
-    border-color: var(--text-secondary);
+@media (hover: hover) and (pointer: fine) {
+    .bento-cell:hover {
+        box-shadow: var(--card-shadow);
+        border-color: var(--text-secondary);
+    }
+}
+
+.bento-cell:active {
+    transform: scale(0.98);
 }
 
 .bento-large {
@@ -434,18 +484,22 @@ nav.scrolled {
     border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
-    transition: var(--transition);
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: transform 160ms var(--ease-out), box-shadow 300ms var(--ease-out);
+    will-change: transform;
+    cursor: pointer;
 }
 
-.project-card:hover {
-    box-shadow: var(--card-shadow);
+@media (hover: hover) and (pointer: fine) {
+    .project-card:hover {
+        box-shadow: var(--card-shadow);
+    }
 }
 .project-card:active {
-    transform: scale(0.99);
+    transform: scale(0.98);
 }
 
 .project-img-wrapper {
@@ -460,14 +514,17 @@ nav.scrolled {
 .project-placeholder {
     width: 100%;
     height: 100%;
-    transition: var(--transition);
+    transition: transform 500ms var(--ease-out);
 }
-.project-card:hover .project-placeholder {
-    transform: scale(1.03);
+
+@media (hover: hover) and (pointer: fine) {
+    .project-card:hover .project-placeholder {
+        transform: scale(1.05);
+    }
 }
 
 .dark-bg {
-    background: #111827; /* Very dark slate */
+    background: #111827; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -502,11 +559,14 @@ nav.scrolled {
     width: 20px;
     height: 20px;
     color: var(--text-secondary);
-    transition: var(--transition);
+    transition: transform 200ms var(--ease-out), color 200ms var(--ease-out);
 }
-.project-card:hover .project-header i {
-    color: var(--text-primary);
-    transform: translate(2px, -2px);
+
+@media (hover: hover) and (pointer: fine) {
+    .project-card:hover .project-header i {
+        color: var(--text-primary);
+        transform: translate(2px, -2px);
+    }
 }
 
 .project-info h3 {
@@ -561,23 +621,29 @@ nav.scrolled {
     border: 1px solid var(--border);
     border-radius: 99px;
     background: var(--bg-primary);
-    transition: var(--transition);
     font-weight: 500;
+    transition: transform 160ms var(--ease-out), background-color 200ms var(--ease-out);
+    will-change: transform;
 }
 
 .contact-item i {
     width: 20px;
     height: 20px;
     color: var(--text-secondary);
-    transition: var(--transition);
+    transition: color 200ms var(--ease-out);
 }
 
-.contact-item:hover {
-    background: var(--bg-secondary);
+@media (hover: hover) and (pointer: fine) {
+    .contact-item:hover {
+        background-color: var(--bg-secondary);
+    }
+    .contact-item:hover i {
+        color: var(--text-primary);
+    }
 }
 
-.contact-item:hover i {
-    color: var(--text-primary);
+.contact-item:active {
+    transform: scale(0.96);
 }
 
 footer {
@@ -585,21 +651,6 @@ footer {
     text-align: center;
     font-size: 0.9rem;
     color: var(--text-secondary);
-}
-
-/* Animations */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.fade-in.delay-1 {
-    transition-delay: 0.15s;
-}
-
-.fade-in.appear {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* Mobile Responsiveness */
@@ -664,32 +715,24 @@ footer {
     }
 }
 
-/* Transition layers */
-.theme-transition-layer {
+/* Theme transition wipe using clip-path (Hardware accelerated) */
+.theme-wipe {
     position: fixed;
-    left: 0;
-    top: -50vh;
-    width: 100vw;
-    height: 200vh;
+    inset: 0;
     z-index: 9999;
     pointer-events: none;
-    transform: translateY(-150%) skewY(-10deg);
-    will-change: transform;
+    clip-path: inset(0 0 100% 0);
+    will-change: clip-path;
 }
 
-.theme-transition-layer.layer-1 {
-    background-color: var(--text-primary);
-}
-
-.theme-transition-layer.layer-2 {
-    background-color: var(--bg-primary);
-}
-
-@keyframes slideDownSkew {
-    0% {
-        transform: translateY(-150%) skewY(-10deg);
+/* Reduced Motion fallback */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: opacity 200ms ease, background-color 200ms ease, color 200ms ease !important;
+        transform: none !important;
     }
-    100% {
-        transform: translateY(150%) skewY(-10deg);
+    .gsap-reveal {
+        visibility: visible !important;
     }
 }

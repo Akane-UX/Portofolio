@@ -6,7 +6,7 @@
     <title>AuditX | Avril Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -33,11 +33,17 @@
             color: var(--text-secondary);
             font-weight: 500;
             margin-bottom: 2rem;
-            transition: var(--transition);
+            transition: color 150ms var(--ease-out), transform 160ms var(--ease-out);
+            will-change: transform;
         }
         
-        .back-btn:hover {
-            color: var(--accent);
+        @media (hover: hover) and (pointer: fine) {
+            .back-btn:hover {
+                color: var(--accent);
+            }
+        }
+        .back-btn:active {
+            transform: scale(0.95);
         }
 
         .content-section {
@@ -54,6 +60,8 @@
             border: 1px solid #1e293b;
             position: relative;
             overflow: hidden;
+            transition: transform 160ms var(--ease-out);
+            will-change: transform;
         }
 
         .terminal-header {
@@ -125,24 +133,24 @@
             <a href="index.html" class="logo">Avril.</a>
             <ul class="nav-links">
                 <li><a href="index.html#projects">Back to Portfolio</a></li>
-                <li><button id="theme-toggle" aria-label="Toggle Dark Mode"><i data-lucide="moon"></i></button></li>
+                <li><button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-btn"><i data-lucide="moon"></i></button></li>
             </ul>
         </div>
     </nav>
 
-    <header class="page-header fade-in">
+    <header class="page-header gsap-hero">
         <div class="section-container">
-            <a href="index.html#projects" class="back-btn"><i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i> Kembali</a>
-            <h1 class="page-title"><i data-lucide="shield-check" style="width: 56px; height: 56px; color: var(--accent);"></i> AuditX</h1>
-            <p style="font-size: 1.25rem; max-width: 700px; color: var(--text-secondary); line-height: 1.6;">Membuat proses Pentesting dan Keamanan Siber menjadi lebih mudah, visual, dan dapat diakses oleh pemula.</p>
+            <a href="index.html#projects" class="back-btn gsap-hero-item"><i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i> Kembali</a>
+            <h1 class="page-title gsap-hero-item"><i data-lucide="shield-check" style="width: 56px; height: 56px; color: var(--accent);"></i> AuditX</h1>
+            <p class="gsap-hero-item" style="font-size: 1.25rem; max-width: 700px; color: var(--text-secondary); line-height: 1.6;">Membuat proses Pentesting dan Keamanan Siber menjadi lebih mudah, visual, dan dapat diakses oleh pemula.</p>
         </div>
     </header>
 
     <main>
-        <section class="content-section fade-in">
+        <section class="content-section">
             <div class="section-container">
                 
-                <div class="preview-container">
+                <div class="preview-container gsap-hero-asset">
                     <div class="terminal-header">
                         <div class="term-dot r"></div>
                         <div class="term-dot y"></div>
@@ -158,7 +166,7 @@
                     </div>
                 </div>
 
-                <div class="text-block">
+                <div class="text-block gsap-about-text">
                     <h3>Apa itu AuditX?</h3>
                     <p><strong>AuditX</strong> adalah aplikasi <em>native desktop</em> berbasis Linux (dibangun dengan Quickshell QML & Python Backend) yang berfungsi sebagai platform audit keamanan (<em>security auditing</em>). AuditX menyatukan berbagai <em>command-line tools</em> (CLI) keamanan siber yang rumit ke dalam satu antarmuka grafis (GUI) yang terpusat dan modern.</p>
                     
@@ -166,26 +174,26 @@
                     <p>Bagi orang awam atau pemula di bidang keamanan jaringan, melihat rentetan teks di terminal (seperti saat menggunakan Nmap atau Metasploit) bisa sangat mengintimidasi. Saya mengembangkan AuditX untuk mendobrak dinding batasan tersebut. Dengan memberikan antarmuka visual, proses scanning kerentanan, <em>directory fuzzing</em>, hingga penyusunan <em>payload</em> dapat dipahami dan dijalankan dengan beberapa kali klik saja tanpa harus menghafal perintah panjang.</p>
                 </div>
 
-                <h3 style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Fitur Utama</h3>
-                <div class="feature-grid">
-                    <div class="skill-card">
+                <h3 class="gsap-header" style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Fitur Utama</h3>
+                <div class="feature-grid bento-grid">
+                    <div class="bento-cell gsap-bento">
                         <i data-lucide="scan-line"></i>
-                        <h3>Visual Vulnerability Scan</h3>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Visual Vulnerability Scan</h3>
                         <p>Mengintegrasikan <strong>Nuclei</strong> untuk menemukan celah keamanan web dengan tampilan hasil yang terstruktur, bukan sekadar teks acak.</p>
                     </div>
-                    <div class="skill-card">
+                    <div class="bento-cell gsap-bento">
                         <i data-lucide="folder-search"></i>
-                        <h3>Directory Fuzzing</h3>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Directory Fuzzing</h3>
                         <p>Menggunakan <strong>Gobuster</strong> dengan GUI yang memudahkan pengguna awam memasukkan wordlist dengan sekali klik.</p>
                     </div>
-                    <div class="skill-card">
+                    <div class="bento-cell gsap-bento">
                         <i data-lucide="network"></i>
-                        <h3>Network & OSINT</h3>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Network & OSINT</h3>
                         <p>Mendukung NetExec, Enum4Linux-NG, serta Gitleaks (Secret Scanner) untuk audit jaringan dan mencari data sensitif yang bocor.</p>
                     </div>
-                    <div class="skill-card">
+                    <div class="bento-cell gsap-bento">
                         <i data-lucide="server-crash"></i>
-                        <h3>Metasploit RPC</h3>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Metasploit RPC</h3>
                         <p>Di-orkestrasikan dengan <code>msfrpcd</code> dan API, memungkinkan pengguna men-generate payload (Msfvenom) dan mengatur Listener melalui UI secara aman.</p>
                     </div>
                 </div>
@@ -200,6 +208,8 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
