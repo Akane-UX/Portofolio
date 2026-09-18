@@ -147,8 +147,46 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     });
 }
 
+// Emil Kowalski Page Transition (Smooth Exit)
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const target = link.getAttribute('href');
+            
+            // Skip if no target, hash link, external link, or open in new tab
+            if (!target || 
+                target.startsWith('#') || 
+                target.startsWith('mailto:') || 
+                target.startsWith('http') || 
+                link.target === '_blank' ||
+                e.ctrlKey || e.metaKey) {
+                return;
+            }
+
+            e.preventDefault();
+
+            // Hardware accelerated exit animation (scale down slightly, fade out fast)
+            if (typeof gsap !== 'undefined') {
+                gsap.to('main, .page-header', {
+                    opacity: 0,
+                    scale: 0.98,
+                    y: -10,
+                    duration: 0.2, // Exit should be fast (200ms)
+                    ease: 'power2.in',
+                    onComplete: () => {
+                        window.location.href = target;
+                    }
+                });
+            } else {
+                window.location.href = target;
+            }
+        });
+    });
+});
+
 // Theme Toggle Logic with Clip-Path Wipe (Hardware Accelerated)
 const themeToggle = document.getElementById('theme-toggle');
+
 const wipeLayer = document.createElement('div');
 wipeLayer.className = 'theme-wipe';
 document.body.appendChild(wipeLayer);
