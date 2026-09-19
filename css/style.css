@@ -85,7 +85,6 @@ section {
     text-align: center;
 }
 
-/* Nav */
 nav {
     position: fixed;
     top: 0;
@@ -113,17 +112,6 @@ nav.scrolled {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    transition: transform 160ms var(--ease-out);
-}
-
-.logo:active {
-    transform: scale(0.95);
 }
 
 .nav-links {
@@ -613,7 +601,7 @@ nav.scrolled {
     will-change: transform;
 }
 
-.contact-item i {
+.contact-item i, .contact-item .contact-icon {
     width: 20px;
     height: 20px;
     color: var(--text-secondary);
@@ -624,7 +612,7 @@ nav.scrolled {
     .contact-item:hover {
         background-color: var(--bg-secondary);
     }
-    .contact-item:hover i {
+    .contact-item:hover i, .contact-item:hover .contact-icon {
         color: var(--text-primary);
     }
 }
@@ -719,4 +707,187 @@ footer {
     .gsap-reveal {
         visibility: visible !important;
     }
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-primary);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.preloader-text {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    opacity: 0;
+}
+
+#main-wrapper {
+    background-color: var(--bg-primary);
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), border-radius 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    transform-origin: center top;
+    min-height: 100vh;
+}
+body.drawer-open {
+    background-color: #000;
+    overflow: hidden;
+}
+body.drawer-open #main-wrapper {
+    transform: scale(0.96) translateY(10px);
+    border-radius: 24px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+.process-step {
+    padding: 2.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    position: relative;
+    transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+}
+.process-step:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow);
+}
+.step-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--border);
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+.process-step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.drawer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 85vh;
+    background: var(--bg-primary);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    z-index: 10001;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    display: flex;
+    flex-direction: column;
+}
+.drawer.active {
+    transform: translateY(0);
+}
+.drawer-handle-container {
+    width: 100%;
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+    cursor: grab;
+}
+.drawer-handle-container:active {
+    cursor: grabbing;
+}
+.drawer-handle {
+    width: 40px;
+    height: 5px;
+    border-radius: 99px;
+    background: var(--text-secondary);
+    opacity: 0.5;
+}
+.drawer-content {
+    padding: 0 2rem 2rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.drawer-subtitle {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+.drawer-img-placeholder {
+    width: 100%;
+    height: 300px;
+    background: var(--border);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mock UI for E-Management */
+.mock-ui {
+    width: 100%;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+}
+.mock-balance {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+.mock-slider-track {
+    height: 8px;
+    background: var(--bg-secondary);
+    border-radius: 99px;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+.mock-slider-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 65%;
+    background: var(--accent);
+    border-radius: 99px;
+}
+.mock-categories {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.mock-cat {
+    flex: 1;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 500;
 }

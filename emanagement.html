@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Management | Avril</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            padding-top: calc(var(--nav-height) + 4rem);
+            padding-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 150ms var(--ease-out), transform 160ms var(--ease-out);
+            will-change: transform;
+        }
+        
+        @media (hover: hover) and (pointer: fine) {
+            .back-btn:hover {
+                color: var(--accent);
+            }
+        }
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        /* E-Management specific mock UI preview */
+        .preview-container {
+            background: var(--bento-bg);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 4rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: transform 160ms var(--ease-out);
+            will-change: transform;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mock-ui {
+            width: 100%;
+            max-width: 600px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+        }
+
+        .mock-balance {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .mock-slider-track {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 99px;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mock-slider-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 65%;
+            background: var(--accent);
+            border-radius: 99px;
+        }
+
+        .mock-categories {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .mock-cat {
+            flex: 1;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .text-block {
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+        
+        .text-block h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+        
+        .text-block p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-text">Avril.</div>
+    </div>
+    
+    <nav id="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html#projects">Back to Portfolio</a></li>
+                <li><button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-btn"><i data-lucide="moon"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header gsap-hero">
+        <div class="section-container">
+            <a href="index.html#projects" class="back-btn gsap-hero-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                Kembali
+            </a>
+            <h1 class="page-title gsap-hero-item">E-Management</h1>
+            <p class="gsap-hero-item" style="font-size: 1.25rem; max-width: 700px; color: var(--text-secondary); line-height: 1.6;">A modern, Bento-Grid style personal finance tracker featuring real-time allocation sliders.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <div class="section-container">
+                
+                <div class="preview-container gsap-hero-asset">
+                    <div class="mock-ui">
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">Total Balance</p>
+                        <div class="mock-balance">Rp 10.000.000</div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-secondary);">
+                            <span>Allocated: 65%</span>
+                            <span>Remaining: 35%</span>
+                        </div>
+                        <div class="mock-slider-track">
+                            <div class="mock-slider-fill"></div>
+                        </div>
+                        <div class="mock-categories">
+                            <div class="mock-cat">Investasi</div>
+                            <div class="mock-cat">Tabungan</div>
+                            <div class="mock-cat">Darurat</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-block gsap-about-text">
+                    <h3>Konsep Desain UI/UX</h3>
+                    <p>Aplikasi E-Management ini dirombak ulang secara total dari bentuk input daftar konvensional menjadi gaya <strong>Bento Grid</strong> yang sangat modern dan rapi. Layout asimetris mempermudah hierarki visual, memberikan pengguna pengalaman yang jauh lebih intuitif saat mengelola dana.</p>
+                    
+                    <h3>Validasi Real-time & Sliders</h3>
+                    <p>Salah satu <em>pain point</em> dari aplikasi pencatat keuangan adalah pengguna sering memasukkan angka yang melebihi saldo awal. Untuk mengatasi ini, saya mengganti kolom teks dengan fitur <strong>Slider Interaktif</strong>. Saat satu slider digeser, logika JavaScript (Vanilla) secara <em>real-time</em> memvalidasi dan membatasi alokasi agar tidak pernah melampaui sisa uang (Remaining Balance), memberikan <em>feedback</em> instan tanpa perlu menekan tombol Submit.</p>
+                </div>
+
+                <h3 class="gsap-header" style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Arsitektur Frontend</h3>
+                <div class="feature-grid bento-grid">
+                    <div class="bento-cell gsap-bento">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Client-side Storage</h3>
+                        <p>Aplikasi beroperasi secara penuh di *browser* menggunakan <strong>LocalStorage API</strong>. Sangat cepat, tanpa <em>loading</em> server, dan menjaga privasi finansial pengguna secara total.</p>
+                    </div>
+                    <div class="bento-cell gsap-bento">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Tailwind Utility</h3>
+                        <p>Menggunakan TailwindCSS untuk menerapkan desain responsif dan *Bento Grid* dengan sangat efisien tanpa *bloatware* CSS yang berat.</p>
+                    </div>
+                    <div class="bento-cell gsap-bento">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Category Selection</h3>
+                        <p>Tahap pra-alokasi memungkinkan pengguna memilih *preset* kategori (misal: 50/30/20 Rule) atau meracik kategori kustom mereka sendiri.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="section-container">
+            <p>&copy; 2026 Avril. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
