@@ -277,7 +277,6 @@ if (drawerHandle) {
         }
     }, {passive: true});
 
-    // Mouse events for desktop dragging
     let isDragging = false;
     drawerHandle.addEventListener('mousedown', (e) => {
         isDragging = true;
