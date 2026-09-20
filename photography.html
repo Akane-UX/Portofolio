@@ -70,21 +70,42 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 250px;
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .photo-card {
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            box-shadow: var(--card-shadow);
             transition: transform 160ms var(--ease-out), box-shadow 300ms var(--ease-out);
             background: var(--bg-secondary);
-            aspect-ratio: 4/3;
             position: relative;
             will-change: transform;
             transform: translateZ(0);
+        }
+        
+        .photo-large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .photo-wide {
+            grid-column: span 3;
+            grid-row: span 1;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 250px;
+            }
+            .photo-large, .photo-wide {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
         }
 
         @media (hover: hover) and (pointer: fine) {
@@ -164,22 +185,28 @@
 
                 <h3 class="gsap-header" style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Hasil Foto (Karya Terpilih)</h3>
                 <div class="gallery-grid">
-                    <div class="photo-card gsap-project">
-                        <img src="assets/img/photograph1.jpg" alt="Street Photography 1" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%2364748b\'%3Ephotograph1.jpg%3C/text%3E%3C/svg%3E'">
+                    <div class="photo-card photo-large gsap-project">
+                        <img src="assets/img/photograph1.jpg" alt="Street Photography 1">
                         <div class="photo-overlay">
-                            <h4>photograph1.jpg</h4>
+                            <h4>Warm Vibes</h4>
                         </div>
                     </div>
                     <div class="photo-card gsap-project">
-                        <img src="assets/img/photograph2.jpg" alt="Street Photography 2" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%2364748b\'%3Ephotograph2.jpg%3C/text%3E%3C/svg%3E'">
+                        <img src="assets/img/photograph2.jpg" alt="Street Photography 2">
                         <div class="photo-overlay">
-                            <h4>photograph2.jpg</h4>
+                            <h4>Night Photo</h4>
                         </div>
                     </div>
                     <div class="photo-card gsap-project">
-                        <img src="assets/img/photograph3.jpg" alt="Street Photography 3" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'18\' fill=\'%2364748b\'%3Ephotograph3.jpg%3C/text%3E%3C/svg%3E'">
+                        <img src="assets/img/photograph3.jpg" alt="Street Photography 3">
                         <div class="photo-overlay">
-                            <h4>photograph3.jpg</h4>
+                            <h4>Nature</h4>
+                        </div>
+                    </div>
+                    <div class="photo-card photo-wide gsap-project">
+                        <img src="assets/img/photograph4.jpeg" alt="Street Photography 4">
+                        <div class="photo-overlay">
+                            <h4>Architecture</h4>
                         </div>
                     </div>
                 </div>
