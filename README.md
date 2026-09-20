@@ -1,44 +1,44 @@
-# 🌟 Avril's Portfolio (Anti-Slop Edition)
+# Avril's Portfolio
 
-Yo! Selamat datang di repo portofolio pribadi gue. Kenalin, gue **Avril**—tukang ngoding web, *UI/UX enthusiast*, dan juga punya ketertarikan kuat di dunia *Cyber Security*. 
+Hey, I'm **Avril**. I'm a web developer, UI/UX enthusiast, and cyber security geek.
 
-Repo ini isinya *source code* dari website portofolio gue yang baru aja dirombak abis-abisan biar tampilannya makin *sleek*, minimalis, dan yang pasti **anti-slop** (no ikon-ikon keramaian yang bikin sakit mata). Pokoknya *clean* abis!
+This repository holds the source code for my personal portfolio. I recently overhauled the entire architecture to strip away the visual noise, replacing cluttered elements with a sleek, minimalist, anti-slop aesthetic.
 
-## ✨ What's New? (Recent Updates)
-Portofolio ini udah naik level dan di-*upgrade* pake teknik yang lebih *pro-max*:
-- **Bento Grid Layout Everywhere**: Mulai dari *Skills*, galeri *Street Photography*, sampe penjelasan fitur AuditX dan E-Management, semuanya sekarang pake layout Bento Grid asimetris yang lagi nge-tren. Kelihatan modern dan nggak ngebosenin!
-- **Animasi Super Smooth**: Udah *move on* dari *IntersectionObserver* biasa, sekarang gue *full* pake **GSAP & ScrollTrigger**. Mulai dari *preloader* pas web dibuka sampe efek *fade-in stagger* pas di-*scroll*, semuanya jalan *buttery smooth*.
-- **Emil Kowalski Vibes**: Sentuhan detail transisi menggunakan *cubic-bezier* spesial biar pergerakan UI kerasa lebih organik, elegan, dan *premium*.
-- **The Process Section**: Karena pamer *result* doang itu udah biasa, gue nambahin section *workflow* (Discovery -> UI/UX Architecture -> Performant Execution) biar orang tau gimana cara otak gue mikir pas nge-bangun sebuah *project*.
+## What's Inside
+The portfolio has been upgraded with some serious pro-max frontend techniques:
+- **Bento Grids**: From the skills section to the photography gallery and project breakdowns, everything runs on clean, asymmetrical Bento Grid layouts. It's modern, breathable, and visually striking.
+- **Buttery Smooth Animations**: Dropped the basic observers and went all-in on **GSAP & ScrollTrigger**. The preloader, stagger fade-ins, and scroll behaviors are highly optimized.
+- **UI and Transitions**: Tuned the animation curves using custom cubic-beziers so UI interactions feel organic, snappy, and premium.
+- **The Process Section**: Because showing just the end result is boring. I added a dedicated section breaking down how I actually think and approach problems (Discovery -> Architecture -> Execution).
 
-## 🚀 Skills & Expertise
-- **Web Development**: Bikin web interaktif yang responsif dan sat-set (Vanilla JS & React).
-- **UI/UX Design**: Ngerancang antarmuka yang intuitif, *clean*, dan memanjakan *user*.
-- **Backend & Scripting**: Bikin *automation tools* dan *logic* sistem super cepet pake Python.
-- **Cyber Security**: Analisis kerentanan, *pentesting*, dan mastiin sistem aman sentosa.
+## Skills & Expertise
+- **Web Development**: Building fast, responsive, and interactive frontend experiences.
+- **UI/UX Design**: Crafting interfaces that are highly intuitive, accessible, and free of visual clutter.
+- **Backend & Scripting**: Writing high-performance logic and automation tools using Python.
+- **Cyber Security**: Understanding vulnerabilities, running pentests, and securing systems.
 
-## 📂 Highlighted Projects
-Tiga *project* utama yang gue pamerin, masing-masing udah punya halaman HTML khusus yang *matching* desainnya:
+## Highlighted Work
+Three major projects are currently showcased, each with its own dedicated page matching the overall design language:
 
-1. **[E-Management App](emanagement.html)** 💰
-   Aplikasi pelacak keuangan *client-side* yang *ngebut* (pake LocalStorage murni). UI-nya dirombak total jadi Bento Grid, plus gue ganti input manual jadi *slider* interaktif buat alokasi dana secara *real-time* tanpa *over-budget*.
-   
-2. **[AuditX Pentesting](auditx.html)** 🛡️
-   Aplikasi *native desktop* (Linux) buat *security auditing*. Tujuannya simpel: ngeruntuhin dinding intimidasi terminal buat pemula. Alat-alat *hardcore* kayak Nuclei dan Gobuster disulap jadi GUI yang *user-friendly*. Latar terminalnya sekarang udah abu-abu klasik ala VS Code!
-   
-3. **[Street Photography](photography.html)** 📷
-   Pelarian gue dari layar monitor. Nangkep momen-momen *candid* dan mentah di jalanan. Galerinya udah di-*refactor* jadi struktur *masonry/Bento* yang cakep dengan *focal point* di foto utama.
+1. **[E-Management App](emanagement.html)**
+   A fully client-side personal finance tracker built for speed using LocalStorage.
 
-## 🛠️ Tech Stack di Balik Layar
-- **HTML5 & CSS3**: Pondasi utama, dibumbui sama *custom properties* buat gonta-ganti *dark/light mode* sekejap mata.
-- **Vanilla JavaScript**: *Logic* tangguh tanpa *bloatware* dari framework-framework raksasa.
-- **GSAP**: Tulang punggung buat semua animasi kelas dunia di web ini.
-- **Tailwind CSS (on Projects)**: Buat nge- *styling* UI secara *utility-first* dengan cepet.
+2. **[AuditX Pentesting](auditx.html)**
+   A native Linux desktop GUI for security auditing. The goal was to tear down the intimidation barrier of the terminal for beginners. It wraps hardcore CLI tools like Nuclei and Gobuster into a user-friendly, visual environment with a classic slate-gray terminal theme.
 
-## 📬 Let's Connect!
-Kalo lu mau ngajak *collab*, butuh *design*, atau sekadar mau ngobrol soal *tech & sec*, langsung aja sapa gue di mari:
-- **Email**: frelezra@gmail.com
+3. **[Street Photography](photography.html)**
+   My escape from the screen. Capturing raw, candid moments on the streets. The gallery features a custom asymmetrical masonry layout that heavily emphasizes focal points.
+
+## Tech Stack
+- **HTML5 & CSS3**: The core foundation, heavily relying on CSS variables for instant dark/light mode switching.
+- **Vanilla JavaScript**: Robust, dependency-free logic without framework bloat.
+- **GSAP**: The backbone driving all the high-end animations across the site.
+- **Tailwind CSS**: Used inside the specific projects for rapid, utility-first styling.
+
+## Let's Connect
+Whether you want to collaborate on a build, need some design work, or just want to talk tech and security, hit me up:
+- **Email**: avrllnx9@gmail.com
 - **GitHub**: [Akane-UX](https://github.com/Akane-UX)
-- **X (Twitter)**: [Nakame_sh](https://x.com/Nakame_sh)
+- **X**: [Nakame_sh](https://x.com/Nakame_sh)
 
-*Stay curious, stay secure, and keep shipping! 🚢✨*
+Stay curious, stay secure, and keep shipping.
