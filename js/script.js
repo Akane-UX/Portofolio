@@ -65,7 +65,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             delay: 0.2
         });
 
-        gsap.from('.gsap-header', {
+        gsap.from('.skills-section .gsap-header', {
             scrollTrigger: {
                 trigger: '.skills-section',
                 start: 'top 85%',
@@ -106,17 +106,15 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             ease: 'back.out(1.2)'
         });
 
-        gsap.utils.toArray('.projects-section .gsap-header').forEach(header => {
-            gsap.from(header, {
-                scrollTrigger: {
-                    trigger: '.projects-section',
-                    start: 'top 85%',
-                },
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                ease: 'power3.out'
-            });
+        gsap.from('.projects-section .gsap-header', {
+            scrollTrigger: {
+                trigger: '.projects-section',
+                start: 'top 85%',
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            ease: 'power3.out'
         });
 
         gsap.from('.gsap-project', {
@@ -131,24 +129,22 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             ease: 'power3.out'
         });
 
-        gsap.utils.toArray('.contact-section .gsap-header').forEach(header => {
-            gsap.from(header, {
-                scrollTrigger: {
-                    trigger: '.contact-section',
-                    start: 'top 85%',
-                },
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
-                stagger: 0.1,
-                ease: 'power3.out'
-            });
+        gsap.from('.contact-section .gsap-header', {
+            scrollTrigger: {
+                trigger: '.contact-section',
+                start: 'top 95%', // Trigger earlier to prevent it getting stuck at bottom
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power3.out'
         });
 
         gsap.from('.gsap-contact', {
             scrollTrigger: {
                 trigger: '.contact-links',
-                start: 'top 90%',
+                start: 'top 95%',
             },
             opacity: 0,
             scale: 0.95,
