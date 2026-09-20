@@ -51,7 +51,7 @@
         }
 
         .preview-container {
-            background: #0f172a;
+            background: #18181b;
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -102,10 +102,18 @@
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             margin-top: 2rem;
             margin-bottom: 4rem;
+        }
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-wide {
+                grid-column: span 1;
+            }
         }
 
         .text-block {
@@ -175,7 +183,7 @@
 
                 <h3 class="gsap-header" style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Fitur Utama</h3>
                 <div class="feature-grid bento-grid">
-                    <div class="bento-cell gsap-bento">
+                    <div class="bento-cell bento-wide gsap-bento">
                         
                         <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Visual Vulnerability Scan</h3>
                         <p>Mengintegrasikan <strong>Nuclei</strong> untuk menemukan celah keamanan web dengan tampilan hasil yang terstruktur, bukan sekadar teks acak.</p>
@@ -190,7 +198,7 @@
                         <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Network & OSINT</h3>
                         <p>Mendukung NetExec, Enum4Linux-NG, serta Gitleaks (Secret Scanner) untuk audit jaringan dan mencari data sensitif yang bocor.</p>
                     </div>
-                    <div class="bento-cell gsap-bento">
+                    <div class="bento-cell bento-wide gsap-bento">
                         
                         <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem;">Metasploit RPC</h3>
                         <p>Di-orkestrasikan dengan <code>msfrpcd</code> dan API, memungkinkan pengguna men-generate payload (Msfvenom) dan mengatur Listener melalui UI secara aman.</p>
