@@ -23,6 +23,6 @@ This repository contains the source code for my modern, minimalist portfolio web
 - **Street Photography**: Capturing raw, candid moments of urban life and visual storytelling (Photography, Art, Visuals).
 
 ## 📬 Contact
-- **Email**: frelezra@gmail.com
+- **Email**: avrllnx9@gmail.com
 - **GitHub**: [Akane-UX](https://github.com/Akane-UX)
 - **Twitter / X**: [Nakame_sh](https://x.com/Nakame_sh)
