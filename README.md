@@ -1,6 +1,6 @@
-# Avril's Portfolio
+# About Me
 
-Hey, I'm **Avril**. I'm a web developer, UI/UX enthusiast, and cyber security geek.
+I'm **Avril**. I'm a web developer, UI/UX enthusiast, and cyber security geek.
 
 This repository holds the source code for my personal portfolio. I recently overhauled the entire architecture to strip away the visual noise, replacing cluttered elements with a sleek, minimalist, anti-slop aesthetic.
 
