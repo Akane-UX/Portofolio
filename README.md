@@ -1,44 +1,37 @@
-# Avril's Portfolio
+# Avril // System Profile
 
-Hey, I'm **Avril**. I'm a web developer, UI/UX enthusiast, and cyber security geek.
+I'm an informatics student, frontend engineer, and security researcher. 
 
-This repository holds the source code for my personal portfolio. I recently overhauled the entire architecture to strip away the visual noise, replacing cluttered elements with a sleek, minimalist, anti-slop aesthetic.
+This repository holds the source code for my personal portfolio. It recently underwent a massive structural shift. I stripped away traditional scrolling web layouts and rebuilt it as a pseudo-SPA (Single Page Application) mimicking a Cyberpunk terminal / game main menu. It's minimal, anti-slop, and heavily focused on frontend physics.
 
-## What's Inside
-The portfolio has been upgraded with some serious pro-max frontend techniques:
-- **Bento Grids**: From the skills section to the photography gallery and project breakdowns, everything runs on clean, asymmetrical Bento Grid layouts. It's modern, breathable, and visually striking.
-- **Buttery Smooth Animations**: Dropped the basic observers and went all-in on **GSAP & ScrollTrigger**. The preloader, stagger fade-ins, and scroll behaviors are highly optimized.
-- **UI and Transitions**: Tuned the animation curves using custom cubic-beziers so UI interactions feel organic, snappy, and premium.
-- **The Process Section**: Because showing just the end result is boring. I added a dedicated section breaking down how I actually think and approach problems (Discovery -> Architecture -> Execution).
+## Architecture & Layout
+- **Cyberpunk UI**: Deep radial red/black gradients, CRT scanlines, static SVG noise, and custom vignettes. Typography relies purely on local Airstrike and Nasalization fonts for that raw arcade terminal aesthetic.
+- **Fluid Mechanics**: Instead of standard CSS hover states and jumpy layout shifts, everything relies on explicit GSAP transforms. The main menu physically shrinks and glides to the side to reveal content tabs without triggering layout thrashing.
+- **Terminal Bento**: The content inside the tabs (skills, project modules) utilizes sleek, 20px-rounded Bento Grid panels. Kept clean with pure spacing and subtle cyan glows.
 
-## Skills & Expertise
-- **Web Development**: Building fast, responsive, and interactive frontend experiences.
-- **UI/UX Design**: Crafting interfaces that are highly intuitive, accessible, and free of visual clutter.
-- **Backend & Scripting**: Writing high-performance logic and automation tools using Python.
-- **Cyber Security**: Understanding vulnerabilities, running pentests, and securing systems.
+## Core Modules
+- **Frontend Eng**: Pushing GSAP to its limits, manipulating the DOM so pixels move like liquid.
+- **Backend & Arch**: Python, Node, SQL. Building the invisible data architectures.
+- **Linux SysAdmin**: Living in the terminal. Arch Linux ricing, kernel tweaking, and taming Hyprland.
+- **Security Research**: Messing around with custom pentesting workflows, breaking vulnerable targets, and writing automation scripts.
 
-## Highlighted Work
-Three major projects are currently showcased, each with its own dedicated page matching the overall design language:
+## Highlighted Nodes
+The system currently indexes three main projects, each seamlessly integrated into the side-menu UI structure:
 
-1. **[E-Management App](emanagement.html)**
-   A fully client-side personal finance tracker built for speed using LocalStorage.
-
-2. **[AuditX Pentesting](auditx.html)**
-   A native Linux desktop GUI for security auditing. The goal was to tear down the intimidation barrier of the terminal for beginners. It wraps hardcore CLI tools like Nuclei and Gobuster into a user-friendly, visual environment with a classic slate-gray terminal theme.
-
-3. **[Street Photography](photography.html)**
-   My escape from the screen. Capturing raw, candid moments on the streets. The gallery features a custom asymmetrical masonry layout that heavily emphasizes focal points.
+1. **[AuditX](auditx.html)**
+   Native Linux security auditing platform. A QML and Python wrapper that takes messy CLI tools (Nuclei, Gobuster, Metasploit RPC) and slaps them into a clean, centralized GUI.
+2. **[E-Management](emanagement.html)**
+   Zero-backend finance tracker. Fully client-side state machine. No latency, just instant DOM rendering via LocalStorage.
+3. **[Street Photo](photography.html)**
+   Raw, unfiltered urban visuals. Shadow manipulation and cinematic grading displayed in a strict asymmetrical grid.
 
 ## Tech Stack
-- **HTML5 & CSS3**: The core foundation, heavily relying on CSS variables for instant dark/light mode switching.
-- **Vanilla JavaScript**: Robust, dependency-free logic without framework bloat.
-- **GSAP**: The backbone driving all the high-end animations across the site.
-- **Tailwind CSS**: Used inside the specific projects for rapid, utility-first styling.
+- **HTML/CSS**: Structural foundation. Zero UI frameworks. CSS grid and flexbox doing the heavy lifting.
+- **Vanilla JS**: No bloated virtual DOMs here. Direct manipulation only.
+- **GSAP**: The absolute core of the UI physics and fluid transitions.
 
-## Let's Connect
-Whether you want to collaborate on a build, need some design work, or just want to talk tech and security, hit me up:
+## Comm Link
+Whether you're looking to collaborate on an exploit script, talk Linux configs, or build some slick frontends, establish a connection:
 - **Email**: avrllnx9@gmail.com
 - **GitHub**: [Akane-UX](https://github.com/Akane-UX)
 - **X**: [Nakame_sh](https://x.com/Nakame_sh)
-
-Stay curious, stay secure, and keep shipping.
