@@ -1,227 +1,115 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Street Photography | Avril Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>STREET_PHOTO // SYSTEM</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        .page-header {
-            padding-top: 140px;
-            padding-bottom: 60px;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .page-title {
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--text-primary);
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            margin-bottom: 2rem;
-            transition: color 150ms var(--ease-out), transform 160ms var(--ease-out);
-            will-change: transform;
-        }
-        
-        @media (hover: hover) and (pointer: fine) {
-            .back-btn:hover {
-                color: var(--accent);
-            }
-        }
-        .back-btn:active {
-            transform: scale(0.95);
-        }
-
-        .content-section {
-            padding: 4rem 0;
-        }
-
-        .text-block {
-            max-width: 800px;
-            margin-bottom: 4rem;
-        }
-        
-        .text-block h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1.25rem;
-            color: var(--text-primary);
-        }
-        
-        .text-block p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 250px;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .photo-card {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 160ms var(--ease-out), box-shadow 300ms var(--ease-out);
-            background: var(--bg-secondary);
-            position: relative;
-            will-change: transform;
-            transform: translateZ(0);
-        }
-        
-        .photo-large {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-        
-        .photo-wide {
-            grid-column: span 3;
-            grid-row: span 1;
-        }
-
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                grid-auto-rows: 250px;
-            }
-            .photo-large, .photo-wide {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .photo-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-            }
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 600ms var(--ease-out);
-            will-change: transform;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .photo-card:hover img {
-                transform: scale(1.05);
-            }
-        }
-
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 2rem 1.5rem 1.5rem;
-            color: #fff;
-            opacity: 0;
-            transition: opacity 300ms var(--ease-out);
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .photo-card:hover .photo-overlay {
-                opacity: 1;
-            }
-        }
-
-        .photo-overlay h4 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin: 0;
-        }
-    </style>
 </head>
 <body>
-    <nav id="navbar">
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="index.html#projects">Back to Portfolio</a></li>
-                <li><button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-btn"><i data-lucide="moon"></i></button></li>
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div id="loader-text" class="loader-text">LINKING NODE...</div>
+            <div class="loader-bar-bg">
+                <div id="loader-bar-fill" class="loader-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    <div class="vignette"></div>
+
+    <main class="game-container">
+        <nav class="main-menu side-mode" style="opacity: 0;">
+            <div class="menu-header">
+                <h1 class="game-title glitch" style="font-size: 3.5rem;" data-text="STREET_PHOTO">STREET_PHOTO</h1>
+                <p class="profile-subtitle">&gt; URBAN VISUALS</p>
+                <div class="cyber-line"></div>
+            </div>
+            
+            <ul class="menu-list">
+                <li><a href="index.html" class="menu-btn" style="text-decoration: none;">
+                    <i data-lucide="arrow-left"></i>
+                    <span class="btn-text">RETURN</span>
+                </a></li>
             </ul>
-        </div>
-    </nav>
-
-    <header class="page-header gsap-hero">
-        <div class="section-container">
-            <a href="index.html#projects" class="back-btn gsap-hero-item"><i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i> Kembali</a>
-            <h1 class="page-title gsap-hero-item"> Street Photography</h1>
-            <p class="gsap-hero-item" style="font-size: 1.25rem; max-width: 700px; color: var(--text-secondary); line-height: 1.6;">Menangkap momen-momen nyata, ekspresi jujur, dan denyut nadi jalanan lewat lensa kamera.</p>
-        </div>
-    </header>
-
-    <main>
-        <section class="content-section">
-            <div class="section-container">
-                
-                <div class="text-block gsap-about-text">
-                    <h3>Di Balik Lensa</h3>
-                    <p>Selain dunia pengembangan perangkat lunak dan keamanan siber, saya memiliki ketertarikan mendalam pada seni visual, khususnya <strong>Street Photography</strong>. Bagi saya, fotografi jalanan adalah cara saya melarikan diri dari layar monitor, turun ke lapangan, dan mengobservasi kehidupan nyata yang sedang berlangsung.</p>
-                    
-                    <p>Jalanan adalah teater terbuka di mana setiap detiknya menceritakan kisah yang berbeda. Saya gemar menangkap momen-momen mentah dan candid—ekspresi seseorang yang sedang tenggelam dalam pikiran, interaksi spontan antar manusia, permainan komposisi cahaya matahari di sela-sela gedung kota, hingga suasana urban yang melankolis namun terasa hidup.</p>
+        </nav>
+        <section class="content-area" style="display: block; opacity: 0;">
+            <div class="tab-content active">
+                <div class="tab-header">
+                    <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
                 </div>
+                <div class="content-scroll">
+                    
+                    <div class="about-layout" style="grid-template-columns: 1fr;">
+                        <div class="about-text">
+                            <h3>> THE_CONCEPT</h3>
+                            <p>Capturing raw, unfiltered moments of urban life. Turning mundane human routines and concrete jungles into visual stories through the lens.</p>
+                            
+                            <h3 style="margin-top: 2rem;">> VISUAL_APPROACH</h3>
+                            <p>Heavy focus on asymmetrical compositions, harsh shadows, and cinematic color grading. Minimalist, edgy, and anti-slop.</p>
+                        </div>
+                    </div>
 
-                <h3 class="gsap-header" style="font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--text-primary);">Hasil Foto (Karya Terpilih)</h3>
-                <div class="gallery-grid">
-                    <div class="photo-card photo-large gsap-project">
-                        <img src="assets/img/photograph1.jpg" alt="Street Photography 1">
-                        <div class="photo-overlay">
-                            <h4>Warm Vibes</h4>
-                        </div>
+                    <div class="tab-header" style="margin-top: 4rem;">
+                        <h2 class="tab-title">CAPTURES // LOGS</h2>
                     </div>
-                    <div class="photo-card gsap-project">
-                        <img src="assets/img/photograph2.jpg" alt="Street Photography 2">
-                        <div class="photo-overlay">
-                            <h4>Night Photo</h4>
-                        </div>
+                    
+                    <div class="projects-grid">
+
+                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><img src="assets/img/photograph1.jpg" alt="Street 1"></div></div>
+                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><img src="assets/img/photograph2.jpg" alt="Street 2"></div></div>
+                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><img src="assets/img/photograph3.jpg" alt="Street 3"></div></div>
+                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><img src="assets/img/photograph4.jpeg" alt="Street 4"></div></div>
+        
                     </div>
-                    <div class="photo-card gsap-project">
-                        <img src="assets/img/photograph3.jpg" alt="Street Photography 3">
-                        <div class="photo-overlay">
-                            <h4>Nature</h4>
-                        </div>
-                    </div>
-                    <div class="photo-card photo-wide gsap-project">
-                        <img src="assets/img/photograph4.jpeg" alt="Street Photography 4">
-                        <div class="photo-overlay">
-                            <h4>Architecture</h4>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="section-container">
-            <p>&copy; 2026 Avril. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        lucide.createIcons();
+        
+        const loaderTexts = ["LINKING NODE...", "FETCHING PROJECT DATA...", "ACCESS GRANTED."];
+        const loaderTextEl = document.getElementById('loader-text');
+        const loaderBarFill = document.getElementById('loader-bar-fill');
+        const preloader = document.getElementById('preloader');
+        
+        let textIndex = 0;
+        const textInterval = setInterval(() => {
+            textIndex++;
+            if(textIndex < loaderTexts.length) {
+                loaderTextEl.innerText = loaderTexts[textIndex];
+            }
+        }, 400);
+
+        gsap.to(loaderBarFill, {
+            width: "100%",
+            duration: 1.2,
+            ease: "power2.inOut",
+            onComplete: () => {
+                clearInterval(textInterval);
+                loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
+                
+                gsap.to(preloader, {
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "power2.inOut",
+                    delay: 0.2,
+                    onComplete: () => {
+                        preloader.style.display = 'none';
+                        
+                        gsap.fromTo('.main-menu', { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power4.out" });
+                        gsap.to('.content-area', { opacity: 1, duration: 1, delay: 0.2 });
+                        gsap.fromTo('.cyber-panel, .about-text, .cyber-card', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, delay: 0.3, ease: "power4.out" });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
