@@ -4,14 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'Nasalization';
     src: url('../assets/fonts/nasalization.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
-
 :root {
     --cp-red: #ff003c;
     --cp-yellow: #fcee0a;
@@ -24,13 +22,11 @@
     --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
     --ease-in: cubic-bezier(0.72, 0, 0.32, 1);
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     background: radial-gradient(circle at center, #2e0008 0%, #050000 100%);
     color: var(--cp-text);
@@ -41,7 +37,6 @@ body {
     position: relative;
     user-select: none;
 }
-
 .scanlines {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -66,7 +61,6 @@ body {
     z-index: 9997;
     pointer-events: none;
 }
-
 .game-container {
     display: flex;
     height: 100vh;
@@ -74,7 +68,6 @@ body {
     position: relative;
     z-index: 10;
 }
-
 .main-menu {
     display: flex;
     flex-direction: column;
@@ -90,16 +83,13 @@ body {
     background: transparent;
     border-right: 1px solid transparent;
 }
-
 .main-menu.center-mode {
     width: 100vw;
 }
-
 .main-menu.side-mode {
     width: 35vw;
     border-right: 1px solid rgba(0, 240, 255, 0.2);
 }
-
 .menu-header {
     margin-bottom: 3.5rem;
     position: relative;
@@ -109,7 +99,6 @@ body {
     align-items: center;
     text-align: center;
 }
-
 .game-title {
     font-family: 'Airstrike', sans-serif;
     font-size: 5rem;
@@ -121,13 +110,11 @@ body {
     position: relative;
     text-transform: uppercase;
 }
-
 .profile-subtitle {
     font-size: 1.1rem;
     color: var(--cp-cyan);
     letter-spacing: 1.5px;
 }
-
 .cyber-line {
     height: 3px;
     width: 100px;
@@ -139,7 +126,6 @@ body {
 .main-menu.side-mode .cyber-line {
     width: 150px;
 }
-
 .menu-list {
     list-style: none;
     display: flex;
@@ -148,7 +134,6 @@ body {
     width: auto;
     align-items: center;
 }
-
 .menu-btn {
     background: transparent;
     border: none;
@@ -170,7 +155,6 @@ body {
     width: fit-content;
     backdrop-filter: none;
 }
-
 .btn-deco {
     font-size: 1rem;
     color: var(--cp-red);
@@ -178,7 +162,6 @@ body {
     transform: translateX(-10px);
     transition: all 0.3s var(--ease-out);
 }
-
 .menu-btn:hover, .menu-btn.active {
     background: transparent;
     border-color: transparent;
@@ -186,16 +169,13 @@ body {
     box-shadow: none;
     transform: scale(1.05);
 }
-
 .main-menu.side-mode .menu-btn:hover, .main-menu.side-mode .menu-btn.active {
     transform: translateX(10px);
 }
-
 .menu-btn:hover .btn-deco, .menu-btn.active .btn-deco {
     opacity: 1;
     transform: translateX(0);
 }
-
 .menu-btn::before {
     content: '';
     position: absolute;
@@ -210,11 +190,9 @@ body {
     transition: transform 0.3s var(--ease-out);
     box-shadow: 0 0 10px var(--cp-red);
 }
-
 .menu-btn:hover::before, .menu-btn.active::before {
     transform: scaleY(1);
 }
-
 .content-area {
     position: absolute;
     right: 0;
@@ -225,7 +203,6 @@ body {
     display: none;
     opacity: 0;
 }
-
 .tab-content {
     display: none;
     flex-direction: column;
@@ -234,7 +211,6 @@ body {
 .tab-content.active {
     display: flex;
 }
-
 .tab-header {
     display: flex;
     justify-content: space-between;
@@ -243,14 +219,12 @@ body {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--cp-border);
 }
-
 .tab-title {
     font-family: 'Nasalization', sans-serif;
     font-size: 2rem;
     color: var(--cp-cyan);
     letter-spacing: 2px;
 }
-
 .close-btn {
     background: none;
     border: none;
@@ -263,7 +237,6 @@ body {
     color: var(--cp-yellow);
     transform: scale(1.1);
 }
-
 .content-scroll {
     overflow-y: auto;
     padding-right: 1rem;
@@ -278,14 +251,12 @@ body {
 .content-scroll::-webkit-scrollbar-thumb {
     background: var(--cp-red);
 }
-
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding-bottom: 4rem;
 }
-
 .cyber-card {
     background: var(--cp-dark-panel);
     border: 1px solid var(--cp-border);
@@ -335,7 +306,6 @@ body {
 .cyber-card:hover .card-overlay {
     opacity: 1;
 }
-
 .card-info {
     padding: 1.5rem;
 }
@@ -361,14 +331,12 @@ body {
     font-size: 0.85rem;
     border: 1px solid var(--cp-cyan);
 }
-
 .skills-grid {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding-bottom: 4rem;
 }
-
 .cyber-panel {
     background: var(--cp-dark-panel);
     border: 1px solid var(--cp-border);
@@ -409,11 +377,11 @@ body {
     background: var(--cp-cyan);
     box-shadow: 0 0 10px var(--cp-cyan);
 }
-
 .about-layout {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 3rem;
+    align-items: flex-start;
 }
 .about-image {
     position: relative;
@@ -452,7 +420,6 @@ body {
     font-size: 0.9rem;
     letter-spacing: 1px;
 }
-
 .contact-desc {
     font-size: 1.1rem;
     color: var(--cp-yellow);
@@ -484,7 +451,6 @@ body {
     width: 24px;
     height: 24px;
 }
-
 .glitch {
     position: relative;
 }
@@ -515,7 +481,6 @@ body {
     80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 1px); }
     100% { clip-path: inset(30% 0 50% 0); transform: translate(1px, -1px); }
 }
-
 @media (max-width: 768px) {
     .main-menu.side-mode {
         width: 100vw;
@@ -534,7 +499,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
 .preloader {
     position: fixed;
     inset: 0;

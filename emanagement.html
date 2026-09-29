@@ -16,11 +16,9 @@
             </div>
         </div>
     </div>
-
     <div class="scanlines"></div>
     <div class="noise"></div>
     <div class="vignette"></div>
-
     <main class="game-container">
         <nav class="main-menu side-mode" style="opacity: 0;">
             <div class="menu-header">
@@ -28,7 +26,6 @@
                 <p class="profile-subtitle">&gt; CLIENT-SIDE FINANCE</p>
                 <div class="cyber-line"></div>
             </div>
-            
             <ul class="menu-list">
                 <li><a href="index.html" class="menu-btn" style="text-decoration: none;">
                     <i data-lucide="arrow-left"></i>
@@ -42,23 +39,18 @@
                     <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
                 </div>
                 <div class="content-scroll">
-                    
                     <div class="about-layout" style="grid-template-columns: 1fr;">
                         <div class="about-text">
                             <h3>> WHAT_IS_EMANAGEMENT</h3>
                             <p>A premium, modern personal finance tracker running entirely on the client side. I ditched the boring, traditional spreadsheet look and built a visually heavy, interactive dashboard that doesn't even need a backend.</p>
-                            
                             <h3 style="margin-top: 2rem;">> DATA_ARCHITECTURE</h3>
                             <p>Everything lives in your browser's LocalStorage. Maximum privacy, zero latency. It recalculates financial states and renders the DOM in milliseconds.</p>
                         </div>
                     </div>
-
                     <div class="tab-header" style="margin-top: 4rem;">
                         <h2 class="tab-title">SYSTEM_MODULES // LOGS</h2>
                     </div>
-                    
                     <div class="skills-grid">
-
                         <div class="cyber-panel">
                             <h3>[01] BENTO_GRID_UI</h3>
                             <p>Scrapped the boring list views. The dashboard uses an asymmetrical Bento Grid to lay out your spending summaries.</p>
@@ -76,7 +68,6 @@
                             <p>Packed with GSAP layout transitions and custom toast notifications mimicking the Sonner library.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -84,12 +75,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         lucide.createIcons();
-        
         const loaderTexts = ["LINKING NODE...", "FETCHING PROJECT DATA...", "ACCESS GRANTED."];
         const loaderTextEl = document.getElementById('loader-text');
         const loaderBarFill = document.getElementById('loader-bar-fill');
         const preloader = document.getElementById('preloader');
-        
         let textIndex = 0;
         const textInterval = setInterval(() => {
             textIndex++;
@@ -97,7 +86,6 @@
                 loaderTextEl.innerText = loaderTexts[textIndex];
             }
         }, 400);
-
         gsap.to(loaderBarFill, {
             width: "100%",
             duration: 1.2,
@@ -105,7 +93,6 @@
             onComplete: () => {
                 clearInterval(textInterval);
                 loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
-                
                 gsap.to(preloader, {
                     opacity: 0,
                     duration: 0.5,
@@ -113,7 +100,6 @@
                     delay: 0.2,
                     onComplete: () => {
                         preloader.style.display = 'none';
-                        
                         gsap.fromTo('.main-menu', { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power4.out" });
                         gsap.to('.content-area', { opacity: 1, duration: 1, delay: 0.2 });
                         gsap.fromTo('.cyber-panel, .about-text, .cyber-card', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, delay: 0.3, ease: "power4.out" });
