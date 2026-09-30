@@ -135,15 +135,33 @@ function animateTabContent(tabElement) {
     const cards = tabElement.querySelectorAll('.cyber-card, .cyber-panel, .about-layout > div, .cyber-btn-link');
     if (cards.length > 0) {
         gsap.fromTo(cards, 
-            { opacity: 0, y: 30 },
+            { opacity: 0, x: -50, filter: 'blur(10px)' },
             { 
                 opacity: 1, 
-                y: 0, 
-                duration: 0.6, 
+                x: 0, 
+                filter: 'blur(0px)',
+                duration: 0.5, 
                 stagger: 0.1, 
                 ease: easeFluid,
                 delay: 0.1
             }
         );
     }
+    
+    const progressBars = tabElement.querySelectorAll('.cyber-progress');
+    progressBars.forEach((bar, index) => {
+        const activeSegs = bar.querySelectorAll('.seg.active');
+        if (activeSegs.length > 0) {
+            gsap.from(activeSegs, {
+                backgroundColor: "transparent", 
+                boxShadow: "none", 
+                borderColor: "rgba(255, 255, 255, 0.1)", 
+                duration: 0.05, 
+                stagger: 0.05, 
+                ease: "none",
+                delay: 0.4 + (index * 0.1),
+                clearProps: "all"
+            });
+        }
+    });
 }

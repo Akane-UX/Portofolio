@@ -41,6 +41,7 @@
             <div class="tab-content active">
                 <div class="tab-header">
                     <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
+                    <a href="index.html" class="close-btn mobile-only-flex" aria-label="Return"><i data-lucide="x"></i></a>
                 </div>
                 <div class="content-scroll">
                     <div class="about-layout" style="grid-template-columns: 1fr;">
@@ -71,6 +72,12 @@
                             <h3>[04] FLUID_PHYSICS</h3>
                             <p>Packed with GSAP layout transitions and custom toast notifications mimicking the Sonner library.</p>
                         </div>
+                    </div>
+                    <div class="mobile-only-block" style="margin-top: 2rem; margin-bottom: 2rem;">
+                        <a href="https://github.com/Akane-UX/Emanagement.git" target="_blank" class="cyber-btn-link" style="justify-content: center;">
+                            <i data-lucide="github"></i>
+                            <span>GITHUB_REPO</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -106,7 +113,7 @@
                         preloader.style.display = 'none';
                         gsap.fromTo('.main-menu', { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power4.out" });
                         gsap.to('.content-area', { opacity: 1, duration: 1, delay: 0.2 });
-                        gsap.fromTo('.cyber-panel, .about-text, .cyber-card', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, delay: 0.3, ease: "power4.out" });
+                        gsap.fromTo('.cyber-panel, .about-text, .cyber-card, .mobile-only-block', { x: -50, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8, stagger: 0.1, delay: 0.3, ease: "power4.out" });
                     }
                 });
             }
