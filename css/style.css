@@ -379,7 +379,7 @@ body {
 }
 .about-layout {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 4fr 5fr;
     gap: 3rem;
     align-items: flex-start;
 }
@@ -535,4 +535,41 @@ body {
     width: 0%;
     background: var(--cp-cyan);
     box-shadow: 0 0 10px var(--cp-cyan);
+}
+
+/* CYBERPUNK SEGMENTED PROGRESS BAR */
+.cyber-progress {
+    width: 100%;
+    height: 12px;
+    display: flex;
+    gap: 4px;
+    background: transparent;
+}
+.cyber-progress .seg {
+    flex: 1;
+    height: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: skewX(-30deg);
+    transition: all 0.3s;
+}
+.cyber-progress .seg.active {
+    background: var(--cp-cyan);
+    border-color: var(--cp-cyan);
+    box-shadow: 0 0 8px var(--cp-cyan);
+}
+
+/* SKILLS LIST REFORMAT (No Box Background & Separator Line) */
+.skills-grid .cyber-panel {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.skills-grid .cyber-panel::before {
+    display: none; /* Remove the top cyan line from the box design */
+}
+.skills-grid .cyber-panel:last-child {
+    border-bottom: none;
 }
