@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOTION_VISUALS // SYSTEM</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <div id="loader-text" class="loader-text">LINKING NODE...</div>
+            <div class="loader-bar-bg">
+                <div id="loader-bar-fill" class="loader-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    <div class="vignette"></div>
+    <main class="game-container">
+        <nav class="main-menu side-mode" style="opacity: 0;">
+            <div class="menu-header">
+                <h1 class="game-title glitch" style="font-size: 3.5rem;" data-text="MOTION_VISUALS">MOTION_VISUALS</h1>
+                <p class="profile-subtitle">&gt; TIMELINE RENDER</p>
+                <div class="cyber-line"></div>
+            </div>
+            <ul class="menu-list">
+                <li><a href="index.html" class="menu-btn" style="text-decoration: none;">
+                    <i data-lucide="arrow-left"></i>
+                    <span class="btn-text">RETURN</span>
+                </a></li>
+            </ul>
+        </nav>
+        <section class="content-area" style="display: block; opacity: 0;">
+            <div class="tab-content active">
+                <div class="tab-header">
+                    <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
+                    <a href="index.html" class="close-btn mobile-only-flex" aria-label="Return"><i data-lucide="x"></i></a>
+                </div>
+                <div class="content-scroll">
+                    <div class="about-layout" style="grid-template-columns: 1fr;">
+                        <div class="about-text">
+                            <h3>> THE_CONCEPT</h3>
+                            <p>Splicing frames and rendering dynamic motion graphics. I spend hours staring at keyframes in Premiere Pro and After Effects just to make sure every transition is buttery smooth and mathematically perfect. No cheap presets allowed.</p>
+                            <h3 style="margin-top: 2rem;">> VISUAL_APPROACH</h3>
+                            <p>Fast cuts, glitch aesthetics, and heavily modified easing curves. I hate standard linear animations, so I manually tweak the bezier curves to make everything snap with an aggressive, snappy rhythm.</p>
+                        </div>
+                    </div>
+                    <div class="tab-header" style="margin-top: 4rem;">
+                        <h2 class="tab-title">RENDERS // LOGS</h2>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><div class="mock-bg">RENDER_01</div></div></div>
+                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><div class="mock-bg">RENDER_02</div></div></div>
+                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><div class="mock-bg">RENDER_03</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        lucide.createIcons();
+        const loaderTexts = ["LINKING NODE...", "FETCHING PROJECT DATA...", "ACCESS GRANTED."];
+        const loaderTextEl = document.getElementById('loader-text');
+        const loaderBarFill = document.getElementById('loader-bar-fill');
+        const preloader = document.getElementById('preloader');
+        let textIndex = 0;
+        const textInterval = setInterval(() => {
+            textIndex++;
+            if(textIndex < loaderTexts.length) {
+                loaderTextEl.innerText = loaderTexts[textIndex];
+            }
+        }, 400);
+        gsap.to(loaderBarFill, {
+            width: "100%",
+            duration: 1.2,
+            ease: "power2.inOut",
+            onComplete: () => {
+                clearInterval(textInterval);
+                loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
+                gsap.to(preloader, {
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "power2.inOut",
+                    delay: 0.2,
+                    onComplete: () => {
+                        preloader.style.display = 'none';
+                        gsap.fromTo('.main-menu', { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power4.out" });
+                        gsap.to('.content-area', { opacity: 1, duration: 1, delay: 0.2 });
+                        gsap.fromTo('.cyber-panel, .about-text, .cyber-card, .mobile-only-block', { x: -50, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8, stagger: 0.1, delay: 0.3, ease: "power4.out" });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
