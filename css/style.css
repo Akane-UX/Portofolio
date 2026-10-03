@@ -573,6 +573,7 @@ body {
     display: flex;
     gap: 4px;
     background: transparent;
+    padding: 0 6px;
 }
 .cyber-progress .seg {
     flex: 1;
