@@ -14,12 +14,13 @@ This repository holds the raw source code for my personal portfolio. I got viole
 - **Linux SysAdmin**: Hopelessly deep in the Linux sysadmin rabbit hole. Ricing my Arch setup, patching Hyprland configs, injecting custom Wayland widgets, and tinkering with kernel parameters until something inevitably crashes at 3 AM.
 - **Security Research**: Messing around with custom pentesting workflows (hooking up Nuclei and Metasploit RPC just to see things break), and writing automation scripts so I don't have to deal with repetitive garbage.
 - **Visual Assets**: Building high fidelity vector illustrations and splicing motion graphics because standard templates are for the weak.
+- **Photography**: Wandering around concrete jungles capturing raw, unfiltered moments of urban decay and human exhaustion. Aggressively edgy cinematic color grading to match my chronically sleep deprived state.
 
 ## HIGHLIGHTED NODES
 The system currently indexes several core projects. Click through the side-menu UI structure to load them:
 
-1. **[AuditX](auditx.html)**
-   Native Linux security auditing platform. A QML and Python wrapper because I got sick of parsing messy, unreadable CLI dumps from Nmap and Metasploit. Zero bloated web-tech slop, just pure functionality that actually works without eating half my RAM.
+1. **[AuditX](auditx.html)** ([GUI Repo](https://github.com/Akane-UX/AuditX.git) / [CLI Repo](https://github.com/Akane-UX/AuditX-cli))
+   Native Linux security auditing platform. A QML and Python wrapper because I got sick of parsing messy, unreadable CLI dumps from Nmap and Metasploit. Also includes an interactive terminal edition (**AuditX-CLI**) for rapid security triage straight from the shell with zero bloated GUI dependencies.
    
 2. **[E-Management](emanagement.html)**
    Zero-backend finance tracker. Built because my spending habits are absolute garbage and I refuse to trust my personal financial data on some random company's cloud server. Fully client-side state machine. If you clear your browser data, you lose everything. Deal with it.
