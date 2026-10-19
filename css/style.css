@@ -21,6 +21,14 @@
     --cp-text-dim: #aaa;
     --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
     --ease-in: cubic-bezier(0.72, 0, 0.32, 1);
+    --z-base: 1;
+    --z-content: 10;
+    --z-menu: 20;
+    --z-mobile-content: 30;
+    --z-vignette: 40;
+    --z-noise: 41;
+    --z-scanlines: 42;
+    --z-preloader: 50;
 }
 * {
     margin: 0;
@@ -33,6 +41,7 @@ body {
     font-family: 'Nasalization', sans-serif;
     overflow: hidden;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
     position: relative;
     user-select: none;
@@ -42,7 +51,7 @@ body {
     top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
     background-size: 100% 4px;
-    z-index: 9999;
+    z-index: var(--z-scanlines);
     pointer-events: none;
     opacity: 0.3;
 }
@@ -51,22 +60,23 @@ body {
     top: 0; left: 0; right: 0; bottom: 0;
     background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
     opacity: 0.05;
-    z-index: 9998;
+    z-index: var(--z-noise);
     pointer-events: none;
 }
 .vignette {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.8) 100%);
-    z-index: 9997;
+    z-index: var(--z-vignette);
     pointer-events: none;
 }
 .game-container {
     display: flex;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
     position: relative;
-    z-index: 10;
+    z-index: var(--z-content);
 }
 .main-menu {
     display: flex;
@@ -75,7 +85,8 @@ body {
     left: 0;
     top: 0;
     height: 100vh;
-    z-index: 20;
+    height: 100dvh;
+    z-index: var(--z-menu);
     transition: width 0.8s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.8s cubic-bezier(0.32, 0.72, 0, 1);
     overflow: hidden;
     justify-content: center;
@@ -150,7 +161,7 @@ body {
     text-align: center;
     padding: 0.5rem 1rem;
     position: relative;
-    transition: color 0.3s, transform 0.3s var(--ease-out);
+    transition: color 150ms ease-out, transform 150ms ease-out;
     width: fit-content;
     backdrop-filter: none;
 }
@@ -161,7 +172,7 @@ body {
     color: var(--cp-red);
     opacity: 0;
     transform: translateX(-10px);
-    transition: all 0.3s var(--ease-out);
+    transition: opacity 150ms ease-out, transform 150ms ease-out;
 }
 .menu-btn:hover, .menu-btn.active {
     background: transparent;
@@ -188,7 +199,7 @@ body {
     border-radius: 0;
     transform: scaleY(0);
     transform-origin: center;
-    transition: transform 0.3s var(--ease-out);
+    transition: transform 150ms ease-out;
     box-shadow: 0 0 10px var(--cp-red);
 }
 .menu-btn:hover::before, .menu-btn.active::before {
@@ -200,7 +211,8 @@ body {
     top: 0;
     width: 65vw;
     height: 100vh;
-    padding: 3rem 4rem;
+    height: 100dvh;
+    padding: max(3rem, env(safe-area-inset-top)) max(4rem, env(safe-area-inset-right)) max(3rem, env(safe-area-inset-bottom)) max(4rem, env(safe-area-inset-left));
     display: none;
     opacity: 0;
 }
@@ -232,7 +244,7 @@ body {
     color: var(--cp-red);
     cursor: pointer;
     padding: 0.5rem;
-    transition: transform 0.3s, color 0.3s;
+    transition: transform 150ms ease-out, color 150ms ease-out;
 }
 .close-btn:hover {
     color: var(--cp-yellow);
@@ -268,7 +280,7 @@ body {
     color: inherit;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 150ms ease-out, transform 150ms ease-out;
 }
 .cyber-card:hover {
     border-color: var(--cp-yellow);
@@ -302,7 +314,7 @@ body {
     inset: 0;
     background: rgba(255,0,60,0.2);
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 150ms ease-out;
 }
 .cyber-card:hover .card-overlay {
     opacity: 1;
@@ -444,7 +456,7 @@ body {
     color: var(--cp-text);
     text-decoration: none;
     font-size: 1.1rem;
-    transition: all 0.3s;
+    transition: background 150ms ease-out, color 150ms ease-out, box-shadow 150ms ease-out;
 }
 .cyber-btn-link:hover {
     background: var(--cp-red);
@@ -502,9 +514,9 @@ body {
     }
     .content-area {
         width: 100vw;
-        padding: 1.5rem;
+        padding: max(1.5rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
         background: rgba(5,5,5,0.95);
-        z-index: 30;
+        z-index: var(--z-mobile-content);
     }
     .about-layout {
         grid-template-columns: 1fr;
@@ -532,7 +544,7 @@ body {
     position: fixed;
     inset: 0;
     background-color: var(--cp-dark);
-    z-index: 100000;
+    z-index: var(--z-preloader);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -562,7 +574,9 @@ body {
 }
 .loader-bar-fill {
     height: 100%;
-    width: 0%;
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(0);
     background: var(--cp-cyan);
     box-shadow: 0 0 10px var(--cp-cyan);
 }
@@ -581,7 +595,7 @@ body {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transform: skewX(-30deg);
-    transition: all 0.3s;
+    transition: background 150ms ease-out, border-color 150ms ease-out, box-shadow 150ms ease-out;
 }
 .cyber-progress .seg.active {
     background: var(--cp-cyan);
@@ -601,4 +615,28 @@ body {
 }
 .skills-grid .cyber-panel:last-child {
     border-bottom: none;
+}
+
+/* Baseline UI: Typography Balance & Pretty rules */
+h1, h2, h3, .tab-title, .game-title {
+    text-wrap: balance;
+}
+p, .about-text p, .card-info p, .contact-desc, .profile-subtitle, .menu-disclaimer {
+    text-wrap: pretty;
+}
+.stat-val, .btn-deco, [data-tabular] {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Baseline UI: Accessibility & Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .glitch::before, .glitch::after {
+        display: none !important;
+    }
 }

@@ -1,7 +1,8 @@
 lucide.createIcons();
 gsap.registerPlugin();
-const easeFluid = "power4.out";
-const easeDrawer = "power3.inOut";
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const easeFluid = "power2.out";
+const easeDrawer = "power2.inOut";
 const mainMenu = document.getElementById('mainMenu');
 const contentArea = document.getElementById('contentArea');
 const menuBtns = document.querySelectorAll('.menu-btn');
@@ -28,22 +29,22 @@ const textInterval = setInterval(() => {
     if(textIndex < loaderTexts.length) {
         loaderTextEl.innerText = loaderTexts[textIndex];
     }
-}, 600);
+}, prefersReducedMotion ? 100 : 600);
 gsap.to(loaderBarFill, {
-    width: "100%",
-    duration: 3,
+    scaleX: 1,
+    duration: prefersReducedMotion ? 0.1 : 3,
     ease: "power2.inOut",
     onComplete: () => {
         clearInterval(textInterval);
         loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
         gsap.to(preloader, {
             opacity: 0,
-            duration: 0.8,
+            duration: prefersReducedMotion ? 0.1 : 0.8,
             ease: "power2.inOut",
-            delay: 0.3,
+            delay: prefersReducedMotion ? 0 : 0.3,
             onComplete: () => {
                 preloader.style.display = 'none';
-                gsap.to(mainMenu, { opacity: 1, duration: 1, ease: easeFluid });
+                gsap.to(mainMenu, { opacity: 1, duration: prefersReducedMotion ? 0.1 : 0.6, ease: easeFluid });
             }
         });
     }
@@ -56,7 +57,7 @@ menuBtns.forEach(btn => {
         const btnText = btn.querySelector('.btn-text');
         gsap.fromTo(btnText, 
             { opacity: 0.5, x: -5 }, 
-            { opacity: 1, x: 0, duration: 0.2, ease: "power2.out" }
+            { opacity: 1, x: 0, duration: 0.15, ease: "power2.out" }
         );
         if (!isMenuOpen) {
             openContentArea(targetId);
@@ -132,16 +133,18 @@ function closeContentArea() {
     });
 }
 function animateTabContent(tabElement) {
+    if (prefersReducedMotion) {
+        return;
+    }
     const cards = tabElement.querySelectorAll('.cyber-card, .cyber-panel, .about-layout > div, .cyber-btn-link');
     if (cards.length > 0) {
         gsap.fromTo(cards, 
-            { opacity: 0, x: -50, filter: 'blur(10px)' },
+            { opacity: 0, x: -20 },
             { 
                 opacity: 1, 
                 x: 0, 
-                filter: 'blur(0px)',
-                duration: 0.5, 
-                stagger: 0.1, 
+                duration: 0.35, 
+                stagger: 0.05, 
                 ease: easeFluid,
                 delay: 0.1
             }
@@ -156,10 +159,10 @@ function animateTabContent(tabElement) {
                 backgroundColor: "transparent", 
                 boxShadow: "none", 
                 borderColor: "rgba(255, 255, 255, 0.1)", 
-                duration: 0.05, 
-                stagger: 0.05, 
+                duration: 0.04, 
+                stagger: 0.03, 
                 ease: "none",
-                delay: 0.4 + (index * 0.1),
+                delay: 0.2 + (index * 0.05),
                 clearProps: "all"
             });
         }
