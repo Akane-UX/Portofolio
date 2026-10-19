@@ -96,36 +96,53 @@ function openContentArea(targetId) {
     animateTabContent(targetTab);
 }
 function switchTab(targetId) {
-    const currentTab = document.getElementById(activeTab);
+    if (!targetId || targetId === activeTab) return;
+    const currentTab = activeTab ? document.getElementById(activeTab) : null;
     const targetTab = document.getElementById(targetId);
+    if (!targetTab) return;
+
+    if (currentTab) gsap.killTweensOf(currentTab);
+    gsap.killTweensOf(targetTab);
+
     activeTab = targetId;
-    gsap.to(currentTab, {
-        opacity: 0,
-        y: -20,
-        duration: 0.3,
-        ease: "power2.in",
-        onComplete: () => {
-            gsap.set(currentTab, { display: 'none' });
-            gsap.fromTo(targetTab, 
-                { display: 'flex', opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.5, ease: easeFluid }
-            );
-            animateTabContent(targetTab);
-        }
-    });
+
+    if (currentTab) {
+        gsap.to(currentTab, {
+            opacity: 0,
+            y: -10,
+            duration: 0.18,
+            ease: "power2.out",
+            onComplete: () => {
+                if (activeTab !== currentTab.id) {
+                    gsap.set(currentTab, { display: 'none' });
+                }
+            }
+        });
+    }
+
+    gsap.set(targetTab, { display: 'flex' });
+    gsap.fromTo(targetTab, 
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.35, ease: easeFluid, overwrite: "auto" }
+    );
+    animateTabContent(targetTab);
 }
 function closeContentArea() {
     isMenuOpen = false;
     menuBtns.forEach(b => b.classList.remove('active'));
-    const currentTab = document.getElementById(activeTab);
+    const currentTab = activeTab ? document.getElementById(activeTab) : null;
+    gsap.killTweensOf([contentArea, ...tabs]);
+
     gsap.to(contentArea, {
         opacity: 0,
-        x: 50,
-        duration: 0.4,
-        ease: "power2.in",
+        x: 30,
+        duration: 0.2,
+        ease: "power2.out",
         onComplete: () => {
             gsap.set(contentArea, { display: 'none' });
-            gsap.set(currentTab, { display: 'none', opacity: 0, y: 20 });
+            if (currentTab) {
+                gsap.set(currentTab, { display: 'none', opacity: 0, y: 20 });
+            }
             activeTab = null;
             mainMenu.classList.remove('side-mode');
             mainMenu.classList.add('center-mode');

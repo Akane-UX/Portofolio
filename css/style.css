@@ -106,7 +106,6 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    transition: all 0.8s var(--ease-out);
     align-items: center;
     text-align: center;
 }
@@ -128,14 +127,16 @@ body {
 }
 .cyber-line {
     height: 3px;
-    width: 100px;
+    width: 150px;
     background-color: var(--cp-red);
     margin-top: 1.5rem;
     box-shadow: 0 0 15px var(--cp-red);
-    transition: width 0.8s var(--ease-out);
+    transform-origin: center;
+    transform: scaleX(0.667);
+    transition: transform 0.4s var(--ease-out);
 }
 .main-menu.side-mode .cyber-line {
-    width: 150px;
+    transform: scaleX(1);
 }
 .menu-list {
     list-style: none;
