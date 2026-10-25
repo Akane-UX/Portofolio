@@ -31,10 +31,6 @@
                     <i data-lucide="arrow-left"></i>
                     <span class="btn-text">RETURN</span>
                 </a></li>
-                <li><a href="https://github.com/Akane-UX/Emanagement.git" target="_blank" class="menu-btn" style="text-decoration: none;">
-                    <i data-lucide="github"></i>
-                    <span class="btn-text">GITHUB_REPO</span>
-                </a></li>
             </ul>
         </nav>
         <section class="content-area" style="display: block; opacity: 0;">
@@ -75,7 +71,7 @@
                             <p>Packed with GSAP layout transitions and custom toast notifications mimicking the Sonner library.</p>
                         </div>
                     </div>
-                    <div class="mobile-only-block" style="margin-top: 2rem; margin-bottom: 2rem;">
+                    <div style="margin-top: 2rem; margin-bottom: 2rem;">
                         <a href="https://github.com/Akane-UX/Emanagement.git" target="_blank" class="cyber-btn-link" style="justify-content: center;">
                             <i data-lucide="github"></i>
                             <span>GITHUB_REPO</span>
@@ -117,7 +113,7 @@
                         gsap.fromTo('.main-menu', { x: prefersReducedMotion ? 0 : -50, opacity: 0 }, { x: 0, opacity: 1, duration: prefersReducedMotion ? 0.1 : 0.6, ease: "power2.out" });
                         gsap.to('.content-area', { opacity: 1, duration: prefersReducedMotion ? 0.1 : 0.6, delay: prefersReducedMotion ? 0 : 0.1 });
                         if (!prefersReducedMotion) {
-                            gsap.fromTo('.cyber-panel, .about-text, .cyber-card, .mobile-only-block', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, stagger: 0.05, delay: 0.2, ease: "power2.out" });
+                            gsap.fromTo('.cyber-panel, .about-text, .cyber-card, .cyber-btn-link', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, stagger: 0.05, delay: 0.2, ease: "power2.out" });
                         }
                     }
                 });

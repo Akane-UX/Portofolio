@@ -19,7 +19,7 @@ This repository holds the raw source code for my personal portfolio. I got viole
 ## HIGHLIGHTED NODES
 The system currently indexes several core projects. Click through the side-menu UI structure to load them:
 
-1. **[AuditX](auditx.html)** ([GUI Repo](https://github.com/Akane-UX/AuditX.git) / [CLI Repo](https://github.com/Akane-UX/AuditX-cli))
+1. **[AuditX](auditx.html)** ([Repo](https://github.com/Akane-UX/AuditX.git))
    Native Linux security auditing platform. A QML and Python wrapper because I got sick of parsing messy, unreadable CLI dumps from Nmap and Metasploit. Also includes an interactive terminal edition (**AuditX-CLI**) for rapid security triage straight from the shell with zero bloated GUI dependencies.
    
 2. **[E-Management](emanagement.html)**
