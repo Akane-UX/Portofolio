@@ -3,117 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-MANAGEMENT // SYSTEM</title>
+    <title>E-MANAGEMENT // CYBERDECK NODE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="preloader" class="preloader">
         <div class="loader-content">
-            <div id="loader-text" class="loader-text">LINKING NODE...</div>
+            <div class="loader-header">
+                <span>MILITECH // BIOMONITOR v2.077</span>
+                <span>NODE: 0xFE32</span>
+            </div>
+            <div id="loader-text" class="loader-text">MOUNTING ZERO_BACKEND NODE...</div>
             <div class="loader-bar-bg">
                 <div id="loader-bar-fill" class="loader-bar-fill"></div>
             </div>
         </div>
     </div>
+
     <div class="scanlines"></div>
     <div class="noise"></div>
     <div class="vignette"></div>
+
+    <header class="cyber-hud-topbar">
+        <div class="topbar-left">
+            <span class="hud-tag">
+                <span class="pulse-beacon"></span>
+                <span>OPERATIVE: AVRIL</span>
+            </span>
+            <span class="hud-pill">SHARD: E-MANAGEMENT</span>
+        </div>
+        <div class="topbar-center">
+            <span class="hud-pill">SYSTEM_NODE // [ 01 ] DATABASE &gt; E-MANAGEMENT</span>
+            <span class="hud-tag-dim" style="font-size: 0.72rem;">STATE: 100% OFFLINE</span>
+        </div>
+        <div class="topbar-right">
+            <span class="hud-clock" id="hudClock">2077.11.07 // 19:00:00 WIB</span>
+        </div>
+    </header>
+
     <main class="game-container">
         <nav class="main-menu side-mode" style="opacity: 0;">
             <div class="menu-header">
-                <h1 class="game-title glitch" style="font-size: 3.5rem;" data-text="E-MANAGEMENT">E-MANAGEMENT</h1>
-                <p class="profile-subtitle">&gt; CLIENT-SIDE FINANCE</p>
-                <div class="cyber-line"></div>
+                <div class="header-badge">
+                    <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+                    <span>LEGENDARY SHARD // TIER 5</span>
+                </div>
+                <h1 class="game-title glitch" style="font-size: 2.8rem;" data-text="E-MANAGEMENT">E-MANAGEMENT</h1>
+                <p class="profile-subtitle">&gt; CLIENT-SIDE FINANCE &lt;</p>
+                <div class="cyber-line-container">
+                    <div class="cyber-diamond"></div>
+                    <div class="cyber-line"></div>
+                    <div class="cyber-diamond"></div>
+                </div>
             </div>
-            <ul class="menu-list">
-                <li><a href="index.html" class="menu-btn" style="text-decoration: none;">
-                    <i data-lucide="arrow-left"></i>
-                    <span class="btn-text">RETURN</span>
-                </a></li>
+
+            <ul class="menu-list" style="max-width: 100%;">
+                <li>
+                    <a href="index.html" class="menu-btn" style="text-decoration: none;">
+                        <div class="menu-btn-content">
+                            <span class="btn-deco">[ &lt;-- ]</span>
+                            <div>
+                                <div class="btn-title">RETURN</div>
+                                <div class="btn-subtext">// SYSTEM_ROOT_MENU</div>
+                            </div>
+                        </div>
+                        <i data-lucide="arrow-left" class="btn-arrow" style="opacity: 1; transform: none;"></i>
+                    </a>
+                </li>
             </ul>
+
+            <div class="menu-telemetry-box" style="margin-top: auto;">
+                <div class="telemetry-header">
+                    <span class="telemetry-tag">&gt; MEMORY.DIAGNOSTICS</span>
+                    <span class="telemetry-indicator">● SYNCED</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>STORAGE ENGINE:</span>
+                    <span style="color: var(--cp-yellow);">LOCALSTORAGE</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>LATENCY:</span>
+                    <span style="color: var(--cp-cyan);">0.0ms [INSTANT]</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>EXTERNAL TELEMETRY:</span>
+                    <span style="color: var(--cp-green);">NONE [AIRGAPPED]</span>
+                </div>
+            </div>
         </nav>
+
         <section class="content-area" style="display: block; opacity: 0;">
             <div class="tab-content active">
                 <div class="tab-header">
-                    <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
-                    <a href="index.html" class="close-btn mobile-only-flex" aria-label="Return"><i data-lucide="x"></i></a>
+                    <div class="tab-header-info">
+                        <span class="tab-tag">[ SHARD_0xFE32 // ARCHITECTURE SPEC ]</span>
+                        <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
+                    </div>
+                    <a href="index.html" class="close-btn" aria-label="Return"><i data-lucide="arrow-left"></i></a>
                 </div>
+
                 <div class="content-scroll">
                     <div class="about-layout" style="grid-template-columns: 1fr;">
-                        <div class="about-text">
-                            <h3>> WHAT_IS_EMANAGEMENT</h3>
+                        <div class="dossier-card">
+                            <h3>&gt; WHAT_IS_EMANAGEMENT</h3>
                             <p>A client-side finance tracker because I refuse to trust my personal financial data on some random company's cloud server. I ditched the soul-crushing spreadsheet look and over-engineered a visually heavy, interactive dashboard that runs entirely offline. No backend, no accounts, no slop.</p>
-                            <h3 style="margin-top: 2rem;">> WHY_I_BUILT_IT</h3>
+                            
+                            <h3 style="margin-top: 2rem;">&gt; WHY_I_BUILT_IT</h3>
                             <p>Honestly, I built this because my spending habits are absolute garbage. I bleed money on stupid things and desperately needed a system to yell at me before I go broke. It's built for myself, and for anyone else who's similarly reckless with their cash and needs a brutal, visual reality check.</p>
-                            <h3 style="margin-top: 2rem;">> DATA_ARCHITECTURE</h3>
+
+                            <h3 style="margin-top: 2rem;">&gt; DATA_ARCHITECTURE</h3>
                             <p>Everything lives locally inside your browser's LocalStorage. Maximum privacy, zero latency, and zero dependency on crappy APIs. It brutally recalculates financial states and manipulates the DOM in milliseconds. If you clear your browser data, you lose everything. Deal with it.</p>
                         </div>
                     </div>
-                    <div class="tab-header" style="margin-top: 4rem;">
-                        <h2 class="tab-title">SYSTEM_MODULES // LOGS</h2>
+
+                    <div class="tab-header" style="margin-top: 3.5rem;">
+                        <div class="tab-header-info">
+                            <span class="tab-tag">[ TECHNICAL LOGS ]</span>
+                            <h2 class="tab-title">SYSTEM_MODULES // LOGS</h2>
+                        </div>
                     </div>
+
                     <div class="skills-grid">
                         <div class="cyber-panel">
-                            <h3>[01] BENTO_GRID_UI</h3>
-                            <p>Scrapped the boring list views. The dashboard uses an asymmetrical Bento Grid to lay out your spending summaries.</p>
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <h3>[01] BENTO_GRID_UI</h3>
+                                <span class="tier-badge">LAYOUT</span>
+                            </div>
+                            <p>Scrapped the boring list views. The dashboard uses an asymmetrical Bento Grid to lay out your spending summaries with high visual density.</p>
                         </div>
                         <div class="cyber-panel">
-                            <h3>[02] REALTIME_SYNC</h3>
-                            <p>Interactive allocation sliders with Vanilla JS real-time validation so you physically cannot exceed your limits.</p>
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <h3>[02] REALTIME_SYNC</h3>
+                                <span class="tier-badge">VANILLA JS</span>
+                            </div>
+                            <p>Interactive allocation sliders with Vanilla JS real-time validation so you physically cannot exceed your budgeting limits.</p>
                         </div>
                         <div class="cyber-panel">
-                            <h3>[03] LOCAL_STORAGE</h3>
-                            <p>Load times are basically zero since 100% of the data is fetched directly from local browser memory.</p>
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <h3>[03] LOCAL_STORAGE</h3>
+                                <span class="tier-badge">STORAGE</span>
+                            </div>
+                            <p>Load times are basically zero since 100% of the data is fetched directly from local browser memory without latency.</p>
                         </div>
                         <div class="cyber-panel">
-                            <h3>[04] FLUID_PHYSICS</h3>
-                            <p>Packed with GSAP layout transitions and custom toast notifications mimicking the Sonner library.</p>
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <h3>[04] FLUID_PHYSICS</h3>
+                                <span class="tier-badge">GSAP</span>
+                            </div>
+                            <p>Packed with GSAP layout transitions and custom toast notifications mimicking the modern Sonner notification library.</p>
                         </div>
                     </div>
-                    <div style="margin-top: 2rem; margin-bottom: 2rem;">
+
+                    <div style="margin-top: 2.5rem; margin-bottom: 3rem;">
                         <a href="https://github.com/Akane-UX/Emanagement.git" target="_blank" class="cyber-btn-link" style="justify-content: center;">
-                            <i data-lucide="github"></i>
-                            <span>GITHUB_REPO</span>
+                            <div class="link-icon-box">
+                                <i data-lucide="github"></i>
+                            </div>
+                            <div class="link-info">
+                                <span class="link-meta">SOURCE REPOSITORY</span>
+                                <span class="link-name">CLONE_EMANAGEMENT_REPO</span>
+                            </div>
                         </a>
                     </div>
+
                 </div>
             </div>
         </section>
     </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         lucide.createIcons();
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const loaderTexts = ["LINKING NODE...", "FETCHING PROJECT DATA...", "ACCESS GRANTED."];
+        
+        function updateHudClock() {
+            const el = document.getElementById('hudClock');
+            if (!el) return;
+            const now = new Date();
+            const pad = (n) => String(n).padStart(2, '0');
+            el.innerText = `2077.11.07 // ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())} WIB`;
+        }
+        setInterval(updateHudClock, 1000);
+        updateHudClock();
+
+        const loaderTexts = ["MOUNTING ZERO_BACKEND NODE...", "READING LOCAL STORAGE...", "ACCESS GRANTED // E-MANAGEMENT"];
         const loaderTextEl = document.getElementById('loader-text');
         const loaderBarFill = document.getElementById('loader-bar-fill');
         const preloader = document.getElementById('preloader');
         let textIndex = 0;
         const textInterval = setInterval(() => {
             textIndex++;
-            if(textIndex < loaderTexts.length) {
+            if (textIndex < loaderTexts.length && loaderTextEl) {
                 loaderTextEl.innerText = loaderTexts[textIndex];
             }
-        }, prefersReducedMotion ? 50 : 400);
+        }, prefersReducedMotion ? 50 : 350);
+
         gsap.to(loaderBarFill, {
             scaleX: 1,
-            duration: prefersReducedMotion ? 0.1 : 1.2,
+            duration: prefersReducedMotion ? 0.05 : 1.4,
             ease: "power2.inOut",
             onComplete: () => {
                 clearInterval(textInterval);
-                loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
+                if (loaderTextEl) loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
                 gsap.to(preloader, {
                     opacity: 0,
-                    duration: prefersReducedMotion ? 0.1 : 0.5,
+                    duration: prefersReducedMotion ? 0.05 : 0.5,
                     ease: "power2.inOut",
                     delay: prefersReducedMotion ? 0 : 0.2,
                     onComplete: () => {
                         preloader.style.display = 'none';
-                        gsap.fromTo('.main-menu', { x: prefersReducedMotion ? 0 : -50, opacity: 0 }, { x: 0, opacity: 1, duration: prefersReducedMotion ? 0.1 : 0.6, ease: "power2.out" });
-                        gsap.to('.content-area', { opacity: 1, duration: prefersReducedMotion ? 0.1 : 0.6, delay: prefersReducedMotion ? 0 : 0.1 });
+                        gsap.fromTo('.main-menu', { x: prefersReducedMotion ? 0 : -40, opacity: 0 }, { x: 0, opacity: 1, duration: prefersReducedMotion ? 0.05 : 0.5, ease: "power3.out" });
+                        gsap.to('.content-area', { opacity: 1, duration: prefersReducedMotion ? 0.05 : 0.5, delay: prefersReducedMotion ? 0 : 0.1 });
                         if (!prefersReducedMotion) {
-                            gsap.fromTo('.cyber-panel, .about-text, .cyber-card, .cyber-btn-link', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, stagger: 0.05, delay: 0.2, ease: "power2.out" });
+                            gsap.fromTo('.cyber-panel, .dossier-card, .cyber-btn-link', { x: -15, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, stagger: 0.04, delay: 0.2, ease: "power3.out" });
                         }
                     }
                 });

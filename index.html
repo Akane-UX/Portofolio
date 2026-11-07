@@ -3,148 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVRIL // SYSTEM MENU</title>
+    <title>AVRIL // CYBERDECK 2077 HUD</title>
+    <!-- Google Fonts: Orbitron, Rajdhani, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Cyberpunk 2077 Boot Sequence Preloader -->
     <div id="preloader" class="preloader">
         <div class="loader-content">
-            <div id="loader-text" class="loader-text">ESTABLISHING SECURE CONNECTION...</div>
+            <div class="loader-header">
+                <span>MILITECH // BIOMONITOR v2.077</span>
+                <span>SEC.NET: ENCRYPTED</span>
+            </div>
+            <div id="loader-text" class="loader-text">INITIALIZING MILITECH CYBERDECK...</div>
             <div class="loader-bar-bg">
                 <div id="loader-bar-fill" class="loader-bar-fill"></div>
             </div>
         </div>
     </div>
+
+    <!-- HUD CRT Scanlines & Optical Filters -->
     <div class="scanlines"></div>
     <div class="noise"></div>
     <div class="vignette"></div>
+
+    <!-- TOP GLOBAL HUD STATUS BAR (Biomonitor Ribbon) -->
+    <header class="cyber-hud-topbar">
+        <div class="topbar-left">
+            <span class="hud-tag">
+                <span class="pulse-beacon"></span>
+                <span>OPERATIVE: AVRIL</span>
+            </span>
+            <span class="hud-pill">LVL 50 // SC 50</span>
+            <div class="hud-vitals">
+                <div class="vital-meter">
+                    <span class="vital-label">HP</span>
+                    <div class="vital-segments">
+                        <div class="vital-seg active-hp"></div>
+                        <div class="vital-seg active-hp"></div>
+                        <div class="vital-seg"></div>
+                        <div class="vital-seg"></div>
+                        <div class="vital-seg"></div>
+                        <div class="vital-seg"></div>
+                    </div>
+                </div>
+                <div class="vital-meter">
+                    <span class="vital-label">RAM</span>
+                    <div class="vital-segments">
+                        <div class="vital-seg active-ram"></div>
+                        <div class="vital-seg active-ram"></div>
+                        <div class="vital-seg active-ram"></div>
+                        <div class="vital-seg active-ram"></div>
+                        <div class="vital-seg active-ram"></div>
+                        <div class="vital-seg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="topbar-center">
+            <span class="hud-pill" id="activeNodeBadge">SYSTEM // ROOT_INDEX</span>
+            <span class="hud-tag-dim" style="font-size: 0.72rem;">NET: SECURE [QUANTUM_MESH]</span>
+        </div>
+        <div class="topbar-right">
+            <button class="hud-btn" id="sfxToggle" title="Toggle Interface Audio Feedback">
+                <i data-lucide="volume-2" style="width: 13px; height: 13px;"></i>
+                <span>SFX: <strong id="sfxStatus">ON</strong></span>
+            </button>
+            <span class="hud-clock" id="hudClock">2077.11.07 // 19:00:00 WIB</span>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
     <main class="game-container">
+        <!-- NAVIGATION / CHARACTER HUB -->
         <nav class="main-menu center-mode" id="mainMenu">
             <div class="menu-header">
+                <div class="header-badge">
+                    <i data-lucide="cpu" style="width: 14px; height: 14px;"></i>
+                    <span>ARASAKA CYBERDECK OS // REV.2077</span>
+                </div>
                 <h1 class="game-title glitch" data-text="AVRIL">AVRIL</h1>
-                <p class="profile-subtitle">&gt; DESIGNER // LAZY PROGRAMER </p>
-                <div class="cyber-line"></div>
+                <p class="profile-subtitle">&gt; DESIGNER // LAZY CODER &lt;</p>
+                <div class="cyber-line-container">
+                    <div class="cyber-diamond"></div>
+                    <div class="cyber-line"></div>
+                    <div class="cyber-diamond"></div>
+                </div>
             </div>
+
             <ul class="menu-list">
-                <li><button class="menu-btn" data-target="projects">
-                    <span class="btn-deco">[01]</span>
-                    <span class="btn-text">PROJECTS</span>
-                </button></li>
-                <li><button class="menu-btn" data-target="skills">
-                    <span class="btn-deco">[02]</span>
-                    <span class="btn-text">SKILLS</span>
-                </button></li>
-                <li><button class="menu-btn" data-target="about">
-                    <span class="btn-deco">[03]</span>
-                    <span class="btn-text">ABOUT</span>
-                </button></li>
-                <li><button class="menu-btn" data-target="contact">
-                    <span class="btn-deco">[04]</span>
-                    <span class="btn-text">CONTACT</span>
-                </button></li>
+                <li>
+                    <button class="menu-btn" data-target="projects">
+                        <div class="menu-btn-content">
+                            <span class="btn-deco">[01]</span>
+                            <div>
+                                <div class="btn-title" data-original="PROJECTS">PROJECTS</div>
+                                <div class="btn-subtext">// REPOSITORY SHARDS & DAEMONS</div>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="btn-arrow"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-btn" data-target="skills">
+                        <div class="menu-btn-content">
+                            <span class="btn-deco">[02]</span>
+                            <div>
+                                <div class="btn-title" data-original="SKILLS">SKILLS</div>
+                                <div class="btn-subtext">// CYBERWARE NEURAL AUGMENTS</div>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="btn-arrow"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-btn" data-target="about">
+                        <div class="menu-btn-content">
+                            <span class="btn-deco">[03]</span>
+                            <div>
+                                <div class="btn-title" data-original="ABOUT">ABOUT</div>
+                                <div class="btn-subtext">// SUBJECT DOSSIER & BIOMONITOR</div>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="btn-arrow"></i>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-btn" data-target="contact">
+                        <div class="menu-btn-content">
+                            <span class="btn-deco">[04]</span>
+                            <div>
+                                <div class="btn-title" data-original="CONTACT">CONTACT</div>
+                                <div class="btn-subtext">// HOLOCALL & FREQUENCY LINKS</div>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="btn-arrow"></i>
+                    </button>
+                </li>
             </ul>
-            <div class="menu-disclaimer" style="margin-top: 4rem; font-size: 0.85rem; color: var(--cp-text-dim); text-align: center; font-style: italic; opacity: 0.7; padding: 0 2rem;">
-                "No cap, it ain't gotta be some fancy formal portfolio or nothin', just get a quick peek at who I am, what you lookin' for?"
+
+            <div class="menu-telemetry-box">
+                <div class="telemetry-header">
+                    <span class="telemetry-tag">&gt; SYS.STATUS // NC-2077</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>HOST: AVRLLNX (Akane-UX)</span>
+                    <span style="color: var(--cp-yellow);">STATUS: ONLINE</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>SYSTEM: ARCH LINUX</span>
+                    <span style="color: var(--cp-cyan);">TEMP: 42°C</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>KERNELS: 7.2.14-arch1-1</span>
+                    <span style="color: var(--cp-green);">BATTERY: 25%</span>
+                </div>
+                <div class="menu-disclaimer-text">
+                    "No cap, it ain't gotta be some fancy formal portfolio or nothin', just get a quick peek at who I am, what you lookin' for?"
+                </div>
             </div>
         </nav>
+
+        <!-- CONTENT WORKSPACE AREA -->
         <section class="content-area" id="contentArea">
+            
+            <!-- [01] TAB: PROJECTS / DATABASE -->
             <div class="tab-content" id="projects">
                 <div class="tab-header">
-                    <h2 class="tab-title">DATABASE // PROJECTS</h2>
+                    <div class="tab-header-info">
+                        <span class="tab-tag">[ VOL.01 // ENCRYPTED STORAGE ]</span>
+                        <h2 class="tab-title">DATABASE // PROJECTS</h2>
+                    </div>
                     <button class="close-btn" aria-label="Close Tab"><i data-lucide="x"></i></button>
                 </div>
                 <div class="content-scroll">
                     <div class="projects-grid">
+                        
+                        <!-- Card 1: AuditX -->
                         <a href="auditx.html" class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-rarity-header">
+                                <span class="rarity-tag iconic"><i data-lucide="shield-alert" style="width: 12px; height: 12px;"></i> [ICONIC // TIER 5++]</span>
+                                <span>TYPE: SEC_DAEMON</span>
+                            </div>
                             <div class="card-img-wrapper">
                                 <img src="assets/img/auditx.jpeg" alt="AuditX Preview">
                                 <div class="card-overlay"></div>
                             </div>
                             <div class="card-info">
                                 <h3>AUDITX</h3>
-                                <p>Native Linux security auditing platform (GUI &amp; CLI). Security triage, Nuclei, Gobuster &amp; MSF RPC.</p>
+                                <div class="card-meta-spec">
+                                    <span>STACK: PYTHON / QML</span>
+                                    <span>OS: ARCH LINUX NATIVE</span>
+                                </div>
+                                <p>Native Linux security auditing platform (GUI & CLI). Security triage, Nuclei, Gobuster, Metasploit RPC & Wapiti integration.</p>
                                 <div class="tags">
                                     <span>Python</span>
                                     <span>QML</span>
                                     <span>CLI</span>
                                     <span>Security</span>
                                 </div>
+                                <div class="card-action-bar">
+                                    <span>SHARD: 0xAD01</span>
+                                    <span class="action-cta">INSPECT_NODE <i data-lucide="arrow-right" style="width: 13px; height: 13px;"></i></span>
+                                </div>
                             </div>
                         </a>
+
+                        <!-- Card 2: E-Management -->
                         <a href="emanagement.html" class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-rarity-header">
+                                <span class="rarity-tag legendary"><i data-lucide="zap" style="width: 12px; height: 12px;"></i> [LEGENDARY // TIER 5]</span>
+                                <span>TYPE: LOCAL_STATE</span>
+                            </div>
                             <div class="card-img-wrapper">
-                                <div class="mock-bg">NO SIGNAL</div>
+                                <div class="mock-bg">
+                                    <i data-lucide="activity" style="width: 28px; height: 28px; margin-bottom: 6px;"></i>
+                                    OFFLINE_FINANCE
+                                    <span>ZERO_SERVER_FOOTPRINT</span>
+                                </div>
                                 <div class="card-overlay"></div>
                             </div>
                             <div class="card-info">
                                 <h3>E-MANAGEMENT</h3>
-                                <p>Zero-backend finance tracker. Fully client-side state machine.</p>
+                                <div class="card-meta-spec">
+                                    <span>LATENCY: 0ms</span>
+                                    <span>PRIVACY: MAXIMUM</span>
+                                </div>
+                                <p>Zero-backend finance tracker. Fully client-side state machine with strict 50/30/20 budgeting logic and zero cloud tracking.</p>
                                 <div class="tags">
                                     <span>JavaScript</span>
                                     <span>GSAP</span>
                                     <span>LocalStorage</span>
                                 </div>
+                                <div class="card-action-bar">
+                                    <span>SHARD: 0xFE32</span>
+                                    <span class="action-cta">INSPECT_NODE <i data-lucide="arrow-right" style="width: 13px; height: 13px;"></i></span>
+                                </div>
                             </div>
                         </a>
+
+                        <!-- Card 3: Street Photography -->
                         <a href="photography.html" class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-rarity-header">
+                                <span class="rarity-tag spec-ops"><i data-lucide="camera" style="width: 12px; height: 12px;"></i> [OPTICAL_SHARD // TIER 4]</span>
+                                <span>TYPE: VISUAL_RAW</span>
+                            </div>
                             <div class="card-img-wrapper">
-                                <img src="assets/img/photograph4.jpeg" alt="Photography">
+                                <img src="assets/img/photograph4.jpeg" alt="Street Photography">
                                 <div class="card-overlay"></div>
                             </div>
                             <div class="card-info">
                                 <h3>STREET_PHOTO</h3>
-                                <p>Raw, unfiltered urban visuals. Shadow manipulation and cinematic grading.</p>
+                                <div class="card-meta-spec">
+                                    <span>OPTICS: 50MM PRIME</span>
+                                    <span>GRADE: CINEMATIC</span>
+                                </div>
+                                <p>Raw, unfiltered urban visuals. Shadow manipulation, high-contrast concrete angles, and cyberpunk-inspired chromatic grading.</p>
                                 <div class="tags">
                                     <span>Visuals</span>
                                     <span>Urban</span>
+                                    <span>Lightroom</span>
+                                </div>
+                                <div class="card-action-bar">
+                                    <span>SHARD: 0xRAW9</span>
+                                    <span class="action-cta">INSPECT_NODE <i data-lucide="arrow-right" style="width: 13px; height: 13px;"></i></span>
                                 </div>
                             </div>
                         </a>
+
+                        <!-- Card 4: Graphic Design -->
                         <a href="graphicdesign.html" class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-rarity-header">
+                                <span class="rarity-tag spec-ops"><i data-lucide="palette" style="width: 12px; height: 12px;"></i> [VECTOR_ARRAY // TIER 4]</span>
+                                <span>TYPE: ASSET_DESIGN</span>
+                            </div>
                             <div class="card-img-wrapper">
-                                <div class="mock-bg">VISUAL_ASSETS</div>
+                                <div class="mock-bg">
+                                    <i data-lucide="feather" style="width: 28px; height: 28px; margin-bottom: 6px;"></i>
+                                    VECTOR_MANIFEST
+                                    <span>HIGH_DPI_ASSETS</span>
+                                </div>
                                 <div class="card-overlay"></div>
                             </div>
                             <div class="card-info">
                                 <h3>GRAPHIC_DESIGN</h3>
-                                <p>Crafting high fidelity vector illustrations and sleek digital assets.</p>
+                                <div class="card-meta-spec">
+                                    <span>PRECISION: MATHEMATICAL</span>
+                                    <span>FORMAT: SVG / AI</span>
+                                </div>
+                                <p>Crafting high-fidelity vector illustrations, sleek digital brand assets, and brutalist anti-slop layouts.</p>
                                 <div class="tags">
                                     <span>Canva</span>
                                     <span>Corel Draw</span>
                                     <span>Illustrator</span>
                                 </div>
+                                <div class="card-action-bar">
+                                    <span>SHARD: 0xVEC1</span>
+                                    <span class="action-cta">INSPECT_NODE <i data-lucide="arrow-right" style="width: 13px; height: 13px;"></i></span>
+                                </div>
                             </div>
                         </a>
+
+                        <!-- Card 5: Motion Visuals -->
                         <a href="motionvisuals.html" class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-rarity-header">
+                                <span class="rarity-tag spec-ops"><i data-lucide="film" style="width: 12px; height: 12px;"></i> [TIMELINE_RENDER // TIER 4]</span>
+                                <span>TYPE: MOTION_GFX</span>
+                            </div>
                             <div class="card-img-wrapper">
-                                <div class="mock-bg">TIMELINE_RENDER</div>
+                                <div class="mock-bg">
+                                    <i data-lucide="play-circle" style="width: 28px; height: 28px; margin-bottom: 6px;"></i>
+                                    TIMELINE_RENDER
+                                    <span>60_FPS_SYNTHESIS</span>
+                                </div>
                                 <div class="card-overlay"></div>
                             </div>
                             <div class="card-info">
                                 <h3>MOTION_VISUALS</h3>
-                                <p>Splicing frames, motion graphics, and dynamic visual storytelling.</p>
+                                <div class="card-meta-spec">
+                                    <span>FRAMES: 60 FPS</span>
+                                    <span>COMP: AFTER EFFECTS</span>
+                                </div>
+                                <p>Splicing frames, motion typography, and dynamic visual storytelling with aggressive rhythm and precision keyframing.</p>
                                 <div class="tags">
                                     <span>Premiere Pro</span>
                                     <span>After Effects</span>
                                     <span>CapCut</span>
                                 </div>
+                                <div class="card-action-bar">
+                                    <span>SHARD: 0xMOT8</span>
+                                    <span class="action-cta">INSPECT_NODE <i data-lucide="arrow-right" style="width: 13px; height: 13px;"></i></span>
+                                </div>
                             </div>
                         </a>
+
                     </div>
                 </div>
             </div>
+
+            <!-- [02] TAB: SKILLS / CYBERWARE AUGMENTATIONS -->
             <div class="tab-content" id="skills">
                 <div class="tab-header">
-                    <h2 class="tab-title">SYSTEM_CAPABILITIES // SKILLS</h2>
+                    <div class="tab-header-info">
+                        <span class="tab-tag">[ VOL.02 // NEURAL AUGMENTS ]</span>
+                        <h2 class="tab-title">CYBERWARE // SYSTEM_CAPABILITIES</h2>
+                    </div>
                     <button class="close-btn" aria-label="Close Tab"><i data-lucide="x"></i></button>
                 </div>
                 <div class="content-scroll">
                     <div class="skills-grid">
+                        
+                        <!-- Skill 1 -->
                         <div class="cyber-panel">
-                            <h3>FRONTEND_ENG</h3>
-                            <p>DOM manipulation, React, Next.js.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // FRONTAL CORTEX]</span>
+                                    <h3>FRONTEND_ENG</h3>
+                                </div>
+                                <span class="tier-badge">TIER 5++</span>
+                            </div>
+                            <p>DOM architecture, responsive UI mechanics, fluid micro-interactions, and high-performance WebGL / GSAP render pipelines.</p>
+                            <div class="tags">
                                 <span>JavaScript</span>
                                 <span>React</span>
                                 <span>GSAP</span>
@@ -152,30 +396,59 @@
                                 <span>QML</span>
                                 <span>Slint</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">88%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Skill 2 -->
                         <div class="cyber-panel">
-                            <h3>BACKEND_SYS</h3>
-                            <p>Developing automation scripts, parsers, APIs and raw data architectures.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // OPERATING SYSTEM]</span>
+                                    <h3>BACKEND_SYS</h3>
+                                </div>
+                                <span class="tier-badge">TIER 5</span>
+                            </div>
+                            <p>Developing asynchronous background processes, wire protocol framing, parsers, and distributed multi-node architectures.</p>
+                            <div class="tags">
                                 <span>Rust</span>
                                 <span>Python</span>
                                 <span>Tokio</span>
                                 <span>Node.js</span>
                                 <span>SQL</span>
-                                <span>Dart</span>
                                 <span>FastAPI</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">75%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Skill 3 -->
                         <div class="cyber-panel">
-                            <h3>LINUX_SYSADMIN</h3>
-                            <p>Living in the terminal. Arch linux configs, bash scripting, and system optimizations.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // NERVOUS SYSTEM]</span>
+                                    <h3>LINUX_SYSADMIN</h3>
+                                </div>
+                                <span class="tier-badge">TIER 5++</span>
+                            </div>
+                            <p>Living entirely in the terminal. Arch Linux Zen kernels, Wayland IPC pipelines, systemd services, and customized Hyprland ricing.</p>
+                            <div class="tags">
                                 <span>Arch Linux</span>
                                 <span>Bash</span>
                                 <span>Wayland IPC</span>
@@ -183,138 +456,321 @@
                                 <span>Hyprland</span>
                                 <span>Fish</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">92%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Skill 4 -->
                         <div class="cyber-panel">
-                            <h3>CYBERSEC_RESEARCH</h3>
-                            <p>Pentesting, network pivoting, custom exploit scripts, and dissecting binaries.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // BREACH PROTOCOL]</span>
+                                    <h3>CYBERSEC_RESEARCH</h3>
+                                </div>
+                                <span class="tier-badge">TIER 4</span>
+                            </div>
+                            <p>Vulnerability assessment, network pivoting, binary reverse engineering, custom exploit scripts, and reconnaissance triage.</p>
+                            <div class="tags">
                                 <span>Metasploit</span>
                                 <span>Nuclei</span>
                                 <span>Gobuster</span>
                                 <span>Nmap</span>
                                 <span>Wireshark</span>
+                                <span>Radare2</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">70%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Skill 5 -->
                         <div class="cyber-panel">
-                            <h3>UI_UX_DESIGN</h3>
-                            <p>Designing intuitive, minimal, and engaging user experiences. Anti-slop aesthetics.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // OCULAR SYSTEM]</span>
+                                    <h3>UI_UX_DESIGN</h3>
+                                </div>
+                                <span class="tier-badge">TIER 5</span>
+                            </div>
+                            <p>Designing high-contrast sci-fi HUDs, minimal dashboards, bento grids, and micro-interactions. Zero generic template slop.</p>
+                            <div class="tags">
                                 <span>Figma</span>
-                                <span>Wireframing</span>
+                                <span>Design Systems</span>
                                 <span>Prototyping</span>
                                 <span>Bento Grids</span>
+                                <span>HUD / FUI</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">85%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Skill 6 -->
                         <div class="cyber-panel">
-                            <h3>PHOTOGRAPHY</h3>
-                            <p>Raw urban visuals. Shadow manipulation and cinematic grading.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // OPTICAL SENSORS]</span>
+                                    <h3>PHOTOGRAPHY</h3>
+                                </div>
+                                <span class="tier-badge">TIER 4</span>
+                            </div>
+                            <p>Street photography, cinematic night perspectives, harsh shadow geometry, and gritty chromatic color palettes.</p>
+                            <div class="tags">
                                 <span>Street Photography</span>
                                 <span>Adobe Lightroom</span>
-                                <span>Adobe Photoshop</span>
+                                <span>Photoshop</span>
                                 <span>Color Grading</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">80%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Skill 7 -->
                         <div class="cyber-panel">
-                            <h3>GRAPHIC_DESIGN</h3>
-                            <p>Visual problem solving and digital asset creation. Vector and raster manipulation.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // HOLOGRAPHIC CORE]</span>
+                                    <h3>GRAPHIC_DESIGN</h3>
+                                </div>
+                                <span class="tier-badge">TIER 4</span>
+                            </div>
+                            <p>Visual problem solving and digital asset creation. Vector manipulation, brutalist typography, and technical identity branding.</p>
+                            <div class="tags">
                                 <span>Canva</span>
                                 <span>Corel Draw</span>
-                                <span>Adobe Illustrator</span>
-                                <span>Affinity by Canva</span>
+                                <span>Illustrator</span>
+                                <span>Affinity Designer</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">82%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Skill 8 -->
                         <div class="cyber-panel">
-                            <h3>VIDEO_EDITING</h3>
-                            <p>Timeline manipulation, motion graphics, and visual storytelling.</p>
-                            <div class="tags" style="margin-bottom: 1rem;">
-                                <span>Adobe Premiere Pro</span>
+                            <div class="panel-hazard-stripe"></div>
+                            <div class="panel-header-row">
+                                <div>
+                                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--cp-red); letter-spacing: 1px;">[AUGMENT // NEURAL MATRIX]</span>
+                                    <h3>VIDEO_EDITING</h3>
+                                </div>
+                                <span class="tier-badge">TIER 4</span>
+                            </div>
+                            <p>Aggressive timeline pacing, dynamic audio-reactive cuts, motion graphics overlays, and cinematic color transitions.</p>
+                            <div class="tags">
+                                <span>Premiere Pro</span>
                                 <span>After Effects</span>
                                 <span>CapCut</span>
                             </div>
-                            <div class="cyber-progress">
-                                <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                            <div class="gauge-wrapper">
+                                <div class="gauge-meta">
+                                    <span>SYNC INTEGRITY</span>
+                                    <span class="gauge-val">78%</span>
+                                </div>
+                                <div class="cyber-progress">
+                                    <div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg active"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
+
+            <!-- [03] TAB: ABOUT / SUBJECT DOSSIER -->
             <div class="tab-content" id="about">
                 <div class="tab-header">
-                    <h2 class="tab-title">SUBJECT_INFO // ABOUT</h2>
+                    <div class="tab-header-info">
+                        <span class="tab-tag">[ VOL.03 // TRAUMA TEAM & NCPD FILE ]</span>
+                        <h2 class="tab-title">SUBJECT_INFO // DOSSIER</h2>
+                    </div>
                     <button class="close-btn" aria-label="Close Tab"><i data-lucide="x"></i></button>
                 </div>
                 <div class="content-scroll">
                     <div class="about-layout">
-                        <div class="about-text">
-                            <h3>> SUBJECT_DATA</h3>
-                            <ul style="list-style: none; padding: 0; margin-top: 1rem; margin-bottom: 2rem; font-family: 'JetBrains Mono', monospace; color: var(--cp-text-dim); font-size: 0.95rem;">
-                                <li style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem;"><span style="color: var(--cp-cyan); width: 110px; flex-shrink: 0;">NAME      :</span> <span>Avril</span></li>
-                                <li style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem;"><span style="color: var(--cp-cyan); width: 110px; flex-shrink: 0;">BIRTH     :</span> <span>2007-04-17</span></li>
-                                <li style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem;"><span style="color: var(--cp-cyan); width: 110px; flex-shrink: 0;">STATUS    :</span> <span>Informatics Student</span></li>
-                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--cp-cyan); width: 110px; flex-shrink: 0;">EXPERTISE :</span> <span>Research, Graphic Design, UI/UX Design</span></li>
+                        
+                        <!-- Left: Dossier Data -->
+                        <div class="dossier-card">
+                            <h3>&gt; SUBJECT_CLASSIFICATION</h3>
+                            <ul class="dossier-list">
+                                <li><span class="dossier-label">CALLSIGN</span> <span>:</span> <strong style="color: var(--cp-yellow);">Avril</strong></li>
+                                <li><span class="dossier-label">DOB</span> <span>:</span> <span>2007-04-17</span></li>
+                                <li><span class="dossier-label">STATUS</span> <span>:</span> <span>Informatics Student</span></li>
+                                <li><span class="dossier-label">FACTION</span> <span>:</span> <span>Arch</span></li>
+                                <li><span class="dossier-label">SPECIALTY</span> <span>:</span> <span>Programming, Designing, UI/UX</span></li>
                             </ul>
-                            <h3>> WHOAMI</h3>
-                            <p>I'm just an ordinary student, nothing special, just the same as the others, I can learn technical things quite quickly, but don't expect too much, I can only do so much.</p>
-                            <p style="margin-top: 1rem;">Honestly though? I have a bad side. I'm running on fumes half the time and have this garbage habit of overcomplicating simple shit, burning myself out over literally nothing. When my social battery dies, I just ghost the world no warning. I'll fixate on a broken script until 4 AM, wake up feeling like actual trash, and genuinely contemplate throwing my laptop into a river and giving up on everything. I'm chronically exhausted, way too cynical, and constantly fighting the urge to just drop off the grid. It's a mess, but whatever man. It is what it is.</p>
-                            <p>I'm confused, why the hell they still expectin' more from me</p>
+
+                            <div class="vitals-box">
+                                <div class="vitals-box-title">BIOMONITOR // NEURAL TELEMETRY</div>
+                                <div class="vital-stat-row">
+                                    <span>NEURAL LOAD:</span>
+                                    <span class="val">84% [CHRONIC BURNOUT]</span>
+                                </div>
+                                <div class="vital-stat-row">
+                                    <span>SOCIAL BATTERY:</span>
+                                    <span class="val" style="color: var(--cp-red);">12% [CRITICAL - GHOST MODE ACTIVE]</span>
+                                </div>
+                                <div class="vital-stat-row">
+                                    <span>CYBERWARE REJECTION:</span>
+                                    <span class="val" style="color: var(--cp-green);">0.0% [HIGH AFFINITY]</span>
+                                </div>
+                            </div>
+
+                            <h3>&gt; WHOAMI // UNFILTERED</h3>
+                            <p>I'm just an ordinary student, nothing special, just the same as the others. I can learn technical things quite quickly, but don't expect too much, I can only do so much.</p>
+                            <p>Honestly though? I have a bad side. I'm running on fumes half the time and have this garbage habit of overcomplicating simple shit, burning myself out over literally nothing. When my social battery dies, I just ghost the world no warning.</p>
+                            <p>I'll fixate on a broken script until 4 AM, wake up feeling like actual trash, and genuinely contemplate throwing my laptop into a river and giving up on everything. I'm chronically exhausted, way too cynical, and constantly fighting the urge to just drop off the grid. It's a mess, but whatever man. It is what it is.</p>
+                            <p style="font-style: italic; color: var(--cp-yellow); margin-top: 1rem;">"I'm confused, why the hell they still expectin' more from me."</p>
                         </div>
+
+                        <!-- Right: Subject Visual Frame with Kiroshi Optic Reticle -->
                         <div class="about-image">
                             <img src="assets/img/664140276342711965.jpg" alt="Avril" />
-                            <div class="glitch-box"></div>
+                            <div class="kiroshi-reticle">
+                                <div class="reticle-top">
+                                    <span>KIROSHI OPTICS v3.2</span>
+                                    <span>TARGET: VERIFIED</span>
+                                </div>
+                                <div class="reticle-crosshair"></div>
+                                <div class="reticle-bottom">
+                                    <span>LAT: 34.0522° N</span>
+                                    <span>DIST: 0.00 M</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="about-text" style="grid-column: 1 / -1; margin-top: 1rem;">
-                            <h3>> CURRENT_OBJ</h3>
+
+                        <!-- Bottom: Objectives Panel -->
+                        <div class="objectives-panel">
+                            <h3>&gt; CURRENT_MISSION_OBJECTIVES // ACTIVE</h3>
                             <p>Currently spending way too much time staring at this damn terminal because apparently I hate myself. I'm actively building native Linux desktop apps with QML and Python (because web wrappers are slop), messing around with custom pentesting workflows (hooking up Nuclei and Metasploit RPC just to see things break), and writing automation scripts so I don't have to deal with repetitive garbage. Also hopelessly deep in the Linux sysadmin rabbit hole, ricing my Arch setup, injecting custom Wayland widgets into Hyprland, and tinkering with kernel parameters until something inevitably crashes and I have to fix it at 3 AM. If I'm not breaking vulnerable targets, I'm probably breaking my own system.</p>
                         </div>
+
                     </div>
                 </div>
             </div>
+
+            <!-- [04] TAB: CONTACT / HOLOCALL TERMINAL -->
             <div class="tab-content" id="contact">
                 <div class="tab-header">
-                    <h2 class="tab-title">COMM_LINK // CONTACT</h2>
+                    <div class="tab-header-info">
+                        <span class="tab-tag">[ VOL.04 // QUANTUM ENCRYPTED CHANNELS ]</span>
+                        <h2 class="tab-title">COMM_LINK // HOLOCALL_TERMINAL</h2>
+                    </div>
                     <button class="close-btn" aria-label="Close Tab"><i data-lucide="x"></i></button>
                 </div>
                 <div class="content-scroll">
-                    <p class="contact-desc">ESTABLISH SECURE CONNECTION FOR COLLABORATION OR INQUIRIES.</p>
+                    
+                    <div class="holocall-header-box">
+                        <div class="holocall-status">
+                            <div class="waveform-eq">
+                                <div class="waveform-bar"></div>
+                                <div class="waveform-bar"></div>
+                                <div class="waveform-bar"></div>
+                                <div class="waveform-bar"></div>
+                                <div class="waveform-bar"></div>
+                            </div>
+                            <div>
+                                <strong style="color: var(--cp-yellow);">HOLOCALL FREQUENCY: 142.85 MHz</strong>
+                                <div style="font-size: 0.72rem; color: var(--cp-text-dim);">CARRIER: ARASAKA SATELLITE MESH // SECURE TRANSMISSION</div>
+                            </div>
+                        </div>
+                        <span class="hud-pill">STATUS: STANDBY</span>
+                    </div>
+
                     <div class="contact-links">
+                        
+                        <!-- Link 1: Email -->
                         <a href="mailto:avrllnx9@gmail.com" class="cyber-btn-link">
-                            <i data-lucide="mail"></i>
-                            <span>SECURE_EMAIL</span>
+                            <div class="link-icon-box">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="link-info">
+                                <span class="link-meta">DIRECT TRANSMISSION</span>
+                                <span class="link-name">SECURE_EMAIL</span>
+                                <span style="font-size: 0.76rem; color: var(--cp-text-dim); margin-top: 2px;">avrllnx9@gmail.com</span>
+                            </div>
                         </a>
+
+                        <!-- Link 2: WhatsApp -->
                         <a href="https://wa.me/qr/QICHIRRYSIHVE1" class="cyber-btn-link" target="_blank">
-                            <i data-lucide="message-circle"></i>
-                            <span>WHATSAPP_LINK</span>
+                            <div class="link-icon-box">
+                                <i data-lucide="message-circle"></i>
+                            </div>
+                            <div class="link-info">
+                                <span class="link-meta">INSTANT FREQUENCY</span>
+                                <span class="link-name">WHATSAPP_LINK</span>
+                                <span style="font-size: 0.76rem; color: var(--cp-text-dim); margin-top: 2px;">Encrypted Mobile Channel</span>
+                            </div>
                         </a>
+
+                        <!-- Link 3: GitHub -->
                         <a href="https://github.com/Akane-UX" class="cyber-btn-link" target="_blank">
-                            <i data-lucide="github"></i>
-                            <span>GITHUB_REPO</span>
+                            <div class="link-icon-box">
+                                <i data-lucide="github"></i>
+                            </div>
+                            <div class="link-info">
+                                <span class="link-meta">PUBLIC CODE VAULT</span>
+                                <span class="link-name">GITHUB_REPO</span>
+                                <span style="font-size: 0.76rem; color: var(--cp-text-dim); margin-top: 2px;">@Akane-UX // Repositories</span>
+                            </div>
                         </a>
+
+                        <!-- Link 4: X / Twitter -->
                         <a href="https://x.com/Nakame_sh" class="cyber-btn-link" target="_blank">
-                            <i data-lucide="twitter"></i>
-                            <span>X_NETWORK</span>
+                            <div class="link-icon-box">
+                                <i data-lucide="twitter"></i>
+                            </div>
+                            <div class="link-info">
+                                <span class="link-meta">BROADCAST FEED</span>
+                                <span class="link-name">X_NETWORK</span>
+                                <span style="font-size: 0.76rem; color: var(--cp-text-dim); margin-top: 2px;">@Nakame_sh // Thoughts & Rants</span>
+                            </div>
                         </a>
+
                     </div>
                 </div>
             </div>
+
         </section>
     </main>
+
+    <!-- GSAP Animation Library & Core Logic -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/script.js"></script>
 </body>

@@ -3,96 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOTION_VISUALS // SYSTEM</title>
+    <title>MOTION_VISUALS // CYBERDECK NODE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="preloader" class="preloader">
         <div class="loader-content">
-            <div id="loader-text" class="loader-text">LINKING NODE...</div>
+            <div class="loader-header">
+                <span>MILITECH // BIOMONITOR v2.077</span>
+                <span>NODE: 0xMOT8</span>
+            </div>
+            <div id="loader-text" class="loader-text">MOUNTING TIMELINE_RENDER SHARDS...</div>
             <div class="loader-bar-bg">
                 <div id="loader-bar-fill" class="loader-bar-fill"></div>
             </div>
         </div>
     </div>
+
     <div class="scanlines"></div>
     <div class="noise"></div>
     <div class="vignette"></div>
+
+    <header class="cyber-hud-topbar">
+        <div class="topbar-left">
+            <span class="hud-tag">
+                <span class="pulse-beacon"></span>
+                <span>OPERATIVE: AVRIL</span>
+            </span>
+            <span class="hud-pill">SHARD: MOTION_VISUALS</span>
+        </div>
+        <div class="topbar-center">
+            <span class="hud-pill">SYSTEM_NODE // [ 01 ] DATABASE &gt; MOTION_VISUALS</span>
+            <span class="hud-tag-dim" style="font-size: 0.72rem;">PIPELINE: 60 FPS RENDER</span>
+        </div>
+        <div class="topbar-right">
+            <span class="hud-clock" id="hudClock">2077.11.07 // 19:00:00 WIB</span>
+        </div>
+    </header>
+
     <main class="game-container">
         <nav class="main-menu side-mode" style="opacity: 0;">
             <div class="menu-header">
-                <h1 class="game-title glitch" style="font-size: 3.5rem;" data-text="MOTION_VISUALS">MOTION_VISUALS</h1>
-                <p class="profile-subtitle">&gt; TIMELINE RENDER</p>
-                <div class="cyber-line"></div>
+                <div class="header-badge">
+                    <i data-lucide="film" style="width: 14px; height: 14px;"></i>
+                    <span>TIMELINE RENDER // TIER 4</span>
+                </div>
+                <h1 class="game-title glitch" style="font-size: 2.6rem;" data-text="MOTION_VISUALS">MOTION_VISUALS</h1>
+                <p class="profile-subtitle">&gt; TIMELINE RENDER &lt;</p>
+                <div class="cyber-line-container">
+                    <div class="cyber-diamond"></div>
+                    <div class="cyber-line"></div>
+                    <div class="cyber-diamond"></div>
+                </div>
             </div>
-            <ul class="menu-list">
-                <li><a href="index.html" class="menu-btn" style="text-decoration: none;">
-                    <i data-lucide="arrow-left"></i>
-                    <span class="btn-text">RETURN</span>
-                </a></li>
+
+            <ul class="menu-list" style="max-width: 100%;">
+                <li>
+                    <a href="index.html" class="menu-btn" style="text-decoration: none;">
+                        <div class="menu-btn-content">
+                            <span class="btn-deco">[ &lt;-- ]</span>
+                            <div>
+                                <div class="btn-title">RETURN</div>
+                                <div class="btn-subtext">// SYSTEM_ROOT_MENU</div>
+                            </div>
+                        </div>
+                        <i data-lucide="arrow-left" class="btn-arrow" style="opacity: 1; transform: none;"></i>
+                    </a>
+                </li>
             </ul>
+
+            <div class="menu-telemetry-box" style="margin-top: auto;">
+                <div class="telemetry-header">
+                    <span class="telemetry-tag">&gt; TIMELINE.ENGINE</span>
+                    <span class="telemetry-indicator">● READY</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>SUITE:</span>
+                    <span style="color: var(--cp-yellow);">AFTER EFFECTS / PREMIERE</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>REFRESH RATE:</span>
+                    <span style="color: var(--cp-cyan);">60.00 FPS / 144Hz</span>
+                </div>
+                <div class="telemetry-row">
+                    <span>EASING:</span>
+                    <span style="color: var(--cp-green);">CUSTOM BEZIER</span>
+                </div>
+            </div>
         </nav>
+
         <section class="content-area" style="display: block; opacity: 0;">
             <div class="tab-content active">
                 <div class="tab-header">
-                    <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
-                    <a href="index.html" class="close-btn mobile-only-flex" aria-label="Return"><i data-lucide="x"></i></a>
+                    <div class="tab-header-info">
+                        <span class="tab-tag">[ SHARD_0xMOT8 // MOTION MANIFEST ]</span>
+                        <h2 class="tab-title">FILE_READ // OVERVIEW</h2>
+                    </div>
+                    <a href="index.html" class="close-btn" aria-label="Return"><i data-lucide="arrow-left"></i></a>
                 </div>
+
                 <div class="content-scroll">
                     <div class="about-layout" style="grid-template-columns: 1fr;">
-                        <div class="about-text">
-                            <h3>> THE_CONCEPT</h3>
+                        <div class="dossier-card">
+                            <h3>&gt; THE_CONCEPT</h3>
                             <p>Splicing frames and rendering dynamic motion graphics. I spend hours staring at keyframes in Premiere Pro and After Effects just to make sure every transition is buttery smooth and mathematically perfect. No cheap presets allowed.</p>
-                            <h3 style="margin-top: 2rem;">> VISUAL_APPROACH</h3>
+                            
+                            <h3 style="margin-top: 2rem;">&gt; VISUAL_APPROACH</h3>
                             <p>Fast cuts, glitch aesthetics, and heavily modified easing curves. I hate standard linear animations, so I manually tweak the bezier curves to make everything snap with an aggressive, snappy rhythm.</p>
                         </div>
                     </div>
-                    <div class="tab-header" style="margin-top: 4rem;">
-                        <h2 class="tab-title">RENDERS // LOGS</h2>
+
+                    <div class="tab-header" style="margin-top: 3.5rem;">
+                        <div class="tab-header-info">
+                            <span class="tab-tag">[ RENDER OUTPUT LOGS ]</span>
+                            <h2 class="tab-title">RENDERS // TIMELINE</h2>
+                        </div>
                     </div>
+
                     <div class="projects-grid">
-                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><div class="mock-bg">RENDER_01</div></div></div>
-                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><div class="mock-bg">RENDER_02</div></div></div>
-                        <div class="cyber-card"><div class="card-img-wrapper" style="height: 300px;"><div class="mock-bg">RENDER_03</div></div></div>
+                        <div class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-img-wrapper" style="height: 300px;">
+                                <div class="mock-bg">
+                                    <i data-lucide="play" style="width: 28px; height: 28px; margin-bottom: 6px;"></i>
+                                    RENDER_OUTPUT_01
+                                    <span>DYNAMIC_KEYFRAMES</span>
+                                </div>
+                            </div>
+                            <div class="card-rarity-header">
+                                <span>COMP // 01</span>
+                                <span style="color: var(--cp-cyan);">1080p // 60 FPS</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-img-wrapper" style="height: 300px;">
+                                <div class="mock-bg">
+                                    <i data-lucide="activity" style="width: 28px; height: 28px; margin-bottom: 6px;"></i>
+                                    RENDER_OUTPUT_02
+                                    <span>AUDIO_REACTIVE_CUTS</span>
+                                </div>
+                            </div>
+                            <div class="card-rarity-header">
+                                <span>COMP // 02</span>
+                                <span style="color: var(--cp-cyan);">BEAT_SYNC // GLITCH</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-card">
+                            <div class="hud-corner hud-corner-tl"></div>
+                            <div class="hud-corner hud-corner-tr"></div>
+                            <div class="hud-corner hud-corner-bl"></div>
+                            <div class="hud-corner hud-corner-br"></div>
+                            <div class="card-img-wrapper" style="height: 300px;">
+                                <div class="mock-bg">
+                                    <i data-lucide="fast-forward" style="width: 28px; height: 28px; margin-bottom: 6px;"></i>
+                                    RENDER_OUTPUT_03
+                                    <span>KINETIC_TYPOGRAPHY</span>
+                                </div>
+                            </div>
+                            <div class="card-rarity-header">
+                                <span>COMP // 03</span>
+                                <span style="color: var(--cp-cyan);">CUSTOM_BEZIER</span>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>
     </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         lucide.createIcons();
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const loaderTexts = ["LINKING NODE...", "FETCHING PROJECT DATA...", "ACCESS GRANTED."];
+        
+        function updateHudClock() {
+            const el = document.getElementById('hudClock');
+            if (!el) return;
+            const now = new Date();
+            const pad = (n) => String(n).padStart(2, '0');
+            el.innerText = `2077.11.07 // ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())} WIB`;
+        }
+        setInterval(updateHudClock, 1000);
+        updateHudClock();
+
+        const loaderTexts = ["MOUNTING TIMELINE_RENDER SHARDS...", "CALIBRATING BEZIER CURVES...", "ACCESS GRANTED // MOTION_VISUALS"];
         const loaderTextEl = document.getElementById('loader-text');
         const loaderBarFill = document.getElementById('loader-bar-fill');
         const preloader = document.getElementById('preloader');
         let textIndex = 0;
         const textInterval = setInterval(() => {
             textIndex++;
-            if(textIndex < loaderTexts.length) {
+            if (textIndex < loaderTexts.length && loaderTextEl) {
                 loaderTextEl.innerText = loaderTexts[textIndex];
             }
-        }, prefersReducedMotion ? 50 : 400);
+        }, prefersReducedMotion ? 50 : 350);
+
         gsap.to(loaderBarFill, {
             scaleX: 1,
-            duration: prefersReducedMotion ? 0.1 : 1.2,
+            duration: prefersReducedMotion ? 0.05 : 1.4,
             ease: "power2.inOut",
             onComplete: () => {
                 clearInterval(textInterval);
-                loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
+                if (loaderTextEl) loaderTextEl.innerText = loaderTexts[loaderTexts.length - 1];
                 gsap.to(preloader, {
                     opacity: 0,
-                    duration: prefersReducedMotion ? 0.1 : 0.5,
+                    duration: prefersReducedMotion ? 0.05 : 0.5,
                     ease: "power2.inOut",
                     delay: prefersReducedMotion ? 0 : 0.2,
                     onComplete: () => {
                         preloader.style.display = 'none';
-                        gsap.fromTo('.main-menu', { x: prefersReducedMotion ? 0 : -50, opacity: 0 }, { x: 0, opacity: 1, duration: prefersReducedMotion ? 0.1 : 0.6, ease: "power2.out" });
-                        gsap.to('.content-area', { opacity: 1, duration: prefersReducedMotion ? 0.1 : 0.6, delay: prefersReducedMotion ? 0 : 0.1 });
+                        gsap.fromTo('.main-menu', { x: prefersReducedMotion ? 0 : -40, opacity: 0 }, { x: 0, opacity: 1, duration: prefersReducedMotion ? 0.05 : 0.5, ease: "power3.out" });
+                        gsap.to('.content-area', { opacity: 1, duration: prefersReducedMotion ? 0.05 : 0.5, delay: prefersReducedMotion ? 0 : 0.1 });
                         if (!prefersReducedMotion) {
-                            gsap.fromTo('.cyber-panel, .about-text, .cyber-card, .mobile-only-block', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, stagger: 0.05, delay: 0.2, ease: "power2.out" });
+                            gsap.fromTo('.cyber-card, .dossier-card', { x: -15, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, stagger: 0.04, delay: 0.2, ease: "power3.out" });
                         }
                     }
                 });

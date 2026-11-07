@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
+
 @font-face {
     font-family: 'Airstrike';
     src: url('../assets/fonts/airstrike.ttf') format('truetype');
@@ -10,632 +12,1465 @@
     font-weight: normal;
     font-style: normal;
 }
+
 :root {
-    --cp-red: #ff003c;
+    /* Cyberpunk 2077 Palette (Vilimovský UI Reference) */
     --cp-yellow: #fcee0a;
+    --cp-yellow-glow: rgba(252, 238, 10, 0.4);
+    --cp-yellow-dim: rgba(252, 238, 10, 0.12);
+    
+    --cp-red: #ff003c;
+    --cp-red-glow: rgba(255, 0, 60, 0.45);
+    --cp-red-dim: rgba(255, 0, 60, 0.15);
+    
     --cp-cyan: #00f0ff;
-    --cp-dark: #050505;
-    --cp-dark-panel: rgba(15, 15, 15, 0.85);
-    --cp-border: #333;
-    --cp-text: #fff;
-    --cp-text-dim: #aaa;
+    --cp-cyan-glow: rgba(0, 240, 255, 0.45);
+    --cp-cyan-dim: rgba(0, 240, 255, 0.12);
+
+    --cp-orange: #ff8500;
+    --cp-orange-dim: rgba(255, 133, 0, 0.15);
+    
+    --cp-green: #00ff66;
+    
+    --cp-dark: #06070a;
+    --cp-dark-surface: #0b0d14;
+    --cp-dark-panel: rgba(11, 14, 22, 0.92);
+    --cp-dark-card: rgba(14, 18, 29, 0.94);
+    --cp-dark-elevated: rgba(20, 26, 42, 0.98);
+
+    --cp-border: rgba(255, 0, 60, 0.28);
+    --cp-border-cyan: rgba(0, 240, 255, 0.35);
+    --cp-border-yellow: rgba(252, 238, 10, 0.4);
+    --cp-border-muted: rgba(255, 255, 255, 0.08);
+
+    --cp-text: #f3f4f6;
+    --cp-text-dim: #8b9bb4;
+    --cp-text-muted: #4b5568;
+
+    --font-display: 'Orbitron', 'Airstrike', sans-serif;
+    --font-sub: 'Rajdhani', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Nasalization', monospace;
+
+    --ease-cyber: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
-    --ease-in: cubic-bezier(0.72, 0, 0.32, 1);
+
     --z-base: 1;
     --z-content: 10;
     --z-menu: 20;
-    --z-mobile-content: 30;
+    --z-topbar: 30;
     --z-vignette: 40;
     --z-noise: 41;
     --z-scanlines: 42;
     --z-preloader: 50;
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    border-radius: 0 !important; /* Zero round slop per Cyberpunk 2077 HUD */
 }
-body {
-    background: radial-gradient(circle at center, #2e0008 0%, #050000 100%);
-    color: var(--cp-text);
-    font-family: 'Nasalization', sans-serif;
-    overflow: hidden;
-    height: 100vh;
+
+html, body {
+    height: 100%;
     height: 100dvh;
     width: 100vw;
+    background-color: var(--cp-dark);
+    color: var(--cp-text);
+    font-family: var(--font-sub);
+    font-size: 16px;
+    overflow: hidden;
     position: relative;
     user-select: none;
+    -webkit-font-smoothing: antialiased;
 }
+
+/* Background Cyber Grid & Vignette */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 50% 40%, rgba(255, 0, 60, 0.08) 0%, rgba(6, 7, 10, 0.95) 75%);
+    background-size: 40px 40px, 40px 40px, 100% 100%;
+    z-index: var(--z-base);
+    pointer-events: none;
+}
+
+/* HUD CRT Scanlines & Noise */
 .scanlines {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
-    background-size: 100% 4px;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
+    background-size: 100% 3px;
     z-index: var(--z-scanlines);
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0.25;
 }
+
 .noise {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-    opacity: 0.05;
+    inset: 0;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    opacity: 0.04;
     z-index: var(--z-noise);
     pointer-events: none;
 }
+
 .vignette {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.8) 100%);
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, rgba(6,7,10,0.85) 100%);
     z-index: var(--z-vignette);
     pointer-events: none;
 }
+
+/* ========================================================
+   TOP GLOBAL HUD BAR (Cyberpunk Biomonitor / System Ribbon)
+   ======================================================== */
+.cyber-hud-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 42px;
+    background: rgba(8, 10, 16, 0.94);
+    border-bottom: 1px solid var(--cp-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    z-index: var(--z-topbar);
+    backdrop-filter: blur(8px);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.cyber-hud-topbar::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 140px;
+    height: 2px;
+    background: var(--cp-yellow);
+    box-shadow: 0 0 10px var(--cp-yellow);
+}
+
+.topbar-left, .topbar-center, .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.hud-tag {
+    color: var(--cp-yellow);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.hud-tag-dim {
+    color: var(--cp-text-dim);
+}
+
+.hud-pill {
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid var(--cp-border-cyan);
+    color: var(--cp-cyan);
+    padding: 2px 8px;
+    font-size: 0.72rem;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+}
+
+.hud-vitals {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--cp-text-dim);
+}
+
+.vital-meter {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.vital-label {
+    font-size: 0.7rem;
+    color: var(--cp-text-muted);
+}
+
+.vital-segments {
+    display: flex;
+    gap: 2px;
+}
+
+.vital-seg {
+    width: 5px;
+    height: 9px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.vital-seg.active-hp {
+    background: var(--cp-cyan);
+    box-shadow: 0 0 6px var(--cp-cyan);
+}
+
+.vital-seg.active-ram {
+    background: var(--cp-yellow);
+    box-shadow: 0 0 6px var(--cp-yellow);
+}
+
+.pulse-beacon {
+    width: 8px;
+    height: 8px;
+    background: var(--cp-red);
+    border-radius: 50% !important;
+    box-shadow: 0 0 8px var(--cp-red);
+    animation: beaconPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.hud-clock {
+    color: var(--cp-text);
+    font-variant-numeric: tabular-nums;
+}
+
+.hud-btn {
+    background: transparent;
+    border: 1px solid var(--cp-border);
+    color: var(--cp-text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 120ms ease;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+.hud-btn:hover {
+    background: var(--cp-red-dim);
+    border-color: var(--cp-red);
+    color: var(--cp-yellow);
+    box-shadow: 0 0 10px var(--cp-red-dim);
+}
+
+.hud-btn.active {
+    background: var(--cp-yellow-dim);
+    border-color: var(--cp-yellow);
+    color: var(--cp-yellow);
+}
+
+/* ========================================================
+   MAIN APPLICATION LAYOUT & WORKSPACE
+   ======================================================== */
 .game-container {
     display: flex;
     height: 100vh;
     height: 100dvh;
     width: 100vw;
     position: relative;
+    padding-top: 42px; /* Topbar offset */
     z-index: var(--z-content);
 }
+
+/* Side Navigation / Main Menu (Cyberpunk Hub) */
 .main-menu {
     display: flex;
     flex-direction: column;
     position: absolute;
     left: 0;
-    top: 0;
-    height: 100vh;
-    height: 100dvh;
+    top: 42px;
+    bottom: 0;
+    height: calc(100vh - 42px);
+    height: calc(100dvh - 42px);
     z-index: var(--z-menu);
-    transition: width 0.8s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.8s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: width 0.75s var(--ease-cyber), border-color 0.75s var(--ease-cyber), background-color 0.75s var(--ease-cyber);
     overflow: hidden;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background: transparent;
     border-right: 1px solid transparent;
+    padding: 2.5rem 2rem 2rem 2rem;
 }
+
 .main-menu.center-mode {
     width: 100vw;
 }
+
 .main-menu.side-mode {
-    width: 35vw;
-    border-right: 1px solid rgba(0, 240, 255, 0.2);
+    width: 34vw;
+    background: rgba(8, 10, 16, 0.9);
+    border-right: 1px solid var(--cp-border);
+    backdrop-filter: blur(12px);
+    align-items: flex-start;
 }
+
+.main-menu.side-mode .menu-header {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.main-menu.side-mode .menu-list {
+    align-items: flex-start;
+    width: 100%;
+}
+
 .menu-header {
-    margin-bottom: 3.5rem;
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: relative;
+    width: 100%;
 }
-.game-title {
-    font-family: 'Airstrike', sans-serif;
-    font-size: 5rem;
-    color: var(--cp-yellow);
-    line-height: 1;
-    margin-bottom: 0.5rem;
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cp-cyan);
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(252, 238, 10, 0.5);
+    margin-bottom: 0.75rem;
+}
+
+.game-title {
+    font-family: var(--font-display);
+    font-size: 4.8rem;
+    font-weight: 900;
+    color: var(--cp-yellow);
+    line-height: 0.95;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px var(--cp-yellow-glow);
     position: relative;
     text-transform: uppercase;
 }
-.profile-subtitle {
-    font-size: 1.1rem;
-    color: var(--cp-cyan);
-    letter-spacing: 1.5px;
+
+.main-menu.side-mode .game-title {
+    font-size: 3.2rem;
 }
+
+.profile-subtitle {
+    font-family: var(--font-sub);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--cp-cyan);
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+}
+
+.cyber-line-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.25rem;
+}
+
 .cyber-line {
     height: 3px;
-    width: 150px;
-    background-color: var(--cp-red);
-    margin-top: 1.5rem;
-    box-shadow: 0 0 15px var(--cp-red);
-    transform-origin: center;
-    transform: scaleX(0.667);
-    transition: transform 0.4s var(--ease-out);
+    width: 140px;
+    background: linear-gradient(90deg, var(--cp-red), var(--cp-yellow));
+    box-shadow: 0 0 12px var(--cp-red);
 }
-.main-menu.side-mode .cyber-line {
-    transform: scaleX(1);
+
+.cyber-diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--cp-yellow);
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px var(--cp-yellow);
 }
+
+/* ========================================================
+   MENU BUTTONS (Chamfered Cyberpunk 2077 HUD Tabs)
+   ======================================================== */
 .menu-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    width: auto;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 460px;
     align-items: center;
+    margin: 2rem 0;
 }
+
+.menu-list li {
+    width: 100%;
+}
+
 .menu-btn {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    color: var(--cp-text-dim);
-    font-family: 'Nasalization', sans-serif;
-    font-size: 2rem;
+    width: 100%;
+    background: rgba(14, 18, 28, 0.6);
+    border: 1px solid var(--cp-border);
+    color: var(--cp-text);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
     font-weight: 700;
+    letter-spacing: 2px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    padding: 0.9rem 1.4rem;
     position: relative;
-    transition: color 150ms ease-out, transform 150ms ease-out;
-    width: fit-content;
-    backdrop-filter: none;
+    transition: all 140ms ease-out;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    text-transform: uppercase;
 }
-.btn-deco {
-    position: absolute;
-    left: -30px;
-    font-size: 1rem;
-    color: var(--cp-red);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 150ms ease-out, transform 150ms ease-out;
-}
-.menu-btn:hover, .menu-btn.active {
-    background: transparent;
-    border-color: transparent;
-    color: var(--cp-text);
-    box-shadow: none;
-    transform: scale(1.05);
-}
-.main-menu.side-mode .menu-btn:hover, .main-menu.side-mode .menu-btn.active {
-    transform: translateX(10px);
-}
-.menu-btn:hover .btn-deco, .menu-btn.active .btn-deco {
-    opacity: 1;
-    transform: translateX(0);
-}
+
 .menu-btn::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
-    background-color: var(--cp-red);
-    border-radius: 0;
+    width: 5px;
+    background: var(--cp-red);
+    box-shadow: 0 0 10px var(--cp-red);
     transform: scaleY(0);
     transform-origin: center;
-    transition: transform 150ms ease-out;
-    box-shadow: 0 0 10px var(--cp-red);
+    transition: transform 140ms ease-out;
 }
+
+.menu-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-deco {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cp-red);
+    letter-spacing: 1px;
+    transition: color 140ms ease-out;
+}
+
+.btn-subtext {
+    font-family: var(--font-sub);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cp-text-dim);
+    letter-spacing: 1px;
+}
+
+.menu-btn:hover, .menu-btn.active {
+    background: linear-gradient(90deg, rgba(255, 0, 60, 0.25) 0%, rgba(14, 18, 28, 0.8) 100%);
+    border-color: var(--cp-yellow);
+    color: var(--cp-yellow);
+    transform: translateX(8px);
+    box-shadow: 0 0 15px rgba(252, 238, 10, 0.2), inset 0 0 10px rgba(255, 0, 60, 0.15);
+}
+
 .menu-btn:hover::before, .menu-btn.active::before {
     transform: scaleY(1);
+    background: var(--cp-yellow);
+    box-shadow: 0 0 12px var(--cp-yellow);
 }
+
+.menu-btn:hover .btn-deco, .menu-btn.active .btn-deco {
+    color: var(--cp-yellow);
+}
+
+.menu-btn:hover .btn-subtext, .menu-btn.active .btn-subtext {
+    color: var(--cp-cyan);
+}
+
+.menu-btn .btn-arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 140ms ease-out;
+    color: var(--cp-yellow);
+}
+
+.menu-btn:hover .btn-arrow, .menu-btn.active .btn-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Menu Footer Telemetry Box */
+.menu-telemetry-box {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(11, 14, 22, 0.85);
+    border: 1px solid var(--cp-border);
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--cp-text-dim);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    position: relative;
+}
+
+.telemetry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.45rem;
+    margin-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+}
+
+.telemetry-tag {
+    color: var(--cp-cyan);
+    font-weight: 700;
+}
+
+.telemetry-indicator {
+    color: var(--cp-green);
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.telemetry-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+}
+
+.telemetry-row:last-child {
+    margin-bottom: 0;
+}
+
+.menu-disclaimer-text {
+    font-family: var(--font-sub);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--cp-text-dim);
+    line-height: 1.4;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================================
+   CONTENT AREA & TAB PANELS
+   ======================================================== */
 .content-area {
     position: absolute;
     right: 0;
-    top: 0;
-    width: 65vw;
-    height: 100vh;
-    height: 100dvh;
-    padding: max(3rem, env(safe-area-inset-top)) max(4rem, env(safe-area-inset-right)) max(3rem, env(safe-area-inset-bottom)) max(4rem, env(safe-area-inset-left));
+    top: 42px;
+    bottom: 0;
+    width: 66vw;
+    height: calc(100vh - 42px);
+    height: calc(100dvh - 42px);
+    padding: 2.5rem 3.5rem 2.5rem 3rem;
     display: none;
     opacity: 0;
+    overflow: hidden;
 }
+
 .tab-content {
     display: none;
     flex-direction: column;
     height: 100%;
+    position: relative;
 }
+
 .tab-content.active {
     display: flex;
 }
+
+/* Tab Header (Chamfered Cyberpunk Banner) */
 .tab-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
+    padding: 0.8rem 1.4rem;
+    background: linear-gradient(90deg, rgba(255, 0, 60, 0.18) 0%, rgba(14, 18, 28, 0.8) 100%);
+    border-left: 4px solid var(--cp-red);
     border-bottom: 1px solid var(--cp-border);
+    margin-bottom: 1.75rem;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    position: relative;
 }
-.tab-title {
-    font-family: 'Nasalization', sans-serif;
-    font-size: 2rem;
-    color: var(--cp-cyan);
+
+.tab-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-yellow);
     letter-spacing: 2px;
 }
+
+.tab-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--cp-text);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
 .close-btn {
-    background: none;
-    border: none;
+    background: rgba(255, 0, 60, 0.12);
+    border: 1px solid var(--cp-red);
     color: var(--cp-red);
     cursor: pointer;
-    padding: 0.5rem;
-    transition: transform 150ms ease-out, color 150ms ease-out;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 140ms ease-out;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
+
 .close-btn:hover {
-    color: var(--cp-yellow);
-    transform: scale(1.1);
+    background: var(--cp-red);
+    color: #fff;
+    box-shadow: 0 0 15px var(--cp-red);
+    transform: scale(1.05);
 }
+
 .content-scroll {
     overflow-y: auto;
-    padding-right: 1rem;
+    padding-right: 1.25rem;
     height: 100%;
 }
+
 .content-scroll::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 .content-scroll::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
 }
 .content-scroll::-webkit-scrollbar-thumb {
     background: var(--cp-red);
+    box-shadow: 0 0 8px var(--cp-red);
 }
+
+/* ========================================================
+   PROJECTS GRID (Cyberpunk 2077 Item / Shard Cards)
+   ======================================================== */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
     padding-bottom: 4rem;
 }
+
 .cyber-card {
-    background: var(--cp-dark-panel);
+    background: var(--cp-dark-card);
     border: 1px solid var(--cp-border);
-    border-radius: 20px;
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
     position: relative;
     overflow: hidden;
-    transition: border-color 150ms ease-out, transform 150ms ease-out;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
-.cyber-card:hover {
-    border-color: var(--cp-yellow);
-    transform: translateY(-5px);
+
+/* HUD Corner Reticles */
+.hud-corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    z-index: 5;
 }
+.hud-corner-tl { top: 3px; left: 3px; border-top: 2px solid var(--cp-cyan); border-left: 2px solid var(--cp-cyan); }
+.hud-corner-tr { top: 3px; right: 3px; border-top: 2px solid var(--cp-cyan); border-right: 2px solid var(--cp-cyan); }
+.hud-corner-bl { bottom: 3px; left: 3px; border-bottom: 2px solid var(--cp-cyan); border-left: 2px solid var(--cp-cyan); }
+.hud-corner-br { bottom: 3px; right: 3px; border-bottom: 2px solid var(--cp-cyan); border-right: 2px solid var(--cp-cyan); }
+
+/* Rarity Ribbon Header */
+.card-rarity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rarity-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rarity-tag.iconic {
+    color: var(--cp-orange);
+}
+
+.rarity-tag.legendary {
+    color: var(--cp-yellow);
+}
+
+.rarity-tag.spec-ops {
+    color: var(--cp-cyan);
+}
+
 .card-img-wrapper {
-    height: 200px;
+    height: 180px;
     width: 100%;
     position: relative;
     overflow: hidden;
+    background: #08090e;
 }
+
 .card-img-wrapper img, .mock-bg {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s var(--ease-out);
+    transition: transform 0.4s var(--ease-cyber), filter 0.4s ease;
 }
+
 .mock-bg {
-    background: #111;
+    background: 
+        repeating-linear-gradient(45deg, rgba(255, 0, 60, 0.08) 0, rgba(255, 0, 60, 0.08) 10px, transparent 10px, transparent 20px),
+        #0b0d14;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--cp-cyan);
-    font-size: 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
 }
-.cyber-card:hover .card-img-wrapper img {
-    transform: scale(1.05);
+
+.mock-bg span {
+    font-size: 0.7rem;
+    color: var(--cp-text-muted);
+    margin-top: 4px;
 }
+
 .card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(255,0,60,0.2);
-    opacity: 0;
-    transition: opacity 150ms ease-out;
+    background: linear-gradient(180deg, transparent 40%, rgba(14, 18, 29, 0.95) 100%);
+    pointer-events: none;
 }
-.cyber-card:hover .card-overlay {
-    opacity: 1;
-}
+
 .card-info {
-    padding: 1.5rem;
-}
-.card-info h3 {
-    font-size: 1.4rem;
-    color: var(--cp-yellow);
-    margin-bottom: 0.5rem;
-}
-.card-info p {
-    font-size: 1rem;
-    color: var(--cp-text-dim);
-    margin-bottom: 1.5rem;
-}
-.tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-.tags span {
-    background: rgba(0, 240, 255, 0.1);
-    color: var(--cp-cyan);
-    padding: 0.2rem 0.5rem;
-    font-size: 0.85rem;
-    border: 1px solid var(--cp-cyan);
-}
-.skills-grid {
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
+    flex: 1;
+}
+
+.card-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--cp-yellow);
+    margin-bottom: 0.4rem;
+    letter-spacing: 1px;
+}
+
+.card-meta-spec {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-cyan);
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.8rem;
+}
+
+.card-info p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--cp-text-dim);
+    margin-bottom: 1.25rem;
+    flex: 1;
+}
+
+.tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.tags span {
+    background: rgba(0, 240, 255, 0.08);
+    color: var(--cp-cyan);
+    padding: 2px 7px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    border: 1px solid var(--cp-border-cyan);
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.card-action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cp-text-dim);
+}
+
+.card-action-bar .action-cta {
+    color: var(--cp-yellow);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cyber-card:hover {
+    border-color: var(--cp-yellow);
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(252, 238, 10, 0.25), inset 0 0 15px rgba(255, 0, 60, 0.1);
+}
+
+.cyber-card:hover .card-img-wrapper img {
+    transform: scale(1.06);
+    filter: contrast(1.15) brightness(1.05);
+}
+
+.cyber-card:hover .action-cta {
+    color: #fff;
+    text-shadow: 0 0 8px var(--cp-yellow);
+}
+
+/* ========================================================
+   SKILLS GRID (Cyberware Augmentation Systems)
+   ======================================================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 1.5rem;
     padding-bottom: 4rem;
 }
+
 .cyber-panel {
     background: var(--cp-dark-panel);
     border: 1px solid var(--cp-border);
-    border-radius: 20px;
-    padding: 2rem;
+    padding: 1.5rem;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition: all 180ms ease;
 }
-.cyber-panel::before {
-    content: '';
+
+.panel-hazard-stripe {
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: var(--cp-cyan);
-    box-shadow: 0 0 10px var(--cp-cyan);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--cp-red) 0, var(--cp-red) 8px, transparent 8px, transparent 16px);
 }
-.cyber-panel h3 {
-    color: var(--cp-text);
+
+.panel-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 0.5rem;
+}
+
+.cyber-panel h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--cp-text);
     letter-spacing: 1px;
 }
+
+.tier-badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--cp-yellow);
+    background: rgba(252, 238, 10, 0.1);
+    border: 1px solid var(--cp-yellow);
+    padding: 2px 6px;
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
 .cyber-panel p {
     color: var(--cp-text-dim);
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin-bottom: 1.1rem;
 }
-.progress-bar {
-    height: 6px;
-    background: #222;
+
+/* Cyber Gauge / Segmented LED Bars */
+.gauge-wrapper {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gauge-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-text-dim);
+    margin-bottom: 0.4rem;
+}
+
+.gauge-val {
+    color: var(--cp-cyan);
+    font-weight: 700;
+}
+
+.cyber-progress {
+    display: flex;
+    gap: 4px;
+    height: 10px;
     width: 100%;
-    position: relative;
-    overflow: hidden;
 }
-.progress-bar .fill {
-    height: 100%;
+
+.cyber-progress .seg {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    clip-path: polygon(0 0, calc(100% - 2px) 0, 100% 2px, 100% 100%, 2px 100%, 0 calc(100% - 2px));
+    transition: background-color 120ms ease;
+}
+
+.cyber-progress .seg.active {
     background: var(--cp-cyan);
-    box-shadow: 0 0 10px var(--cp-cyan);
+    border-color: var(--cp-cyan);
+    box-shadow: 0 0 8px var(--cp-cyan-glow);
 }
+
+.cyber-progress .seg.active-red {
+    background: var(--cp-red);
+    border-color: var(--cp-red);
+    box-shadow: 0 0 8px var(--cp-red-glow);
+}
+
+.cyber-panel:hover {
+    border-color: var(--cp-cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}
+
+/* ========================================================
+   ABOUT SECTION (Subject Dossier / Trauma Team File)
+   ======================================================== */
 .about-layout {
     display: grid;
-    grid-template-columns: 5fr 4fr;
-    gap: 3rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
     align-items: stretch;
+    padding-bottom: 4rem;
 }
+
+.dossier-card {
+    background: var(--cp-dark-panel);
+    border: 1px solid var(--cp-border);
+    padding: 2rem;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    position: relative;
+}
+
+.dossier-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--cp-yellow);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.dossier-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 2rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--cp-text-dim);
+}
+
+.dossier-list li {
+    margin-bottom: 0.65rem;
+    display: flex;
+    gap: 0.8rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.4rem;
+}
+
+.dossier-label {
+    color: var(--cp-cyan);
+    width: 120px;
+    flex-shrink: 0;
+    font-weight: 500;
+}
+
+.dossier-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--cp-text-dim);
+    margin-bottom: 1rem;
+}
+
+/* Biomonitor Vitals Mini Dashboard */
+.vitals-box {
+    background: rgba(14, 18, 28, 0.7);
+    border: 1px solid var(--cp-border-cyan);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.vitals-box-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-cyan);
+    margin-bottom: 0.6rem;
+    letter-spacing: 1px;
+}
+
+.vital-stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--cp-text-dim);
+    margin-bottom: 0.35rem;
+}
+
+.vital-stat-row .val {
+    color: var(--cp-yellow);
+    font-weight: 700;
+}
+
+/* Avatar Frame with Kiroshi Optic Reticle */
 .about-image {
     position: relative;
-    border: 2px solid var(--cp-red);
-    height: 100%;
+    border: 1px solid var(--cp-border);
+    background: #08090e;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .about-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    filter: grayscale(100%) contrast(1.2);
+    filter: contrast(1.1) brightness(0.95);
+    transition: filter 0.4s ease, transform 0.4s var(--ease-cyber);
 }
-.about-text h3 {
-    color: var(--cp-yellow);
-    margin-bottom: 1rem;
+
+.about-image:hover img {
+    filter: contrast(1.2) brightness(1.05);
+    transform: scale(1.04);
 }
-.about-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-.stats-row {
+
+.kiroshi-reticle {
+    position: absolute;
+    inset: 1.5rem;
+    border: 1px dashed rgba(0, 240, 255, 0.4);
+    pointer-events: none;
     display: flex;
-    gap: 3rem;
-    margin-top: 2rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--cp-cyan);
 }
-.stat-box {
+
+.reticle-top, .reticle-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reticle-crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--cp-red);
+    border-radius: 50% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reticle-crosshair::before, .reticle-crosshair::after {
+    content: '';
+    position: absolute;
+    background: var(--cp-red);
+}
+.reticle-crosshair::before { width: 14px; height: 1px; }
+.reticle-crosshair::after { width: 1px; height: 14px; }
+
+.objectives-panel {
+    grid-column: 1 / -1;
+    background: linear-gradient(180deg, rgba(255, 0, 60, 0.08) 0%, rgba(11, 14, 22, 0.95) 100%);
+    border: 1px solid var(--cp-border);
+    padding: 1.75rem;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    position: relative;
+}
+
+.objectives-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--cp-yellow);
+    box-shadow: 0 0 10px var(--cp-yellow);
+}
+
+.objectives-panel h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--cp-yellow);
+    margin-bottom: 0.75rem;
+}
+
+.objectives-panel p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--cp-text);
+}
+
+/* ========================================================
+   CONTACT SECTION (Holocall / Comm-Link Terminal)
+   ======================================================== */
+.holocall-header-box {
+    background: rgba(14, 18, 28, 0.8);
+    border: 1px solid var(--cp-border-cyan);
+    padding: 1.25rem 1.75rem;
+    margin-bottom: 2rem;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.holocall-status {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--cp-cyan);
+}
+
+.waveform-eq {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+}
+
+.waveform-bar {
+    width: 3px;
+    background: var(--cp-cyan);
+    box-shadow: 0 0 6px var(--cp-cyan);
+    animation: eqBounce 1.2s infinite ease-in-out;
+}
+
+.waveform-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.waveform-bar:nth-child(2) { height: 80%; animation-delay: 0.3s; }
+.waveform-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+.waveform-bar:nth-child(4) { height: 60%; animation-delay: 0.4s; }
+.waveform-bar:nth-child(5) { height: 30%; animation-delay: 0.5s; }
+
+@keyframes eqBounce {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+}
+
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 4rem;
+}
+
+.cyber-btn-link {
+    background: var(--cp-dark-card);
+    border: 1px solid var(--cp-border);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--cp-text);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition: all 160ms ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-btn-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--cp-cyan);
+    transform: scaleY(0);
+    transition: transform 140ms ease;
+}
+
+.link-icon-box {
+    width: 46px;
+    height: 46px;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid var(--cp-border-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cp-cyan);
+    flex-shrink: 0;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: all 160ms ease-out;
+}
+
+.link-info {
     display: flex;
     flex-direction: column;
 }
-.stat-val {
-    font-size: 2.5rem;
-    color: var(--cp-red);
-    line-height: 1;
-}
-.stat-lbl {
-    color: var(--cp-text-dim);
-    font-size: 0.9rem;
+
+.link-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-text-muted);
     letter-spacing: 1px;
 }
-.contact-desc {
-    font-size: 1.1rem;
+
+.link-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--cp-yellow);
-    margin-bottom: 2rem;
+    letter-spacing: 1px;
 }
-.contact-links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+
+.cyber-btn-link:hover {
+    border-color: var(--cp-yellow);
+    background: linear-gradient(90deg, rgba(252, 238, 10, 0.1) 0%, rgba(14, 18, 28, 0.95) 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(252, 238, 10, 0.2);
 }
-.cyber-btn-link {
+
+.cyber-btn-link:hover::before {
+    transform: scaleY(1);
+    background: var(--cp-yellow);
+}
+
+.cyber-btn-link:hover .link-icon-box {
+    background: var(--cp-yellow);
+    color: var(--cp-dark);
+    box-shadow: 0 0 10px var(--cp-yellow);
+}
+
+/* ========================================================
+   PRELOADER (Cyberpunk 2077 Neural Boot Sequence)
+   ======================================================== */
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: #05060a;
     display: flex;
     align-items: center;
+    justify-content: center;
+    z-index: var(--z-preloader);
+}
+
+.loader-content {
+    width: 90%;
+    max-width: 480px;
+    background: rgba(14, 18, 28, 0.8);
+    border: 1px solid var(--cp-border);
+    padding: 2rem;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
-    padding: 1.5rem;
-    background: rgba(255,0,60,0.1);
-    border: 1px solid var(--cp-red);
-    color: var(--cp-text);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: background 150ms ease-out, color 150ms ease-out, box-shadow 150ms ease-out;
+    box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
 }
-.cyber-btn-link:hover {
-    background: var(--cp-red);
-    color: var(--cp-dark);
-    box-shadow: 0 0 15px var(--cp-red);
+
+.loader-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cp-red);
+    letter-spacing: 1px;
 }
-.cyber-btn-link i {
-    width: 24px;
-    height: 24px;
+
+.loader-text {
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    color: var(--cp-cyan);
+    letter-spacing: 1.5px;
 }
+
+.loader-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--cp-red), var(--cp-yellow));
+    box-shadow: 0 0 10px var(--cp-yellow);
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+/* ========================================================
+   GLITCH ANIMATIONS
+   ======================================================== */
 .glitch {
     position: relative;
 }
-.glitch::before, .glitch::after {
+
+.glitch::before,
+.glitch::after {
     content: attr(data-text);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.8;
 }
+
 .glitch::before {
-    color: var(--cp-cyan);
-    z-index: -1;
-    animation: glitch-anim 2s infinite linear alternate-reverse;
+    left: 2px;
+    text-shadow: -2px 0 var(--cp-red);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
 }
+
 .glitch::after {
-    color: var(--cp-red);
-    z-index: -2;
-    animation: glitch-anim 3s infinite linear alternate-reverse;
+    left: -2px;
+    text-shadow: -2px 0 var(--cp-cyan);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
 }
-@keyframes glitch-anim {
-    0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
-    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
-    40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
-    60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
-    80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 1px); }
-    100% { clip-path: inset(30% 0 50% 0); transform: translate(1px, -1px); }
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(12px, 9999px, 44px, 0); transform: skew(0.3deg); }
+    10% { clip: rect(65px, 9999px, 19px, 0); transform: skew(0.8deg); }
+    20% { clip: rect(40px, 9999px, 80px, 0); transform: skew(0.1deg); }
+    100% { clip: rect(70px, 9999px, 120px, 0); transform: skew(0deg); }
 }
-@media (max-width: 768px) {
-    .game-title {
-        font-size: 3rem;
-    }
-    .menu-btn {
-        font-size: 1.5rem;
-    }
-    .tab-title {
-        font-size: 1.4rem;
-        max-width: 80%;
-    }
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(35px, 9999px, 90px, 0); transform: skew(0.5deg); }
+    15% { clip: rect(10px, 9999px, 50px, 0); transform: skew(0.2deg); }
+    30% { clip: rect(80px, 9999px, 130px, 0); transform: skew(0.7deg); }
+    100% { clip: rect(20px, 9999px, 75px, 0); transform: skew(0deg); }
+}
+
+/* ========================================================
+   RESPONSIVENESS (Mobile, Tablet & Ultrawide)
+   ======================================================== */
+@media (max-width: 1024px) {
     .main-menu.side-mode {
-        width: 100vw;
-        border-right: none;
+        width: 42vw;
     }
     .content-area {
-        width: 100vw;
-        padding: max(1.5rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
-        background: rgba(5,5,5,0.95);
-        z-index: var(--z-mobile-content);
+        width: 58vw;
+        padding: 2rem 2rem 2rem 2rem;
     }
     .about-layout {
         grid-template-columns: 1fr;
     }
-    .contact-links {
+}
+
+@media (max-width: 768px) {
+    .cyber-hud-topbar {
+        padding: 0 1rem;
+        font-size: 0.72rem;
+    }
+    .topbar-center, .hud-vitals {
+        display: none;
+    }
+    
+    .main-menu {
+        padding: 2rem 1.5rem;
+    }
+    .main-menu.side-mode {
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        top: 42px;
+        bottom: 0;
+        z-index: 15;
+        display: none; /* Hide menu when content tab is open on mobile */
+    }
+    
+    .content-area {
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 42px;
+        bottom: 0;
+        padding: 1.5rem;
+        z-index: 25;
+        background: rgba(8, 10, 16, 0.98);
+    }
+    
+    .game-title {
+        font-size: 3.5rem;
+    }
+    .menu-btn {
+        font-size: 1.15rem;
+        padding: 0.75rem 1rem;
+    }
+    .projects-grid, .skills-grid {
         grid-template-columns: 1fr;
     }
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    .about-image {
-        height: 350px;
-    }
-    .mobile-only-flex {
-        display: flex !important;
-    }
-    .mobile-only-block {
-        display: block !important;
-    }
-}
-.mobile-only-flex, .mobile-only-block {
-    display: none;
-}
-.preloader {
-    position: fixed;
-    inset: 0;
-    background-color: var(--cp-dark);
-    z-index: var(--z-preloader);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.loader-content {
-    width: 90%;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.loader-text {
-    font-family: 'Nasalization', sans-serif;
-    color: var(--cp-cyan);
-    font-size: 1.2rem;
-    text-align: center;
-    letter-spacing: 2px;
-}
-.loader-bar-bg {
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 0, 60, 0.2);
-    border: 1px solid var(--cp-red);
-    position: relative;
-    overflow: hidden;
-}
-.loader-bar-fill {
-    height: 100%;
-    width: 100%;
-    transform-origin: left;
-    transform: scaleX(0);
-    background: var(--cp-cyan);
-    box-shadow: 0 0 10px var(--cp-cyan);
 }
 
-.cyber-progress {
-    width: 100%;
-    height: 12px;
-    display: flex;
-    gap: 4px;
-    background: transparent;
-    padding: 0 6px;
-}
-.cyber-progress .seg {
-    flex: 1;
-    height: 100%;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transform: skewX(-30deg);
-    transition: background 150ms ease-out, border-color 150ms ease-out, box-shadow 150ms ease-out;
-}
-.cyber-progress .seg.active {
-    background: var(--cp-cyan);
-    border-color: var(--cp-cyan);
-    box-shadow: 0 0 8px var(--cp-cyan);
-}
-
-.skills-grid .cyber-panel {
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.skills-grid .cyber-panel::before {
-    display: none;
-}
-.skills-grid .cyber-panel:last-child {
-    border-bottom: none;
-}
-
-/* Baseline UI: Typography Balance & Pretty rules */
-h1, h2, h3, .tab-title, .game-title {
-    text-wrap: balance;
-}
-p, .about-text p, .card-info p, .contact-desc, .profile-subtitle, .menu-disclaimer {
-    text-wrap: pretty;
-}
-.stat-val, .btn-deco, [data-tabular] {
-    font-variant-numeric: tabular-nums;
-}
-
-/* Baseline UI: Accessibility & Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *, ::before, ::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
     }
     .glitch::before, .glitch::after {
         display: none !important;
