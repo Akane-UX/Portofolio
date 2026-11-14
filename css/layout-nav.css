@@ -1,0 +1,392 @@
+/* ========================================================
+   MAIN APPLICATION LAYOUT & WORKSPACE
+   ======================================================== */
+.game-container {
+    display: flex;
+    height: 100vh;
+    height: 100dvh;
+    width: 100vw;
+    position: relative;
+    padding-top: 42px; /* Topbar offset */
+    z-index: var(--z-content);
+}
+
+/* Side Navigation / Main Menu (Cyberpunk Hub) */
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 42px;
+    bottom: 0;
+    height: calc(100vh - 42px);
+    height: calc(100dvh - 42px);
+    z-index: var(--z-menu);
+    transition: width 0.75s var(--ease-cyber), border-color 0.75s var(--ease-cyber), background-color 0.75s var(--ease-cyber);
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border-right: 1px solid transparent;
+    padding: 2.5rem 2rem 2rem 2rem;
+}
+
+.main-menu.center-mode {
+    width: 100vw;
+}
+
+.main-menu.side-mode {
+    width: 34vw;
+    background: rgba(8, 10, 16, 0.9);
+    border-right: 1px solid var(--cp-border);
+    backdrop-filter: blur(12px);
+    align-items: flex-start;
+}
+
+.main-menu.side-mode .menu-header {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.main-menu.side-mode .menu-list {
+    align-items: flex-start;
+    width: 100%;
+}
+
+.menu-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cp-cyan);
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+}
+
+.game-title {
+    font-family: var(--font-display);
+    font-size: 4.8rem;
+    font-weight: 900;
+    color: var(--cp-yellow);
+    line-height: 0.95;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px var(--cp-yellow-glow);
+    position: relative;
+    text-transform: uppercase;
+}
+
+.main-menu.side-mode .game-title {
+    font-size: 3.2rem;
+}
+
+.profile-subtitle {
+    font-family: var(--font-sub);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--cp-cyan);
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+}
+
+.cyber-line-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.25rem;
+}
+
+.cyber-line {
+    height: 3px;
+    width: 140px;
+    background: linear-gradient(90deg, var(--cp-red), var(--cp-yellow));
+    box-shadow: 0 0 12px var(--cp-red);
+}
+
+.cyber-diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--cp-yellow);
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px var(--cp-yellow);
+}
+
+/* ========================================================
+   MENU BUTTONS (Chamfered Cyberpunk 2077 HUD Tabs)
+   ======================================================== */
+.menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 460px;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.menu-list li {
+    width: 100%;
+}
+
+.menu-btn {
+    width: 100%;
+    background: rgba(14, 18, 28, 0.6);
+    border: 1px solid var(--cp-border);
+    color: var(--cp-text);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.4rem;
+    position: relative;
+    transition: all 140ms ease-out;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    text-transform: uppercase;
+}
+
+.menu-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--cp-red);
+    box-shadow: 0 0 10px var(--cp-red);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 140ms ease-out;
+}
+
+.menu-btn-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-deco {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cp-red);
+    letter-spacing: 1px;
+    transition: color 140ms ease-out;
+}
+
+.btn-subtext {
+    font-family: var(--font-sub);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cp-text-dim);
+    letter-spacing: 1px;
+}
+
+.menu-btn:hover, .menu-btn.active {
+    background: linear-gradient(90deg, rgba(255, 0, 60, 0.25) 0%, rgba(14, 18, 28, 0.8) 100%);
+    border-color: var(--cp-yellow);
+    color: var(--cp-yellow);
+    transform: translateX(8px);
+    box-shadow: 0 0 15px rgba(252, 238, 10, 0.2), inset 0 0 10px rgba(255, 0, 60, 0.15);
+}
+
+.menu-btn:hover::before, .menu-btn.active::before {
+    transform: scaleY(1);
+    background: var(--cp-yellow);
+    box-shadow: 0 0 12px var(--cp-yellow);
+}
+
+.menu-btn:hover .btn-deco, .menu-btn.active .btn-deco {
+    color: var(--cp-yellow);
+}
+
+.menu-btn:hover .btn-subtext, .menu-btn.active .btn-subtext {
+    color: var(--cp-cyan);
+}
+
+.menu-btn .btn-arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 140ms ease-out;
+    color: var(--cp-yellow);
+}
+
+.menu-btn:hover .btn-arrow, .menu-btn.active .btn-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Menu Footer Telemetry Box */
+.menu-telemetry-box {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(11, 14, 22, 0.85);
+    border: 1px solid var(--cp-border);
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--cp-text-dim);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    position: relative;
+}
+
+.telemetry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.45rem;
+    margin-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+}
+
+.telemetry-tag {
+    color: var(--cp-cyan);
+    font-weight: 700;
+}
+
+.telemetry-indicator {
+    color: var(--cp-green);
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.telemetry-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+}
+
+.telemetry-row:last-child {
+    margin-bottom: 0;
+}
+
+.menu-disclaimer-text {
+    font-family: var(--font-sub);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--cp-text-dim);
+    line-height: 1.4;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================================
+   CONTENT AREA & TAB PANELS
+   ======================================================== */
+.content-area {
+    position: absolute;
+    right: 0;
+    top: 42px;
+    bottom: 0;
+    width: 66vw;
+    height: calc(100vh - 42px);
+    height: calc(100dvh - 42px);
+    padding: 2.5rem 3.5rem 2.5rem 3rem;
+    display: none;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.tab-content {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+/* Tab Header (Chamfered Cyberpunk Banner) */
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.4rem;
+    background: linear-gradient(90deg, rgba(255, 0, 60, 0.18) 0%, rgba(14, 18, 28, 0.8) 100%);
+    border-left: 4px solid var(--cp-red);
+    border-bottom: 1px solid var(--cp-border);
+    margin-bottom: 1.75rem;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    position: relative;
+}
+
+.tab-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-yellow);
+    letter-spacing: 2px;
+}
+
+.tab-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--cp-text);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    background: rgba(255, 0, 60, 0.12);
+    border: 1px solid var(--cp-red);
+    color: var(--cp-red);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 140ms ease-out;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.close-btn:hover {
+    background: var(--cp-red);
+    color: #fff;
+    box-shadow: 0 0 15px var(--cp-red);
+    transform: scale(1.05);
+}
+
+.content-scroll {
+    overflow-y: auto;
+    padding-right: 1.25rem;
+    height: 100%;
+}
+
+.content-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+.content-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+.content-scroll::-webkit-scrollbar-thumb {
+    background: var(--cp-red);
+    box-shadow: 0 0 8px var(--cp-red);
+}

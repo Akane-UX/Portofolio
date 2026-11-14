@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+@font-face {
+    font-family: 'Airstrike';
+    src: url('../assets/fonts/airstrike.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Nasalization';
+    src: url('../assets/fonts/nasalization.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    /* Cyberpunk 2077 Palette (Vilimovský UI Reference) */
+    --cp-yellow: #fcee0a;
+    --cp-yellow-glow: rgba(252, 238, 10, 0.4);
+    --cp-yellow-dim: rgba(252, 238, 10, 0.12);
+    
+    --cp-red: #ff003c;
+    --cp-red-glow: rgba(255, 0, 60, 0.45);
+    --cp-red-dim: rgba(255, 0, 60, 0.15);
+    
+    --cp-cyan: #00f0ff;
+    --cp-cyan-glow: rgba(0, 240, 255, 0.45);
+    --cp-cyan-dim: rgba(0, 240, 255, 0.12);
+
+    --cp-orange: #ff8500;
+    --cp-orange-dim: rgba(255, 133, 0, 0.15);
+    
+    --cp-green: #00ff66;
+    
+    --cp-dark: #06070a;
+    --cp-dark-surface: #0b0d14;
+    --cp-dark-panel: rgba(11, 14, 22, 0.92);
+    --cp-dark-card: rgba(14, 18, 29, 0.94);
+    --cp-dark-elevated: rgba(20, 26, 42, 0.98);
+
+    --cp-border: rgba(255, 0, 60, 0.28);
+    --cp-border-cyan: rgba(0, 240, 255, 0.35);
+    --cp-border-yellow: rgba(252, 238, 10, 0.4);
+    --cp-border-muted: rgba(255, 255, 255, 0.08);
+
+    --cp-text: #f3f4f6;
+    --cp-text-dim: #8b9bb4;
+    --cp-text-muted: #4b5568;
+
+    --font-display: 'Orbitron', 'Airstrike', sans-serif;
+    --font-sub: 'Rajdhani', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Nasalization', monospace;
+
+    --ease-cyber: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+
+    --z-base: 1;
+    --z-content: 10;
+    --z-menu: 20;
+    --z-topbar: 30;
+    --z-vignette: 40;
+    --z-noise: 41;
+    --z-scanlines: 42;
+    --z-preloader: 50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 0 !important; /* Zero round slop per Cyberpunk 2077 HUD */
+}
+
+html, body {
+    height: 100%;
+    height: 100dvh;
+    width: 100vw;
+    background-color: var(--cp-dark);
+    color: var(--cp-text);
+    font-family: var(--font-sub);
+    font-size: 16px;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Background Cyber Grid & Vignette */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 50% 40%, rgba(255, 0, 60, 0.08) 0%, rgba(6, 7, 10, 0.95) 75%);
+    background-size: 40px 40px, 40px 40px, 100% 100%;
+    z-index: var(--z-base);
+    pointer-events: none;
+}
+
+/* HUD CRT Scanlines & Noise */
+.scanlines {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
+    background-size: 100% 3px;
+    z-index: var(--z-scanlines);
+    pointer-events: none;
+    opacity: 0.25;
+}
+
+.noise {
+    position: fixed;
+    inset: 0;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    opacity: 0.04;
+    z-index: var(--z-noise);
+    pointer-events: none;
+}
+
+.vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, rgba(6,7,10,0.85) 100%);
+    z-index: var(--z-vignette);
+    pointer-events: none;
+}

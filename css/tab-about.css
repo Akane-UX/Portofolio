@@ -1,0 +1,187 @@
+/* ========================================================
+   ABOUT SECTION (Subject Dossier / Trauma Team File)
+   ======================================================== */
+.about-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: stretch;
+    padding-bottom: 4rem;
+}
+
+.dossier-card {
+    background: var(--cp-dark-panel);
+    border: 1px solid var(--cp-border);
+    padding: 2rem;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    position: relative;
+}
+
+.dossier-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--cp-yellow);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.dossier-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 2rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--cp-text-dim);
+}
+
+.dossier-list li {
+    margin-bottom: 0.65rem;
+    display: flex;
+    gap: 0.8rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.4rem;
+}
+
+.dossier-label {
+    color: var(--cp-cyan);
+    width: 120px;
+    flex-shrink: 0;
+    font-weight: 500;
+}
+
+.dossier-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--cp-text-dim);
+    margin-bottom: 1rem;
+}
+
+/* Biomonitor Vitals Mini Dashboard */
+.vitals-box {
+    background: rgba(14, 18, 28, 0.7);
+    border: 1px solid var(--cp-border-cyan);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.vitals-box-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-cyan);
+    margin-bottom: 0.6rem;
+    letter-spacing: 1px;
+}
+
+.vital-stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--cp-text-dim);
+    margin-bottom: 0.35rem;
+}
+
+.vital-stat-row .val {
+    color: var(--cp-yellow);
+    font-weight: 700;
+}
+
+/* Avatar Frame with Kiroshi Optic Reticle */
+.about-image {
+    position: relative;
+    border: 1px solid var(--cp-border);
+    background: #08090e;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.1) brightness(0.95);
+    transition: filter 0.4s ease, transform 0.4s var(--ease-cyber);
+}
+
+.about-image:hover img {
+    filter: contrast(1.2) brightness(1.05);
+    transform: scale(1.04);
+}
+
+.kiroshi-reticle {
+    position: absolute;
+    inset: 1.5rem;
+    border: 1px dashed rgba(0, 240, 255, 0.4);
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--cp-cyan);
+}
+
+.reticle-top, .reticle-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reticle-crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--cp-red);
+    border-radius: 50% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reticle-crosshair::before, .reticle-crosshair::after {
+    content: '';
+    position: absolute;
+    background: var(--cp-red);
+}
+.reticle-crosshair::before { width: 14px; height: 1px; }
+.reticle-crosshair::after { width: 1px; height: 14px; }
+
+.objectives-panel {
+    grid-column: 1 / -1;
+    background: linear-gradient(180deg, rgba(255, 0, 60, 0.08) 0%, rgba(11, 14, 22, 0.95) 100%);
+    border: 1px solid var(--cp-border);
+    padding: 1.75rem;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    position: relative;
+}
+
+.objectives-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--cp-yellow);
+    box-shadow: 0 0 10px var(--cp-yellow);
+}
+
+.objectives-panel h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--cp-yellow);
+    margin-bottom: 0.75rem;
+}
+
+.objectives-panel p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--cp-text);
+}

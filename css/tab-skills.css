@@ -1,0 +1,117 @@
+/* ========================================================
+   SKILLS GRID (Cyberware Augmentation Systems)
+   ======================================================== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 4rem;
+}
+
+.cyber-panel {
+    background: var(--cp-dark-panel);
+    border: 1px solid var(--cp-border);
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition: all 180ms ease;
+}
+
+.panel-hazard-stripe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--cp-red) 0, var(--cp-red) 8px, transparent 8px, transparent 16px);
+}
+
+.panel-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.cyber-panel h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--cp-text);
+    letter-spacing: 1px;
+}
+
+.tier-badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--cp-yellow);
+    background: rgba(252, 238, 10, 0.1);
+    border: 1px solid var(--cp-yellow);
+    padding: 2px 6px;
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.cyber-panel p {
+    color: var(--cp-text-dim);
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin-bottom: 1.1rem;
+}
+
+/* Cyber Gauge / Segmented LED Bars */
+.gauge-wrapper {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gauge-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-text-dim);
+    margin-bottom: 0.4rem;
+}
+
+.gauge-val {
+    color: var(--cp-cyan);
+    font-weight: 700;
+}
+
+.cyber-progress {
+    display: flex;
+    gap: 4px;
+    height: 10px;
+    width: 100%;
+}
+
+.cyber-progress .seg {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    clip-path: polygon(0 0, calc(100% - 2px) 0, 100% 2px, 100% 100%, 2px 100%, 0 calc(100% - 2px));
+    transition: background-color 120ms ease;
+}
+
+.cyber-progress .seg.active {
+    background: var(--cp-cyan);
+    border-color: var(--cp-cyan);
+    box-shadow: 0 0 8px var(--cp-cyan-glow);
+}
+
+.cyber-progress .seg.active-red {
+    background: var(--cp-red);
+    border-color: var(--cp-red);
+    box-shadow: 0 0 8px var(--cp-red-glow);
+}
+
+.cyber-panel:hover {
+    border-color: var(--cp-cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}

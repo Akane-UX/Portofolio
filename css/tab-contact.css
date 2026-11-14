@@ -1,0 +1,133 @@
+/* ========================================================
+   CONTACT SECTION (Holocall / Comm-Link Terminal)
+   ======================================================== */
+.holocall-header-box {
+    background: rgba(14, 18, 28, 0.8);
+    border: 1px solid var(--cp-border-cyan);
+    padding: 1.25rem 1.75rem;
+    margin-bottom: 2rem;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.holocall-status {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--cp-cyan);
+}
+
+.waveform-eq {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+}
+
+.waveform-bar {
+    width: 3px;
+    background: var(--cp-cyan);
+    box-shadow: 0 0 6px var(--cp-cyan);
+    animation: eqBounce 1.2s infinite ease-in-out;
+}
+
+.waveform-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.waveform-bar:nth-child(2) { height: 80%; animation-delay: 0.3s; }
+.waveform-bar:nth-child(3) { height: 100%; animation-delay: 0.2s; }
+.waveform-bar:nth-child(4) { height: 60%; animation-delay: 0.4s; }
+.waveform-bar:nth-child(5) { height: 30%; animation-delay: 0.5s; }
+
+@keyframes eqBounce {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+}
+
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding-bottom: 4rem;
+}
+
+.cyber-btn-link {
+    background: var(--cp-dark-card);
+    border: 1px solid var(--cp-border);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--cp-text);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition: all 160ms ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-btn-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--cp-cyan);
+    transform: scaleY(0);
+    transition: transform 140ms ease;
+}
+
+.link-icon-box {
+    width: 46px;
+    height: 46px;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid var(--cp-border-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cp-cyan);
+    flex-shrink: 0;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: all 160ms ease-out;
+}
+
+.link-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.link-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-text-muted);
+    letter-spacing: 1px;
+}
+
+.link-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--cp-yellow);
+    letter-spacing: 1px;
+}
+
+.cyber-btn-link:hover {
+    border-color: var(--cp-yellow);
+    background: linear-gradient(90deg, rgba(252, 238, 10, 0.1) 0%, rgba(14, 18, 28, 0.95) 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(252, 238, 10, 0.2);
+}
+
+.cyber-btn-link:hover::before {
+    transform: scaleY(1);
+    background: var(--cp-yellow);
+}
+
+.cyber-btn-link:hover .link-icon-box {
+    background: var(--cp-yellow);
+    color: var(--cp-dark);
+    box-shadow: 0 0 10px var(--cp-yellow);
+}

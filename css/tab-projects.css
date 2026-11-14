@@ -1,0 +1,193 @@
+/* ========================================================
+   PROJECTS GRID (Cyberpunk 2077 Item / Shard Cards)
+   ======================================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+.cyber-card {
+    background: var(--cp-dark-card);
+    border: 1px solid var(--cp-border);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+/* HUD Corner Reticles */
+.hud-corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    z-index: 5;
+}
+.hud-corner-tl { top: 3px; left: 3px; border-top: 2px solid var(--cp-cyan); border-left: 2px solid var(--cp-cyan); }
+.hud-corner-tr { top: 3px; right: 3px; border-top: 2px solid var(--cp-cyan); border-right: 2px solid var(--cp-cyan); }
+.hud-corner-bl { bottom: 3px; left: 3px; border-bottom: 2px solid var(--cp-cyan); border-left: 2px solid var(--cp-cyan); }
+.hud-corner-br { bottom: 3px; right: 3px; border-bottom: 2px solid var(--cp-cyan); border-right: 2px solid var(--cp-cyan); }
+
+/* Rarity Ribbon Header */
+.card-rarity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rarity-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rarity-tag.iconic {
+    color: var(--cp-orange);
+}
+
+.rarity-tag.legendary {
+    color: var(--cp-yellow);
+}
+
+.rarity-tag.spec-ops {
+    color: var(--cp-cyan);
+}
+
+.card-img-wrapper {
+    height: 180px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #08090e;
+}
+
+.card-img-wrapper img, .mock-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s var(--ease-cyber), filter 0.4s ease;
+}
+
+.mock-bg {
+    background: 
+        repeating-linear-gradient(45deg, rgba(255, 0, 60, 0.08) 0, rgba(255, 0, 60, 0.08) 10px, transparent 10px, transparent 20px),
+        #0b0d14;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--cp-cyan);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+}
+
+.mock-bg span {
+    font-size: 0.7rem;
+    color: var(--cp-text-muted);
+    margin-top: 4px;
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(14, 18, 29, 0.95) 100%);
+    pointer-events: none;
+}
+
+.card-info {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--cp-yellow);
+    margin-bottom: 0.4rem;
+    letter-spacing: 1px;
+}
+
+.card-meta-spec {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cp-cyan);
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.8rem;
+}
+
+.card-info p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--cp-text-dim);
+    margin-bottom: 1.25rem;
+    flex: 1;
+}
+
+.tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.tags span {
+    background: rgba(0, 240, 255, 0.08);
+    color: var(--cp-cyan);
+    padding: 2px 7px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    border: 1px solid var(--cp-border-cyan);
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.card-action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cp-text-dim);
+}
+
+.card-action-bar .action-cta {
+    color: var(--cp-yellow);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cyber-card:hover {
+    border-color: var(--cp-yellow);
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(252, 238, 10, 0.25), inset 0 0 15px rgba(255, 0, 60, 0.1);
+}
+
+.cyber-card:hover .card-img-wrapper img {
+    transform: scale(1.06);
+    filter: contrast(1.15) brightness(1.05);
+}
+
+.cyber-card:hover .action-cta {
+    color: #fff;
+    text-shadow: 0 0 8px var(--cp-yellow);
+}

@@ -1,0 +1,145 @@
+/* ========================================================
+   TOP GLOBAL HUD BAR (Cyberpunk Biomonitor / System Ribbon)
+   ======================================================== */
+.cyber-hud-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 42px;
+    background: rgba(8, 10, 16, 0.94);
+    border-bottom: 1px solid var(--cp-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    z-index: var(--z-topbar);
+    backdrop-filter: blur(8px);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.cyber-hud-topbar::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 140px;
+    height: 2px;
+    background: var(--cp-yellow);
+    box-shadow: 0 0 10px var(--cp-yellow);
+}
+
+.topbar-left, .topbar-center, .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.hud-tag {
+    color: var(--cp-yellow);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.hud-tag-dim {
+    color: var(--cp-text-dim);
+}
+
+.hud-pill {
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid var(--cp-border-cyan);
+    color: var(--cp-cyan);
+    padding: 2px 8px;
+    font-size: 0.72rem;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+}
+
+.hud-vitals {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--cp-text-dim);
+}
+
+.vital-meter {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.vital-label {
+    font-size: 0.7rem;
+    color: var(--cp-text-muted);
+}
+
+.vital-segments {
+    display: flex;
+    gap: 2px;
+}
+
+.vital-seg {
+    width: 5px;
+    height: 9px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.vital-seg.active-hp {
+    background: var(--cp-cyan);
+    box-shadow: 0 0 6px var(--cp-cyan);
+}
+
+.vital-seg.active-ram {
+    background: var(--cp-yellow);
+    box-shadow: 0 0 6px var(--cp-yellow);
+}
+
+.pulse-beacon {
+    width: 8px;
+    height: 8px;
+    background: var(--cp-red);
+    border-radius: 50% !important;
+    box-shadow: 0 0 8px var(--cp-red);
+    animation: beaconPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.hud-clock {
+    color: var(--cp-text);
+    font-variant-numeric: tabular-nums;
+}
+
+.hud-btn {
+    background: transparent;
+    border: 1px solid var(--cp-border);
+    color: var(--cp-text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 120ms ease;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+.hud-btn:hover {
+    background: var(--cp-red-dim);
+    border-color: var(--cp-red);
+    color: var(--cp-yellow);
+    box-shadow: 0 0 10px var(--cp-red-dim);
+}
+
+.hud-btn.active {
+    background: var(--cp-yellow-dim);
+    border-color: var(--cp-yellow);
+    color: var(--cp-yellow);
+}

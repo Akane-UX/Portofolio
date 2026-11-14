@@ -1,0 +1,72 @@
+/* ========================================================
+   RESPONSIVENESS (Mobile, Tablet & Ultrawide)
+   ======================================================== */
+@media (max-width: 1024px) {
+    .main-menu.side-mode {
+        width: 42vw;
+    }
+    .content-area {
+        width: 58vw;
+        padding: 2rem 2rem 2rem 2rem;
+    }
+    .about-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .cyber-hud-topbar {
+        padding: 0 1rem;
+        font-size: 0.72rem;
+    }
+    .topbar-center, .hud-vitals {
+        display: none;
+    }
+    
+    .main-menu {
+        padding: 2rem 1.5rem;
+    }
+    .main-menu.side-mode {
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        top: 42px;
+        bottom: 0;
+        z-index: 15;
+        display: none; /* Hide menu when content tab is open on mobile */
+    }
+    
+    .content-area {
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 42px;
+        bottom: 0;
+        padding: 1.5rem;
+        z-index: 25;
+        background: rgba(8, 10, 16, 0.98);
+    }
+    
+    .game-title {
+        font-size: 3.5rem;
+    }
+    .menu-btn {
+        font-size: 1.15rem;
+        padding: 0.75rem 1rem;
+    }
+    .projects-grid, .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    .glitch::before, .glitch::after {
+        display: none !important;
+    }
+}
